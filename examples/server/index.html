@@ -3,6 +3,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WebRTC demo</title>
+    <link rel="stylesheet" type="text/css" href="base.css" />
     <style>
     button {
         padding: 8px 16px;
@@ -24,11 +25,30 @@
     #media {
         max-width: 1280px;
     }
+
+    #menu {
+        width: 29vw;
+        height: 100vh;
+        border: 2px solid dark-teal;
+        float: left;
+    }
+
+    #video_container { 
+        width: 68vw;
+        height: 100vh;
+        border: 2px solid dark-teal;
+        float: right;
+    }
+
+    h2 {
+        font-family: 'Julius Sans One', sans-serif;
+    }
+
     </style>
 </head>
 <body>
-
-<h2>Options</h2>
+<div id = "menu"> 
+    <h2>Options</h2>
 <div class="option">
     <input id="use-datachannel" checked="checked" type="checkbox"/>
     <label for="use-datachannel">Use datachannel</label>
@@ -88,24 +108,14 @@
 <p>
     Signaling state: <span id="signaling-state"></span>
 </p>
+</div>
 
-<div id="media" style="display: none">
+<div id = "video_container">
     <h2>Media</h2>
 
     <audio id="audio" autoplay="true"></audio>
     <video id="video" autoplay="true" playsinline="true"></video>
 </div>
-
-<h2>Data channel</h2>
-<pre id="data-channel" style="height: 200px;"></pre>
-
-<h2>SDP</h2>
-
-<h3>Offer</h3>
-<pre id="offer-sdp"></pre>
-
-<h3>Answer</h3>
-<pre id="answer-sdp"></pre>
 
 <script src="client.js"></script>
 </body>

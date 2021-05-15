@@ -100,6 +100,11 @@ async def javascript(request):
     return web.Response(content_type="application/javascript", text=content)
 
 
+async def base(request):
+    content = open(os.path.join(ROOT, "base.css"), "r").read()
+    return web.Response(content_type="text/css", text=content)
+
+
 async def offer(request):
     params = await request.json()
     offer = RTCSessionDescription(sdp=params["sdp"], type=params["type"])
@@ -208,6 +213,7 @@ if __name__ == "__main__":
     app = web.Application()
     app.on_shutdown.append(on_shutdown)
     app.router.add_get("/", index)
+    app.router.add_get("/base.css", base)
     app.router.add_get("/client.js", javascript)
     app.router.add_post("/offer", offer)
     web.run_app(
