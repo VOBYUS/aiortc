@@ -16,24 +16,6 @@
   --primary-white: #ffffff;
   --primary-black: #202020;
 }
-/*https://www.w3schools.com/cssref/default.asp*/
-/* https://fonts.google.com*/
-
-/* @font-face {
-font-family: "Proxima Nova";
-src: url(/fonts/Proxima_Nova.ttf);
-} */
-
-/* 
-@font-face {
-font-family: "Raleway-Light";
-src: url(/fonts/Raleway-LightItalic.ttf);
-} */
-
-/* @font-face {
-font-family: "Quicksand-Light";
-src: url(/fonts/Quicksand-Light.ttf);
-} */
 
 body { /*BODY TEXT*/
 	background-color:var(--primary-white);

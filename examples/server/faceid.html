@@ -1,0 +1,793 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='https://www.voby.us/name.css' rel='stylesheet'> 
+		<link href = "https://www.voby.us/base.css" rel = "stylesheet">	
+		<title>Vobyus</title> 
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Raleway:wght@300&display=swap');
+
+			body {
+				margin: 0;
+				background-color:#86d7c8;
+				height: 100vh;
+				width: 100vw;   
+				margin: 0;
+				display:table;
+				overflow: hidden;   
+				display:flex;
+				flex-direction:column;
+				align-items:center;
+				justify-content:center;
+				height:100vh;
+				margin:0;
+			}
+			
+			#startCamera {
+				width:200px;
+				margin:auto; 
+				display:block;
+				margin-top: 30vh;
+				background-color: #0b5460;
+				color:white;
+				height:200px;
+				border-radius: 50%;
+				font-size: 25px;
+			}
+			
+			#startCamera:hover {
+				width:200px;
+				height:200px;
+				margin:auto;
+				display:block;
+				margin-top: 30vh;
+				background-color: #ffe599;
+				border-radius:50%;
+				color:white;
+				font-size: 25px;
+				box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
+			}
+			
+			.retake {
+				display: none;
+				width:110px; 
+				height: 60px;
+				margin: auto;
+				/*display:block;*/
+				background-color:#0b5460;
+				border-radius: 5px;
+				color: white;
+				font-size: 20px;
+			}
+		
+
+			canvas, #indicator {
+				position:absolute;
+				top:0;
+				left:0;
+			}
+			
+			video {
+				margin: auto;
+				width:480px;
+				height:320px;
+				display: block;
+				transform: rotateY(180deg);
+				display:flex;
+				flex-direction:column;
+				align-items:center;
+			
+			}
+			
+			img {
+				width:240px;
+				height:160px;
+				transform: rotateY(180deg);
+			}
+	/*		
+			#gallery {
+				margin-top: 40vh;
+				background-color: transparent;
+				position: absolute;
+				background-color: white;
+				top:20vh;
+				left:47.7vw; 
+				display: grid;
+				grid-template-columns: 50% 50%;
+				grid-template-rows: 25% 25% 25% 25%;
+			}*/
+			
+			.indy {
+				color: #ffffff;
+				background-color: var(--primary-teal);
+				width:4px;
+				height:25px;
+				position:absolute;
+				
+			}
+			
+			.indydone {
+				color: #ffffff;
+				background-color: var(--primary-teal);
+				width:1px;
+				height:1px;
+				position:absolute;
+				display:none;
+			}
+			
+			body {
+				background-color: var(--light-teal);
+			}
+		/*	
+			.container {
+			  position: relative;
+			  width:250px;
+			  height: 200px;
+			}*/
+			
+			.image {
+			  opacity: 1;
+			  display: block;
+			  width: 100%;
+			  height: auto;
+			  transition: .5s ease;
+			}
+			
+			.middle {
+			  transition: .5s ease;
+			  opacity: 0;
+			  position: absolute;
+			  top: 50%;
+			  left: 50%;
+			  transform: translate(-50%, -50%);
+			  -ms-transform: translate(-50%, -50%)
+			}
+			
+			.container:hover .image {
+			  opacity: 0.3;
+			}
+			
+			.container:hover .middle {
+			  opacity: 1;
+			}
+			
+			.text {
+			  background-color: #0b5460;
+			  color: white;
+			  font-size: 16px;
+			  padding: 16px 32px;
+			/*display:flex;
+			flex-direction:column;
+			align-items:center;*/
+			}
+			
+			#gallery {
+			  display: flex;
+			  flex-direction: row;
+			  color: black;
+			  background-color:transparent;
+			  top:70vh;
+			  justify-content: center;
+			  align-items: center;
+			  width:100vw;
+			  
+			}
+			
+			#done{
+			  top:20vh;
+			  left:80vw; 
+			  display: none;
+			  position: absolute; /*added*/	
+			  border-radius:10px;
+			  background-color:#146572;
+			  color: white;
+		   	  font-size: 20px;
+		   	  width: 150px;
+		   	  height: 60px;
+		   	 
+			}
+
+			/*#done2{*/
+			/*  top: 15vh;*/
+			/*  left: 45vw; */
+			   /*added position: absolute;
+			/*  border-radius:10px;*/
+			/*  background-color:#146572;*/
+			/*  color: white;*/
+		 /*  	  font-size: 20px;*/
+		 /*  	  width: 150px;*/
+		 /*  	  height: 60px;*/
+			/*}*/
+			.container {
+			  background-color: #04908a;
+			  color: #fff;
+			  border-radius: 5px;
+			  padding: 5px;
+			  font-size: 100%;
+			  /*position: relative;*/
+			  width:10%;
+			  height: 20%; 
+			}
+			
+			label,input {}/*from name.css*/
+			/*	width: 300px; */
+			/*	display: block;*/
+			/*	margin: 20px auto;*/
+			/*	text-align: center;*/
+			/*	font-size: 30 px;*/
+			/*}*/
+			
+			nav {/*from name.css*/
+				width:150px;
+				height:50px;
+				margin:auto;
+				display:block;
+				background-color: #146572;
+				color:white;
+				border-radius:10px;
+				font-size: 20px;
+			}
+			
+			#secondPage {
+				display: none;
+			}
+			
+			#thirdPage {
+				display: none;
+			}
+			
+			#users, #visual, #preferences, #driving { /*from settings.html*/
+				background-color: #04908a;
+				color: white;
+				width: 250px;
+				height: 80px;
+				font-size: 25px;
+				display: block;
+				margin-top: 30px;
+				margin-bottom: 30px;	
+				border-radius: 5px;
+			}
+			
+			
+			#firstPage {
+				/*https://css-tricks.com/snippets/css/a-guide-to-flexbox/*/
+				display:flex;
+				flex-direction:column;
+				align-items:center;
+				justify-content:space-evenly;
+				height:40%;
+				font-size:24px;
+			}
+			
+			#firstPage input {
+				width:100%;
+				padding:10px;
+				font-size:24px;
+				border-radius: 20px;
+				border:solid 1px grey;
+			}
+		
+			#secondPage {
+				display:flex;
+				flex-direction:column;
+				align-items:center;
+				display:none;
+			}
+			
+			#thirdPage {
+				display:flex;
+				flex-direction:column;
+				align-items:center;
+				display:none;
+			}
+			
+			#log {
+				position:absolute;
+				top:5px;
+				left:5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id='log'></div>
+		<section id = 'firstPage'> 
+				<label name ="user"> What is your name?</label>
+				<input type="text" size="12" id="name" name ="user"/>
+				<input type="button" id = "done2" onclick= "myNext()"  value="Done"/>
+		</section> 
+
+		<section id = 'secondPage'> 
+				<button id = 'startCamera'> Click to Start </button>
+				<video playsinline> </video>
+				<div></div>
+				<!--<canvas id="mycanvas" width="480" height="320"></canvas>-->
+				<canvas id="mycanvas"></canvas>
+				<script src = '/root/face-api.js'> </script>
+				<div id = 'message'></div> 
+				<a id = 'landmarks'> </a>
+				<a id = 'pictures'> </a>
+				<div id = 'indicator'></div>
+				<div id = 'gallery'> </div>
+				<div> 
+					<input type="button" id = "done" onclick="nextPage()" value="Done"/>
+				</div>
+		</section>
+		
+		<section id = 'thirdPage'>  
+				<h1 id = "result"></h1>
+				<div> 	
+					<input type="button" id = "users" onclick="location.href='https://www.voby.us/users.html';" value="Users"/>
+				
+					<input type="button" id = "visual" onclick="location.href='https://www.voby.us/visual.html';" value="Visual"/>
+					
+					<input type="button" id = "preferences" onclick="location.href='https://www.voby.us/preferences.html';" value="Preferences"/>
+				
+					<input type="button" id = "driving" onclick="location.href='https://www.voby.us/driving.html';" style="background-color:var(--primary-gold);color:var(--primary-black)" value="Start Driving"/>
+				</div>
+		</section> 
+		
+		<script>
+			var video  = document.querySelector('video');
+			var button = document.querySelector('button');
+			var div    = document.querySelector('div');
+			var canvas = document.querySelector('canvas');
+		    var name = '';
+			var tools = canvas.getContext('2d');
+			var displaySize;
+			var faceMatcher;
+			var frameCount = 0;
+			var faces = [];
+			var landmarks = document.querySelector('#landmarks');
+			var pictures = document.querySelector('#pictures');
+			var minY;
+			var maxY;
+			var minX;
+			var maxX;
+			var noseX;
+			var noseY;
+			var results;
+			var faceHeight;
+			var faceWidth;	
+			var prev;
+			var changeX;
+			var changeY;
+			var changeWidth;
+			var changeHeight;
+			var container;
+			var doneTakingPicture = false;
+			var $log = document.querySelector('#log');				      max: 1440
+
+			
+			// Circle that gets drawn over the initial position of the nose as the center
+			var initialCircle;
+			var R = 0;
+			var center;
+			var angles = {0:false ,45: false, 90: false, 135: false,
+						 180: false, 225: false, 270: false, 315: false}
+			
+			//var width = 480;
+			//var height = 320;
+		
+			var constraints = {
+				audio: false,
+				video: {
+					width: {
+				      min: 240,
+				      ideal: 480,
+				      max: 2560,
+				    },
+				    height: {
+				      min: 160,
+				      ideal: 320,
+				    },
+				facingMode: 'user'
+				}
+			};
+			
+			//canvas.style.height = video.getHeight;
+			//canvas.style.width = video.getWidth;
+		//	canvas.style.border = "red 5px solid"
+		
+			var images = []
+		
+			function log(message) {
+				$log.innerHTML = message;
+			}
+	
+			
+			async function loadModel(modelName) {
+				div.innerHTML = '' + modelName;
+				await faceapi.nets[modelName].loadFromUri('/libs/models');
+				div.innerHTML = '';
+			}
+			
+			function setupVideo() {
+				navigator
+					.mediaDevices
+					.getUserMedia(constraints)
+					.then(loadVideo)
+					.catch(handleNoCamera)
+			}
+			
+			function saveLandmarks(angle, l) {
+				var username = 	localStorage.getItem("username");
+				var file = name + Math.random() + '.json'; 
+				var data = JSON.stringify(l);
+				var name = 'FR#' + username + '#' + angle;
+				localStorage[name] = data;
+				
+			}
+			
+			function saveImage(angle) {
+				tools.clearRect(0, 0, canvas.width, canvas.height)
+				canvas.style.display = "block"
+				tools.drawImage(video, 0, 0, canvas.width, canvas.height)
+				addToGallery(canvas.toDataURL(), angle)
+				images.push(canvas.toDataURL())
+				//drawCircle();
+				//drawIndicator();
+			}
+		
+			function loadVideo(mediaStream) {
+				video.srcObject = mediaStream; 
+				video.onloadedmetadata = playVideo;
+			}
+			
+			async function playVideo() {
+				video.play();
+				document.querySelector("#secondPage").removeChild(button);
+				var ul = video.getBoundingClientRect();
+				canvas.style.top = ul.top + 'px';
+				canvas.style.left = ul.left + 'px';
+				//canvas.style.width = "480px";
+				// canvas.style.height = "320px";
+				const indicator = document.querySelector('#indicator');
+				indicator.style.top = ul.top + 'px';
+				indicator.style.left = ul.left + 'px';
+				
+					await loadModel('ssdMobilenetv1');
+					await loadModel('tinyFaceDetector');
+					await loadModel('mtcnn');
+					await loadModel('faceLandmark68Net');
+					await loadModel('faceLandmark68TinyNet');
+					await loadModel('faceRecognitionNet');
+
+					displaySize = {
+						width: video.videoWidth,
+						height: video.videoHeight,
+					}
+					faceapi.matchDimensions(canvas, displaySize);
+					analyze();
+					readLandmarkFile();
+					setUpGallery();
+					
+		
+					
+			}
+			
+			function readLandmarkFile (){
+				  //var reader = new FileReader();
+				  //reader.readAsText( Blob('./0.568483600580201.json'));
+				  //alert(reader.result);
+		
+				}
+			
+			function calculateFaceHeight(){
+				minY = Infinity;
+				maxY = 0;
+				results.landmarks._positions.forEach(p => {
+					if(p._y > maxY) maxY = p._y;
+					if(p._y < minY) minY = p._y;
+				})
+				return maxY-minY;
+			}
+			
+			function calculateFaceWidth(){
+				minX = Infinity;
+				maxX = 0;
+				results.landmarks._positions.forEach(p => {
+					if(p._x > maxX) maxX = p._x;
+					if(p._x < minX) minX = p._x;
+				})
+				return maxX-minX;
+			}
+			
+			function drawCircle(){
+				noseX = faceWidth/2 + minX;
+				noseY = faceHeight/2 + minY;
+	
+				//noseY = noseY + faceHeight*0.2;
+				if(initialCircle && !isNaN(initialCircle.X)){
+					var X = initialCircle.X;
+					var Y = initialCircle.Y;
+					R = initialCircle.R;
+					tools.beginPath();
+					log(JSON.stringify({X,Y,R, ifx: true}))
+					tools.arc(X, Y, R, 0, 2 * Math.PI, false);
+					tools.lineWidth = 3;
+					tools.strokeStyle = "#86d7c8";
+					tools.stroke();
+					
+				} else {
+					var X = canvas.width-noseX + 12.5;
+					var Y = noseY;
+					R = (maxY -minY) /2; // maxY-(maxY-minY/4);
+					tools.beginPath();
+					log(JSON.stringify({X,Y,R, ifx: false}))
+					tools.arc(X, Y, R, 0, 2 * Math.PI, false);
+					tools.lineWidth = 3;
+					tools.strokeStyle = "#86d7c8";
+					tools.stroke();
+					center = {noseX,noseY};
+					
+					initialCircle = {X, Y, R};					
+				}
+			
+	
+			}
+			
+			function drawIndicator(){
+				if(isNaN(noseX) || isNaN(noseY)) return;
+				console.log(initialCircle);
+				
+				indicator.innerHTML = "";
+				Object.keys(angles).forEach((angle)=> {
+					angle = parseFloat(angle);
+					const div = document.createElement('div');
+					div.className = angles[angle] === false ? 'indy': 'indydone';
+					var r = R + 12.5;
+					var x = initialCircle.X - r*Math.sin(angle*(Math.PI/180));
+					var y = initialCircle.Y + (r*Math.cos(angle*(Math.PI/180)) - 12.5);
+					const span = document.createElement('span');
+					div.style.top = `${y}px`;
+					div.style.left = `${x}px`;
+					div.style.transform = `rotate(${angle}deg)`;
+					indicator.appendChild(div);
+					
+				if(angles[angle] == false) {
+					span.style.position = 'absolute';
+					span.style.top = `${y+4}px`;
+					span.style.left = `${x-10}px`;
+					span.innerText = angle;
+					indicator.appendChild(span);
+					span.style.color = "var(--primary-gold)";
+				}
+				});
+			}
+			
+			function didFaceMove(results){
+				changeX = Math.abs(prev.noseX - noseX)/prev.noseX;
+				changeY = Math.abs(prev.noseY - noseY)/prev.noseY;
+				changeWidth = Math.abs(prev.faceWidth - faceWidth)/prev.faceWidth;
+				changeHeight = Math.abs(prev.faceHeight - faceHeight)/prev.faceHeight;
+				
+				if((changeX + changeY + changeWidth + changeHeight) > 0.05) {
+					var b = calculateAngle();
+					var c;
+					c = parseInt(b/45)*45;
+					if(angles[c]===false){
+						saveLandmarks(c, results.descriptor);
+						saveImage(c);
+						angles[c] = true;
+					}
+				
+				}
+				
+			
+				function calculateAngle(){
+					if(noseY === center.noseY) noseY += 0.0001;
+					
+					var a = Math.atan((noseX - center.noseX)/(noseY - center.noseY))*180/Math.PI
+					// Quadrant 1
+					if((noseY - center.noseY) > 0 && (noseX - center.noseX) > 0){
+						a = a;
+					}
+					
+					// Quandrant 2
+					if((noseX - center.noseX)< 0 && (noseY - center.noseY) > 0){
+						a += 360;
+					}
+					
+					// Quandrant 3
+					if((noseX - center.noseX)< 0 && (noseY - center.noseY) < 0){
+						a += 180;
+					}
+					
+					// Quandrant 4
+					if((noseY - center.noseY) < 0 && (noseX - center.noseX) > 0){
+						a += 180;
+					}
+					
+					console.log(a);
+					return a;
+					
+				}
+				
+				return false;
+			}
+			
+			
+			function showGallery() {
+				/*var gallery = document.querySelector('#gallery');
+				images.forEach(image => {
+    			var img = document.createElement('img');
+    			img.src = image;
+    			gallery.appendChild(img);
+			  });*/
+			}
+			
+			function addToGallery(image, angle) {
+				var img = document.querySelector(`#d${angle}`); 
+				img.src = image;
+			}
+			
+			function setUpGallery() {
+				var gallery = document.querySelector('#gallery');
+				Object.keys(angles).forEach(angle => {
+					var div = document.createElement('div');
+					div.className = 'container';
+					div.innerHTML = `<label> ${angle} </label> <img class="image" style="width:100%" id = "d${angle}">
+						<div class="middle">
+    					<button class = 'retake' onclick = "retakePicture(${angle})">Retake</button>
+
+					</div>`
+    				gallery.appendChild(div);
+				})
+				
+			} 
+			
+			function retakePicture(angle) {
+				if(!doneTakingPicture) return;
+				angles[angle] = false;
+				var img = document.querySelector(`#d${angle}`); 
+				img.removeAttribute("src");				
+				document.querySelectorAll(".retake").forEach(button => button.style.display = "none");
+				doneTakingPicture = false;
+				frameCount = 0;
+				analyze();
+			}
+		
+				
+			/*	percent = maxX-prevX/prevX;
+					if(percent*100>20){
+						console.log("moved" + percent);*/
+	
+		
+
+			async function analyze() {
+				tools.clearRect(0, 0, canvas.width, canvas.height);				
+				drawCircle();
+				drawIndicator();
+				canvas.style.display = "block"
+				if(frameCount % 10 === 0) {
+					results = await faceapi
+						.detectSingleFace(video)
+						.withFaceLandmarks()
+						.withFaceDescriptor();
+					   	
+		
+					if(results) {
+						
+						var anchor = {x:50, y:50};
+						
+						var options = {
+							backgroundColor: 'rgba(0,0,0,0.5)'
+						}
+						var resizedDetections = faceapi.resizeResults(results, displaySize);
+						
+						//faceapi.draw.drawDetections(canvas, resizedDetections);
+						//faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
+						faces.push(results.landmarks);
+						
+						faceHeight = calculateFaceHeight();
+						faceWidth = calculateFaceWidth();
+						
+						if(prev) didFaceMove(results);
+						
+						
+						drawCircle();
+						drawIndicator();
+						if(!Object.keys(angles).find(angle => angles[angle] === false)) {
+							document.getElementById('message').innerHTML = "you have taken enough pictures";
+							doneTakingPicture = true;
+							document.querySelectorAll(".retake").forEach(button => button.style.display = "block");
+							document.getElementById("done").style.display = "block";
+							return;
+						}
+						
+						prev = {noseX, noseY, faceWidth, faceHeight}
+					} 
+				}	
+				
+				
+				++frameCount;
+				window.requestAnimationFrame(analyze);
+			}
+			
+			function handleNoCamera(error) {
+				alert(error.message);
+			}
+			
+			for (var i = 0; i < localStorage.length; i++ ) {
+				localStorage.getItem(localStorage.key(i));
+			}
+			
+		/*await analyzeCelebrities();
+			
+			displaySize = {
+				width: video.videoWidth,
+				height: video.videoHeight,
+			}
+			faceapi.matchDimensions(canvas, displaySize);
+			analyze();
+			}
+			
+		async function analyzeCelebrities() {
+			div.innerHTML = "Analyzing Celebrities";
+			var labeledDescriptors = [];
+			for(var i = 0; i < celebrities.length; i++) {
+				var celebrity = celebrities[i];
+				celebrity.images = [];
+				if(!celebrity.results) {
+					celebrity.results = [];
+					for(var j = 0; j < celebrity.pictures.length; j++) {
+						await loadImage(celebrity, j);
+						await analyzeCelebrity(celebrity, j);
+		async function analyzeCelebrity(celebrity, j) {
+			var results = await faceapi
+			.detectSingleFace(celebrity.images[j])
+			.withFaceLandmarks()
+		   	.withFaceDescriptor()
+			.withAgeAndGender()
+			.withFaceExpressions();
+			celebrity.results[j] = results;
+	async function analyze() {
+		if(frameCount % 10 === 0) {
+		var results = await faceapi
+			.detectSingleFace(video)
+			.withFaceLandmarks()
+		   	.withFaceDescriptor()
+			.withAgeAndGender()
+			.withFaceExpressions();
+	
+	window.requestAnimationFrame(analyze);*/
+			
+			function nextPage(){
+			//	var fp = document.getElementById('firstPage');
+			//	fp.style.display = 'none';
+				var sp = document.getElementById('secondPage');
+				sp.style.display = 'none';	
+			//	document.getElementById('firstPage').style.display = 'none';
+				document.getElementById('thirdPage').style.display = 'block';
+
+			}
+			
+			function myNext() {
+	 			var username = document.getElementById("name").value;
+//				var sp = document.getElementById('secondPage');
+//				sp.style.display = 'none';	 			
+	 			localStorage.setItem("username", username);
+				//location.href='https://www.voby.us/settings.html';  
+				document.getElementById('firstPage').style.display = 'none';
+				document.getElementById('secondPage').style.display = 'block';
+				document.getElementById("result").innerHTML = localStorage.getItem("username");
+				/* for(var i = 0; i < images.length; i++) {
+					var name = 'FR#' + username + '#' + i;
+					localStorage[name] = images[i]; 
+				} */
+    		}
+    		 
+    		function goToUsers(){
+				var fp = document.getElementById('firstPage');
+				fp.style.display = 'none';
+				document.getElementById('firstPage').style.display = 'none';
+				document.getElementById('secondPage').style.display = 'block';
+
+			}
+			
+			
+
+			button.addEventListener('click', setupVideo);
+		 </script>
+	</body>
+</html>
