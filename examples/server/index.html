@@ -3,7 +3,18 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WebRTC demo</title>
+    <link rel="stylesheet" type="text/css" href="base.css" />
     <style>
+    
+    body {
+        /* background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.72), rgba(245, 246, 252, 0.32), rgba(134, 215, 200, 1)), url('VOBYUS-logo-wall-website.jpg'); */
+        background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.72), rgba(245, 246, 252, 0.32), rgba(134, 215, 200, 1)), url('https://www.voby.us/website/VOBYUS-logo-wall-website.jpg');
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+    }
+
     button {
         padding: 8px 16px;
     }
@@ -24,14 +35,44 @@
     #media {
         max-width: 1280px;
     }
+
+    #menu {
+        width: auto;
+        height: 89vh;
+        background-color: rgb(255,255,255,0.8);
+        /* border: 5px solid var(--light-teal); */
+        padding: 2vh;
+        margin: 3vh;
+        float: left;
+    }
+
+    #video_container { 
+        min-width: 60vw;
+        width: auto;
+        height: 89vh;
+        background-color: rgb(255,255,255,0.8);
+        /* border: 2px solid white; */
+        padding: 2vh;
+        margin: 3vh;
+        float: right;
+    }
+
+    h2 {
+        font-family: 'Julius Sans One', sans-serif;
+    }
+
+    .option{
+        margin-left: 20px;
+    }
+
     </style>
 </head>
 <body>
-
-<h2>Options</h2>
+<div id = "menu"> 
+    <h2 style="margin-bottom:20px;">Options</h2>
 <div class="option">
     <input id="use-datachannel" checked="checked" type="checkbox"/>
-    <label for="use-datachannel">Use datachannel</label>
+    <label for="use-datachannel">Use datachannel</label><br>
     <select id="datachannel-parameters">
         <option value='{"ordered": true}'>Ordered, reliable</option>
         <option value='{"ordered": false, "maxRetransmits": 0}'>Unordered, no retransmissions</option>
@@ -39,8 +80,8 @@
     </select>
 </div>
 <div class="option">
-    <input id="use-audio" checked="checked" type="checkbox"/>
-    <label for="use-audio">Use audio</label>
+    <input id="use-audio" type="checkbox"/>
+    <label for="use-audio">Use audio</label><br>
     <select id="audio-codec">
         <option value="default" selected>Default codecs</option>
         <option value="opus/48000/2">Opus</option>
@@ -49,20 +90,22 @@
     </select>
 </div>
 <div class="option">
-    <input id="use-video" type="checkbox"/>
-    <label for="use-video">Use video</label>
+    <input id="use-video" checked="checked" type="checkbox"/>
+    <label for="use-video">Use video</label><br>
     <select id="video-resolution">
-        <option value="" selected>Default resolution</option>
+        <!-- <option value="" selected>Default resolution</option> -->
         <option value="320x240">320x240</option>
         <option value="640x480">640x480</option>
         <option value="960x540">960x540</option>
-        <option value="1280x720">1280x720</option>
+        <option value="1280x720" selected>1280x720</option>
     </select>
     <select id="video-transform">
         <option value="none" selected>No transform</option>
         <option value="edges">Edge detection</option>
         <option value="cartoon">Cartoon effect</option>
         <option value="rotate">Rotate</option>
+        <option value="drowsiness">Drowsiness detection</option>
+        <option value="distraction">Distraction detection</option>
     </select>
     <select id="video-codec">
         <option value="default" selected>Default codecs</option>
@@ -78,7 +121,7 @@
 <button id="start" onclick="start()">Start</button>
 <button id="stop" style="display: none" onclick="stop()">Stop</button>
 
-<h2>State</h2>
+<h2 style="margin-top: 50px; margin-bottom: 20px;">State</h2>
 <p>
     ICE gathering state: <span id="ice-gathering-state"></span>
 </p>
@@ -88,24 +131,32 @@
 <p>
     Signaling state: <span id="signaling-state"></span>
 </p>
+</div>
 
-<div id="media" style="display: none">
+<!-- <div id="media" style="display: none">
+    <h2>Media</h2>
+
+    <audio id="audio" autoplay="true"></audio>
+    <video id="video" autoplay="true" playsinline="true"></video>
+</div> -->
+
+<!-- <h2>Data channel</h2> -->
+<pre id="data-channel" style="height: 200px; display:none"></pre>
+
+<!-- <h2>SDP</h2> -->
+
+<!-- <h3>Offer</h3> -->
+<pre id="offer-sdp" style="display:none"></pre>
+
+<!-- <h3>Answer</h3> -->
+<pre id="answer-sdp" style="display:none"></pre>
+
+<div id = "video_container">
     <h2>Media</h2>
 
     <audio id="audio" autoplay="true"></audio>
     <video id="video" autoplay="true" playsinline="true"></video>
 </div>
-
-<h2>Data channel</h2>
-<pre id="data-channel" style="height: 200px;"></pre>
-
-<h2>SDP</h2>
-
-<h3>Offer</h3>
-<pre id="offer-sdp"></pre>
-
-<h3>Answer</h3>
-<pre id="answer-sdp"></pre>
 
 <script src="client.js"></script>
 </body>

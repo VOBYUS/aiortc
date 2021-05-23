@@ -164,7 +164,7 @@ function start() {
 
     if (constraints.audio || constraints.video) {
         if (constraints.video) {
-            document.getElementById('media').style.display = 'block';
+            // document.getElementById('media').style.display = 'block';
         }
         navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
             stream.getTracks().forEach(function(track) {
