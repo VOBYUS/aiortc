@@ -186,6 +186,7 @@ def Ultimate_Blink_Check():
 
 
 def Blink_Tracker(EAR,IF_Closed_Eyes,Counter4blinks,TOTAL_BLINKS,skip, Current_Blink):
+    global BLINK_READY
     BLINK_READY=False
     #If the eyes are closed
     if int(IF_Closed_Eyes)==1:
@@ -304,6 +305,11 @@ def process_image():
     global lk_params
     global First_frame
     global drowsy_level
+    global BLINK_READY
+    global leftEye 
+    global rightEye 
+    global leftEAR 
+    global rightEAR 
     (grabbed, frame) = stream.read()
     if not grabbed:
         print('not grabbed')
