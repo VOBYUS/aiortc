@@ -21,8 +21,8 @@ from queue import Queue
 import numpy as np
 import cv2
 #import twilio for text/call
-from twilio.rest import Client
-client = Client('AC70ff03021de6e57806ce0912d513db66','f495894474109fd17ccbb79145680e4b')
+# from twilio.rest import Client
+# client = Client('AC70ff03021de6e57806ce0912d513db66','f495894474109fd17ccbb79145680e4b')
                
 # inference
 import Infer
@@ -114,13 +114,13 @@ def blink_detector(output_textfile,input_video):
                 # client.messages.create(to="+16505466275",
                 #         from_="+15674434352",
                 #         body="This is an emergency!")
-                call = client.calls.create(
-                        twiml='<Response><Say>Sunny is very drowsy! This is an emergency!</Say></Response>',
-                        to='+16505466275',
-                        from_='+15674434352'
-                    )
+                # call = client.calls.create(
+                #         twiml='<Response><Say>Sunny is very drowsy! This is an emergency!</Say></Response>',
+                #         to='+16505466275',
+                #         from_='+15674434352'
+                #     )
 
-                print(call.sid)
+                # print(call.sid)
                 print('EMERGENCY SITUATION (EYES TOO LONG CLOSED)')
                 print(COUNTER)
                 COUNTER = 0
@@ -312,9 +312,9 @@ def blink_detector(output_textfile,input_video):
     print("[INFO] loading facial landmark predictor...")
     detector = dlib.get_frontal_face_detector()
     #Load the Facial Landmark Detector
-    predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks.dat')
+    predictor = dlib.shape_predictor('./drowsiness_stable/shape_predictor_68_face_landmarks.dat')
     #Load the Blink Detector
-    loaded_svm = pickle.load(open('Trained_SVM_C=1000_gamma=0.1_for 7kNegSample.sav', 'rb'))
+    loaded_svm = pickle.load(open('./drowsiness_stable/Trained_SVM_C=1000_gamma=0.1_for 7kNegSample.sav', 'rb'))
     # grab the indexes of the facial landmarks for the left and
     # right eye, respectively
     (lStart, lEnd) = face_utils.FACIAL_LANDMARKS_IDXS["left_eye"]
