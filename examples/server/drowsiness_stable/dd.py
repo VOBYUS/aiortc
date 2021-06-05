@@ -1,6 +1,6 @@
-#Reference:https://www.pyimagesearch.com/
 #This file  detects blinks, their parameters and analyzes them[the final main code]
 # import the necessary packages
+#Reference:https://www.pyimagesearch.com/
 from __future__ import print_function
 from scipy.spatial import distance as dist
 import scipy.ndimage.filters as signal
@@ -25,7 +25,7 @@ import cv2
 #client = Client('AC70ff03021de6e57806ce0912d513db66','f495894474109fd17ccbb79145680e4b')
                
 # inference
-import drowsiness_stable.Infer
+import drowsiness_stable.Infer as Infer
 from collections import deque
 
 # this "adjust_gamma" function directly taken from : https://www.pyimagesearch.com/2015/10/05/opencv-gamma-correction/
@@ -237,6 +237,7 @@ def Blink_Tracker(EAR,IF_Closed_Eyes,Counter4blinks,TOTAL_BLINKS,skip, Current_B
                     skip = True
                     print('rejected due to noise,magnitude is {}'.format(Last_Blink.amplitude))
                     print(Last_Blink.start<Last_Blink.peak)
+        
 
         # if the eyes were closed for a sufficient number of frames (2 or more)
         # then this is a valid CANDIDATE for a blink
@@ -289,7 +290,7 @@ def Blink_Tracker(EAR,IF_Closed_Eyes,Counter4blinks,TOTAL_BLINKS,skip, Current_B
     retrieved_blinks=0
     return retrieved_blinks,int(TOTAL_BLINKS),Counter4blinks,BLINK_READY,skip
 
-def process_image():
+def process_image( frame ):
     global reference_frame
     global number_of_frames
     global COUNTER
@@ -310,12 +311,12 @@ def process_image():
     global rightEye 
     global leftEAR 
     global rightEAR 
-    (grabbed, frame) = stream.read()
-    if not grabbed:
-        print('not grabbed')
-        print(number_of_frames)
-        return
-
+    global Current_Blink
+    # (grabbed, frame) = stream.read()
+    # if not grabbed:
+    #     print('not grabbed')
+    #     print(number_of_frames)
+    #     return
 
     frame = imutils.resize(frame, width=450)
 
@@ -329,26 +330,27 @@ def process_image():
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)   #Brighten the image(Gamma correction)
     reference_frame = reference_frame + 1
     gray=adjust_gamma(gray,gamma=1.5)
-    Q.put(frame)
+    Q.put(frame)    
     end = datetime.datetime.now()
     ElapsedTime=(end - start).total_seconds()
-
-
+    
 
     # detect faces in the grayscale frame
     rects = detector(gray, 0)
+
     if (np.size(rects) != 0):
         number_of_frames = number_of_frames + 1  # we only consider frames that face is detected
         First_frame = False
         old_gray = gray.copy()
-        # determine the facial landmarks for the face region, then
-        # convert the facial landmark (x, y)-coordinates to a NumPy
-        # array
+
+    #     # determine the facial landmarks for the face region, then
+    #     # convert the facial landmark (x, y)-coordinates to a NumPy
+    #     # array
         shape = predictor(gray, rects[0])
         shape = face_utils.shape_to_np(shape)
 
-        ###############YAWNING##################
-        #######################################
+    #     ###############YAWNING##################
+    #     #######################################
         Mouth = shape[mStart:mEnd]
         MAR = mouth_aspect_ratio(Mouth)
         MouthHull = cv2.convexHull(Mouth)
@@ -360,8 +362,8 @@ def process_image():
         elif MAR < MOUTH_AR_THRESH_ALERT:
             if MCOUNTER >= MOUTH_AR_CONSEC_FRAMES:
                 MTOTAL += 1
+                print("YOU YOWNED!!!")
             MCOUNTER = 0
-
 
         ##############YAWNING####################
         #########################################
@@ -386,7 +388,6 @@ def process_image():
         cv2.drawContours(frame, [leftEyeHull], -1, (0, 255, 0), 1)
         cv2.drawContours(frame, [rightEyeHull], -1, (0, 255, 0), 1)
         
-        
         ############ Show drowsiness level ########################
         ###########################################################
         
@@ -397,7 +398,7 @@ def process_image():
                     [0,0,255],
                     1
                     )
-
+        
         ############HANDLING THE EMERGENCY SITATION################
         ###########################################################
         ###########################################################
@@ -413,10 +414,11 @@ def process_image():
             IF_Closed_Eyes = loaded_svm.predict(EAR_series.reshape(1,-1))
             if Counter4blinks==0:
                 Current_Blink = Blink()
-                retrieved_blinks, TOTAL_BLINKS, Counter4blinks, BLINK_READY, skip = Blink_Tracker(EAR_series[6],
-                                                                                                    IF_Closed_Eyes,
-                                                                                                    Counter4blinks,
-                                                                                                    TOTAL_BLINKS, skip,Current_Blink)
+            retrieved_blinks, TOTAL_BLINKS, Counter4blinks, BLINK_READY, skip = Blink_Tracker(EAR_series[6],
+                    IF_Closed_Eyes,
+                    Counter4blinks,
+                    TOTAL_BLINKS, skip,Current_Blink)
+                
             if (BLINK_READY==True):
                 reference_frame=20   #initialize to a random number to avoid overflow in large numbers
                 skip = True
@@ -426,20 +428,21 @@ def process_image():
                     print(detected_blink.amplitude, Last_Blink.amplitude)
                     print(detected_blink.duration, detected_blink.velocity)
                     print('-------------------')
-                    deque_blinks.append([BLINK_FRAME_FREQ*100,
-                                            detected_blink.amplitude,
-                                            detected_blink.duration,
-                                            detected_blink.velocity]
-                                        )
-                    print(f"len(deque_blinks)={len(deque_blinks)}")
-                    if len(deque_blinks) == 30:
-                        deque_blinks_reshaped = np.array(deque_blinks).reshape(1,-1,4)
-                        drowsy_level = Infer.how_drowsy(deque_blinks_reshaped)
-                        np_array_to_list = deque_blinks_reshaped.tolist()
-                        json_file = "file.json" 
-                        json.dump(np_array_to_list, codecs.open(json_file, 'w', encoding='utf-8'), sort_keys=True, indent=4)
-                        
-                        print(f"Drowsy Level={drowsy_level}")
+                    if(detected_blink.velocity>0):
+                        deque_blinks.append([BLINK_FRAME_FREQ*100,
+                                                detected_blink.amplitude,
+                                                detected_blink.duration,
+                                                detected_blink.velocity]
+                                            )
+                        print(f"len(deque_blinks)={len(deque_blinks)}")
+                        if len(deque_blinks) == 30:
+                            deque_blinks_reshaped = np.array(deque_blinks).reshape(1,-1,4)
+                            drowsy_level = Infer.how_drowsy(deque_blinks_reshaped)
+                            np_array_to_list = deque_blinks_reshaped.tolist()
+                            json_file = "file.json" 
+                            json.dump(np_array_to_list, codecs.open(json_file, 'w', encoding='utf-8'), sort_keys=True, indent=4)
+                            
+                            print(f"Drowsy Level={drowsy_level}")
 
                     if(detected_blink.velocity>0):
                         with open(output_file, 'ab') as f_handle:
@@ -447,104 +450,101 @@ def process_image():
                             np.savetxt(f_handle,[TOTAL_BLINKS,BLINK_FRAME_FREQ*100,detected_blink.amplitude,detected_blink.duration,detected_blink.velocity], delimiter=', ', newline=' ',fmt='%.4f')
                 Last_Blink.end = -10 # re initialization
                 #####
+        # cv2.imshow("Frame", frame)
+        # key = cv2.waitKey(1) & 0xFF
+        # if key != 0xFF:
+        #     return (frame, drowsy_level, 1)      
 
-            # line.set_ydata(EAR_series)
-            # print(EAR_series)
-            # plot_frame.draw()
-            frameMinus7=Q.get()
-            cv2.imshow("Frame", frameMinus7)
-        elif Q.full():         #just to make way for the new input of the Q when the Q is full
-            junk =  Q.get()
+    #         # line.set_ydata(EAR_series)
+    #         # print(EAR_series)
+    #         # plot_frame.draw()
+    #         frameMinus7=Q.get()
+    #         cv2.imshow("Frame", frameMinus7)
+    #     elif Q.full():         #just to make way for the new input of the Q when the Q is full
+    #         junk =  Q.get()
 
-        key = cv2.waitKey(1) & 0xFF
-
-        # if the `q` key was pressed, break from the loop
-        if key != 0xFF:
-            return
     #Does not detect any face
-    else:
-        ###################Using Optical Flow############
-        ###################    (Optional)    ############
-        st=0
-        st2=0
-        if (First_frame == False):
-            leftEye=leftEye.astype(np.float32)
-            rightEye = rightEye.astype(np.float32)
-            p1, st, err = cv2.calcOpticalFlowPyrLK(old_gray, gray,leftEye, None, **lk_params)
-            p2, st2, err2 = cv2.calcOpticalFlowPyrLK(old_gray, gray, rightEye, None, **lk_params)
+    # else:
+    #     ###################Using Optical Flow############
+    #     ###################    (Optional)    ############
+    #     st=0
+    #     st2=0
+    #     if (First_frame == False):
+    #         leftEye=leftEye.astype(np.float32)
+    #         rightEye = rightEye.astype(np.float32)
+    #         p1, st, err = cv2.calcOpticalFlowPyrLK(old_gray, gray,leftEye, None, **lk_params)
+    #         p2, st2, err2 = cv2.calcOpticalFlowPyrLK(old_gray, gray, rightEye, None, **lk_params)
 
-        if np.sum(st)+np.sum(st2)==12 and First_frame==False:
+    #     if np.sum(st)+np.sum(st2)==12 and First_frame==False:
 
-            p1 = np.round(p1).astype(np.int)
-            p2 = np.round(p2).astype(np.int)
-            #print(p1)
+    #         p1 = np.round(p1).astype(np.int)
+    #         p2 = np.round(p2).astype(np.int)
+    #         #print(p1)
 
-            leftEAR = eye_aspect_ratio(p1)
-            rightEAR = eye_aspect_ratio(p2)
+    #         leftEAR = eye_aspect_ratio(p1)
+    #         rightEAR = eye_aspect_ratio(p2)
 
-            ear = (leftEAR + rightEAR) / 2.0
-            EAR_series = shift(EAR_series, -1, cval=ear)
-            #EAR_series[reference_frame] = ear
-            leftEyeHull = cv2.convexHull(p1)
-            rightEyeHull = cv2.convexHull(p2)
-            cv2.drawContours(frame, [leftEyeHull], -1, (0, 255, 0), 1)
-            cv2.drawContours(frame, [rightEyeHull], -1, (0, 255, 0), 1)
-            old_gray = gray.copy()
-            leftEye = p1
-            rightEye = p2
-            ############HANDLING THE EMERGENCY SITATION################
-            ###########################################################
-            ###########################################################
-            COUNTER = EMERGENCY(ear, COUNTER)
-            ############HANDLING THE EMERGENCY SITATION################
-            ###########################################################
-            ###########################################################
-
-
-        ###################Using Optical Flow############
-        ###################                  ############
-
-        if Q.full() and (reference_frame>15):
-            EAR_table = EAR_series
-            IF_Closed_Eyes = loaded_svm.predict(EAR_series.reshape(1,-1))
-            if Counter4blinks==0:
-                Current_Blink = Blink()
-                retrieved_blinks, TOTAL_BLINKS, Counter4blinks, BLINK_READY, skip = Blink_Tracker(EAR_series[6],
-                                                                                                    IF_Closed_Eyes,
-                                                                                                    Counter4blinks,
-                                                                                                    TOTAL_BLINKS, skip, Current_Blink)
-            if (BLINK_READY==True):
-                reference_frame=20   #initialize to a random number to avoid overflow in large numbers
-                skip = True
-                #####
-                BLINK_FRAME_FREQ = TOTAL_BLINKS / number_of_frames
-                for detected_blink in retrieved_blinks:
-                    print(detected_blink.amplitude, Last_Blink.amplitude)
-                    print(detected_blink.duration, Last_Blink.duration)
-                    print('-------------------')
-                    with open(output_file, 'ab') as f_handle:
-                        f_handle.write(b'\n')
-                        np.savetxt(f_handle,[TOTAL_BLINKS,BLINK_FRAME_FREQ*100,detected_blink.amplitude,detected_blink.duration,detected_blink.velocity], delimiter=', ', newline=' ',fmt='%.4f')
-
-                Last_Blink.end = -10 # re initialization
+    #         ear = (leftEAR + rightEAR) / 2.0
+    #         EAR_series = shift(EAR_series, -1, cval=ear)
+    #         #EAR_series[reference_frame] = ear
+    #         leftEyeHull = cv2.convexHull(p1)
+    #         rightEyeHull = cv2.convexHull(p2)
+    #         cv2.drawContours(frame, [leftEyeHull], -1, (0, 255, 0), 1)
+    #         cv2.drawContours(frame, [rightEyeHull], -1, (0, 255, 0), 1)
+    #         old_gray = gray.copy()
+    #         leftEye = p1
+    #         rightEye = p2
+    #         ############HANDLING THE EMERGENCY SITATION################
+    #         ###########################################################
+    #         ###########################################################
+    #         COUNTER = EMERGENCY(ear, COUNTER)
+    #         ############HANDLING THE EMERGENCY SITATION################
+    #         ###########################################################
+    #         ###########################################################
 
 
-                #####
+    #     ###################Using Optical Flow############
+    #     ###################                  ############
 
-            # line.set_ydata(EAR_series)
-            # plot_frame.draw()
-            # print(EAR_series)
-            frameMinus7=Q.get()
-            cv2.imshow("Frame", frameMinus7)
-        elif Q.full():
-            junk = Q.get()
+    #     if Q.full() and (reference_frame>15):
+    #         EAR_table = EAR_series
+    #         IF_Closed_Eyes = loaded_svm.predict(EAR_series.reshape(1,-1))
+    #         if Counter4blinks==0:
+    #             Current_Blink = Blink()
+    #             retrieved_blinks, TOTAL_BLINKS, Counter4blinks, BLINK_READY, skip = Blink_Tracker(EAR_series[6],
+    #                                                                                                 IF_Closed_Eyes,
+    #                                                                                                 Counter4blinks,
+    #                                                                                                 TOTAL_BLINKS, skip, Current_Blink)
+    #         if (BLINK_READY==True):
+    #             reference_frame=20   #initialize to a random number to avoid overflow in large numbers
+    #             skip = True
+    #             #####
+    #             BLINK_FRAME_FREQ = TOTAL_BLINKS / number_of_frames
+    #             for detected_blink in retrieved_blinks:
+    #                 print(detected_blink.amplitude, Last_Blink.amplitude)
+    #                 print(detected_blink.duration, Last_Blink.duration)
+    #                 print('-------------------')
+    #                 with open(output_file, 'ab') as f_handle:
+    #                     f_handle.write(b'\n')
+    #                     np.savetxt(f_handle,[TOTAL_BLINKS,BLINK_FRAME_FREQ*100,detected_blink.amplitude,detected_blink.duration,detected_blink.velocity], delimiter=', ', newline=' ',fmt='%.4f')
 
-        key = cv2.waitKey(1) & 0xFF
+    #             Last_Blink.end = -10 # re initialization
 
 
-        if key != 0xFF:
-            return
+    #             #####
 
+    #         # line.set_ydata(EAR_series)
+    #         # plot_frame.draw()
+    #         # print(EAR_series)
+    #         frameMinus7=Q.get()
+    #         cv2.imshow("Frame", frameMinus7)
+    #     elif Q.full():
+    #         junk = Q.get()
+
+    if Q.full():
+        junk = Q.get()
+    
+    return (frame, drowsy_level, 0)
 #############
 ####Main#####
 #############
@@ -571,6 +571,7 @@ TOTAL = 0
 MTOTAL=0
 TOTAL_BLINKS=0
 Counter4blinks=0
+Current_Blink = None
 skip=False # to make sure a blink is not counted twice in the Blink_Tracker function
 Last_Blink=Blink()
 drowsy_level = "Calculating drowsiness level... "
@@ -605,19 +606,6 @@ First_frame=True
 # plt.ylim([0.0, 0.5])
 # line, = ax.plot(Frame_series,EAR_series)
 # plot_frame.draw()
-
-# loop over frames from the video stream
-
-stream = cv2.VideoCapture(path)
-start = datetime.datetime.now()
 number_of_frames=0
-
-while True:
-    process_image()
-
-# do a bit of cleanup
-stream.release()
-cv2.destroyAllWindows()
-
-
+start = datetime.datetime.now()
 
