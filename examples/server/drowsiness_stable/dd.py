@@ -544,7 +544,7 @@ def process_image( frame ):
     if Q.full():
         junk = Q.get()
     
-    return (frame, drowsy_level, 0)
+    return frame, drowsy_level
 #############
 ####Main#####
 #############
