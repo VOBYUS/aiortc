@@ -19,4 +19,4 @@ ENV/
 env.bak/
 venv.bak/
 .DS_Store
-./examples/server/drowsiness_stable/shape_predictor_68_face_landmarks.dat
+examples/server/drowsiness_stable/shape_predictor_68_face_landmarks.dat
