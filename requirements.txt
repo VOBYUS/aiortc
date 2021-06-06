@@ -113,11 +113,10 @@ qtconsole==4.7.7
 QtPy==1.9.0
 requests==2.24.0
 rope==0.18.0
-Rtree==0.9.4
 scikit-learn==0.19.2
 scipy==1.5.2
 Send2Trash==1.5.0
-setuptools==49.6.0.post20200925
+setuptools 
 six==1.15.0
 snowballstemmer==2.0.0
 sortedcontainers==2.2.2
