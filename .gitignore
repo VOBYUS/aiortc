@@ -20,4 +20,4 @@ env.bak/
 venv.bak/
 .DS_Store
 examples/server/drowsiness_stable/shape_predictor_68_face_landmarks.dat
-alert.txt
+examples/server/alert.txt
