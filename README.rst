@@ -1,3 +1,11 @@
+1. download shape_predictor_68_face_landmarks.dat model:
+https://drive.google.com/file/d/1ZN2BVDyTQfU2IF2ov98iOwpMiG3Tj_cU/view?usp=sharing
+
+2. Put it in aiortc/examples/server/drowsiness_stable directory
+
+
+
+
 aiortc
 ======
 
