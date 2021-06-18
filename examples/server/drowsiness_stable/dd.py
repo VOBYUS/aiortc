@@ -438,8 +438,8 @@ def process_image( frame ):
                             deque_blinks_reshaped = np.array(deque_blinks).reshape(1,-1,4)
                             drowsy_level = Infer.how_drowsy(deque_blinks_reshaped)
                             np_array_to_list = deque_blinks_reshaped.tolist()
-                            json_file = "file.json" 
-                            json.dump(np_array_to_list, codecs.open(json_file, 'w', encoding='utf-8'), sort_keys=True, indent=4)
+                            # json_file = "file.json" 
+                            # json.dump(np_array_to_list, codecs.open(json_file, 'w', encoding='utf-8'), sort_keys=True, indent=4)
                             
                             print(f"Drowsy Level={drowsy_level}")
 

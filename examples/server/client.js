@@ -24,7 +24,7 @@ function createPeerConnection() {
     //     iceGatheringLog.textContent += ' -> ' + pc.iceGatheringState;
     // }, false);
 
-    // pc.addEventListener('iceconnectionstatechange', function() {
+    // pc.addEventListener('iceconnectionstatechange', function()  
     //     iceConnectionLog.textContent += ' -> ' + pc.iceConnectionState;
     // }, false);
     // iceConnectionLog.textContent = pc.iceConnectionState;

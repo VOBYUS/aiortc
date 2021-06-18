@@ -33,12 +33,15 @@ class VideoTransformTrack(MediaStreamTrack):
         super().__init__()  # don't forget this!
         self.track = track
         self.transform = transform
+        self.count = 0
 
     async def recv(self):
+        self.count += 1
         frame = await self.track.recv()
         img = frame.to_ndarray(format="bgr24")
         img, drowsy_level = dd.process_image(img)
-        if message_channel:
+        if self.count % 100 == 0 and message_channel:
+            print(f"drowsy level: {drowsy_level}")
             message_channel.send(f"drowsy level: {drowsy_level}")
         new_frame = VideoFrame.from_ndarray(img, format="bgr24")
         new_frame.pts = frame.pts
