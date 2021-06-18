@@ -15,27 +15,24 @@ function createPeerConnection() {
         sdpSemantics: 'unified-plan'
     };
 
-    if (document.getElementById('use-stun').checked) {
-        config.iceServers = [{urls: ['stun:stun.l.google.com:19302']}];
-    }
+    config.iceServers = [{urls: ['stun:stun.l.google.com:19302']}];
 
     pc = new RTCPeerConnection(config);
 
     // register some listeners to help debugging
-    pc.addEventListener('icegatheringstatechange', function() {
-        iceGatheringLog.textContent += ' -> ' + pc.iceGatheringState;
-    }, false);
-    iceGatheringLog.textContent = pc.iceGatheringState;
+    // pc.addEventListener('icegatheringstatechange', function() {
+    //     iceGatheringLog.textContent += ' -> ' + pc.iceGatheringState;
+    // }, false);
 
-    pc.addEventListener('iceconnectionstatechange', function() {
-        iceConnectionLog.textContent += ' -> ' + pc.iceConnectionState;
-    }, false);
-    iceConnectionLog.textContent = pc.iceConnectionState;
+    // pc.addEventListener('iceconnectionstatechange', function() {
+    //     iceConnectionLog.textContent += ' -> ' + pc.iceConnectionState;
+    // }, false);
+    // iceConnectionLog.textContent = pc.iceConnectionState;
 
-    pc.addEventListener('signalingstatechange', function() {
-        signalingLog.textContent += ' -> ' + pc.signalingState;
-    }, false);
-    signalingLog.textContent = pc.signalingState;
+    // pc.addEventListener('signalingstatechange', function() {
+    //     signalingLog.textContent += ' -> ' + pc.signalingState;
+    // }, false);
+    // signalingLog.textContent = pc.signalingState;
 
     // connect audio / video
     pc.addEventListener('track', function(evt) {
@@ -70,22 +67,12 @@ function negotiate() {
         var offer = pc.localDescription;
         var codec;
 
-        codec = document.getElementById('audio-codec').value;
-        if (codec !== 'default') {
-            offer.sdp = sdpFilterCodec('audio', codec, offer.sdp);
-        }
-
-        codec = document.getElementById('video-codec').value;
-        if (codec !== 'default') {
-            offer.sdp = sdpFilterCodec('video', codec, offer.sdp);
-        }
-
         document.getElementById('offer-sdp').textContent = offer.sdp;
         return fetch('/offer', {
             body: JSON.stringify({
                 sdp: offer.sdp,
                 type: offer.type,
-                video_transform: document.getElementById('video-transform').value
+                video_transform: 'none'
             }),
             headers: {
                 'Content-Type': 'application/json'
@@ -117,9 +104,7 @@ function start() {
             return new Date().getTime() - time_start;
         }
     }
-
-    if (document.getElementById('use-datachannel').checked) {
-        var parameters = JSON.parse(document.getElementById('datachannel-parameters').value);
+        var parameters = {"ordered": true}
 
         dc = pc.createDataChannel('chat', parameters);
         dc.onclose = function() {
@@ -142,15 +127,14 @@ function start() {
                 dataChannelLog.textContent += ' RTT ' + elapsed_ms + ' ms\n';
             }
         };
-    }
 
     var constraints = {
-        audio: document.getElementById('use-audio').checked,
+        audio: false,
         video: false
     };
 
-    if (document.getElementById('use-video').checked) {
-        var resolution = document.getElementById('video-resolution').value;
+    
+        var resolution = "320x240"
         if (resolution) {
             resolution = resolution.split('x');
             constraints.video = {
@@ -160,7 +144,7 @@ function start() {
         } else {
             constraints.video = true;
         }
-    }
+    
 
     if (constraints.audio || constraints.video) {
         if (constraints.video) {
