@@ -20,20 +20,19 @@ function createPeerConnection() {
     pc = new RTCPeerConnection(config);
 
     // register some listeners to help debugging
-    pc.addEventListener('icegatheringstatechange', function() {
-        iceGatheringLog.textContent += ' -> ' + pc.iceGatheringState;
-    }, false);
-    iceGatheringLog.textContent = pc.iceGatheringState;
+    // pc.addEventListener('icegatheringstatechange', function() {
+    //     iceGatheringLog.textContent += ' -> ' + pc.iceGatheringState;
+    // }, false);
 
-    pc.addEventListener('iceconnectionstatechange', function() {
-        iceConnectionLog.textContent += ' -> ' + pc.iceConnectionState;
-    }, false);
-    iceConnectionLog.textContent = pc.iceConnectionState;
+    // pc.addEventListener('iceconnectionstatechange', function() {
+    //     iceConnectionLog.textContent += ' -> ' + pc.iceConnectionState;
+    // }, false);
+    // iceConnectionLog.textContent = pc.iceConnectionState;
 
-    pc.addEventListener('signalingstatechange', function() {
-        signalingLog.textContent += ' -> ' + pc.signalingState;
-    }, false);
-    signalingLog.textContent = pc.signalingState;
+    // pc.addEventListener('signalingstatechange', function() {
+    //     signalingLog.textContent += ' -> ' + pc.signalingState;
+    // }, false);
+    // signalingLog.textContent = pc.signalingState;
 
     // connect audio / video
     pc.addEventListener('track', function(evt) {
@@ -69,17 +68,12 @@ function negotiate() {
         var offer = pc.localDescription;
         var codec;
 
-        codec = document.getElementById('video-codec').value;
-        if (codec !== 'default') {
-            offer.sdp = sdpFilterCodec('video', codec, offer.sdp);
-        }
-
         document.getElementById('offer-sdp').textContent = offer.sdp;
         return fetch('/offer', {
             body: JSON.stringify({
                 sdp: offer.sdp,
                 type: offer.type,
-                video_transform: document.getElementById('video-transform').value
+                video_transform: 'none'
             }),
             headers: {
                 'Content-Type': 'application/json'
@@ -111,8 +105,7 @@ function start() {
             return new Date().getTime() - time_start;
         }
     }
-
-        var parameters = JSON.parse(document.getElementById('datachannel-parameters').value);
+        var parameters = {"ordered": true}
 
         dc = pc.createDataChannel('chat', parameters);
         dc.onclose = function() {
@@ -138,24 +131,22 @@ function start() {
                 console.log(evt.data)
            }
         };
-    
 
     var constraints = {
         audio: false,
         video: false
     };
 
-  
-    var resolution = "320x240";
-    if (resolution) {
-        resolution = resolution.split('x');
-        constraints.video = {
-            width: parseInt(resolution[0], 0),
-            height: parseInt(resolution[1], 0)
-        };
-    } else {
-        constraints.video = true;
-    }
+        var resolution = "320x240"
+        if (resolution) {
+            resolution = resolution.split('x');
+            constraints.video = {
+                width: parseInt(resolution[0], 0),
+                height: parseInt(resolution[1], 0)
+            };
+        } else {
+            constraints.video = true;
+        }
     
 
     if (constraints.audio || constraints.video) {
