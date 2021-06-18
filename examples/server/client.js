@@ -89,6 +89,9 @@ function negotiate() {
         alert(e);
     });
 }
+function display(message) {
+    document.getElementById("message").innerHTML = message;
+}
 
 function start() {
     document.getElementById('start').style.display = 'none';
@@ -128,7 +131,7 @@ function start() {
                 dataChannelLog.textContent += ' RTT ' + elapsed_ms + ' ms\n';
             }
             if (evt.data.startsWith("drowsy level: ")) {
-                console.log(evt.data)
+                display(evt.data)
            }
         };
 

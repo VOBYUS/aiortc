@@ -434,6 +434,8 @@ def process_image( frame ):
                                                 detected_blink.velocity]
                                             )
                         print(f"len(deque_blinks)={len(deque_blinks)}")
+                        if len(deque_blinks) < 30:
+                            drowsy_level = f"Blink count ={len(deque_blinks)}"
                         if len(deque_blinks) == 30:
                             deque_blinks_reshaped = np.array(deque_blinks).reshape(1,-1,4)
                             drowsy_level = Infer.how_drowsy(deque_blinks_reshaped)
@@ -572,7 +574,7 @@ Counter4blinks=0
 Current_Blink = None
 skip=False # to make sure a blink is not counted twice in the Blink_Tracker function
 Last_Blink=Blink()
-drowsy_level = "Calculating drowsiness level... "
+drowsy_level = "Blink count =" 
 
 print("[INFO] loading facial landmark predictor...")
 detector = dlib.get_frontal_face_detector()
