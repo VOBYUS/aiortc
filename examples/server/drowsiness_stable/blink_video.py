@@ -454,11 +454,11 @@ def blink_detector(output_textfile,input_video):
                 IF_Closed_Eyes = loaded_svm.predict(EAR_series.reshape(1,-1))
                 if Counter4blinks==0:
                     Current_Blink = Blink()
-                    retrieved_blinks, TOTAL_BLINKS, Counter4blinks, BLINK_READY, skip = Blink_Tracker(EAR_series[6],
+                retrieved_blinks, TOTAL_BLINKS, Counter4blinks, BLINK_READY, skip = Blink_Tracker(EAR_series[6],
                     IF_Closed_Eyes,
                     Counter4blinks,
                     TOTAL_BLINKS, skip)
-                print(BLINK_READY)
+                print(BLINK_READY   )
                 if (BLINK_READY==True):
                     reference_frame=20   #initialize to a random number to avoid overflow in large numbers
                     skip = True

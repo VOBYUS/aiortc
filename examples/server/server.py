@@ -19,6 +19,7 @@ ROOT = os.path.dirname(__file__)
 logger = logging.getLogger("pc")
 pcs = set()
 relay = MediaRelay()
+message_channel = None
 
 
 class VideoTransformTrack(MediaStreamTrack):
@@ -37,6 +38,8 @@ class VideoTransformTrack(MediaStreamTrack):
         frame = await self.track.recv()
         img = frame.to_ndarray(format="bgr24")
         img, drowsy_level = dd.process_image(img)
+        if message_channel:
+            message_channel.send(f"drowsy level: {drowsy_level}")
         new_frame = VideoFrame.from_ndarray(img, format="bgr24")
         new_frame.pts = frame.pts
         new_frame.time_base = frame.time_base
@@ -76,6 +79,8 @@ async def offer(request):
 
     @pc.on("datachannel")
     def on_datachannel(channel):
+        global message_channel
+        message_channel = channel
         @channel.on("message")
         def on_message(message):
             if isinstance(message, str) and message.startswith("ping"):

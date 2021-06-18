@@ -362,7 +362,6 @@ def process_image( frame ):
         elif MAR < MOUTH_AR_THRESH_ALERT:
             if MCOUNTER >= MOUTH_AR_CONSEC_FRAMES:
                 MTOTAL += 1
-                print("YOU YOWNED!!!")
             MCOUNTER = 0
 
         ##############YAWNING####################
@@ -543,7 +542,6 @@ def process_image( frame ):
 
     if Q.full():
         junk = Q.get()
-    
     return frame, drowsy_level
 #############
 ####Main#####

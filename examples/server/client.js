@@ -15,9 +15,7 @@ function createPeerConnection() {
         sdpSemantics: 'unified-plan'
     };
 
-    if (document.getElementById('use-stun').checked) {
-        config.iceServers = [{urls: ['stun:stun.l.google.com:19302']}];
-    }
+    config.iceServers = [{urls: ['stun:stun.l.google.com:19302']}];
 
     pc = new RTCPeerConnection(config);
 
@@ -49,6 +47,7 @@ function createPeerConnection() {
 }
 
 function negotiate() {
+    debugger;
     return pc.createOffer().then(function(offer) {
         return pc.setLocalDescription(offer);
     }).then(function() {
@@ -69,11 +68,6 @@ function negotiate() {
     }).then(function() {
         var offer = pc.localDescription;
         var codec;
-
-        codec = document.getElementById('audio-codec').value;
-        if (codec !== 'default') {
-            offer.sdp = sdpFilterCodec('audio', codec, offer.sdp);
-        }
 
         codec = document.getElementById('video-codec').value;
         if (codec !== 'default') {
@@ -118,7 +112,6 @@ function start() {
         }
     }
 
-    if (document.getElementById('use-datachannel').checked) {
         var parameters = JSON.parse(document.getElementById('datachannel-parameters').value);
 
         dc = pc.createDataChannel('chat', parameters);
@@ -141,26 +134,29 @@ function start() {
                 var elapsed_ms = current_stamp() - parseInt(evt.data.substring(5), 10);
                 dataChannelLog.textContent += ' RTT ' + elapsed_ms + ' ms\n';
             }
+            if (evt.data.startsWith("drowsy level: ")) {
+                console.log(evt.data)
+           }
         };
-    }
+    
 
     var constraints = {
-        audio: document.getElementById('use-audio').checked,
+        audio: false,
         video: false
     };
 
-    if (document.getElementById('use-video').checked) {
-        var resolution = document.getElementById('video-resolution').value;
-        if (resolution) {
-            resolution = resolution.split('x');
-            constraints.video = {
-                width: parseInt(resolution[0], 0),
-                height: parseInt(resolution[1], 0)
-            };
-        } else {
-            constraints.video = true;
-        }
+  
+    var resolution = "320x240";
+    if (resolution) {
+        resolution = resolution.split('x');
+        constraints.video = {
+            width: parseInt(resolution[0], 0),
+            height: parseInt(resolution[1], 0)
+        };
+    } else {
+        constraints.video = true;
     }
+    
 
     if (constraints.audio || constraints.video) {
         if (constraints.video) {
