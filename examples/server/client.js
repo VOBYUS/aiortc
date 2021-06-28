@@ -1,8 +1,8 @@
 // get DOM elements
-var dataChannelLog = document.getElementById('data-channel'),
-    iceConnectionLog = document.getElementById('ice-connection-state'),
-    iceGatheringLog = document.getElementById('ice-gathering-state'),
-    signalingLog = document.getElementById('signaling-state');
+// var dataChannelLog = document.getElementById('data-channel'),
+//     iceConnectionLog = document.getElementById('ice-connection-state'),
+//     iceGatheringLog = document.getElementById('ice-gathering-state'),
+//     signalingLog = document.getElementById('signaling-state');
 
 // peer connection
 var pc = null;
@@ -68,7 +68,6 @@ function negotiate() {
         var offer = pc.localDescription;
         var codec;
 
-        document.getElementById('offer-sdp').textContent = offer.sdp;
         return fetch('/offer', {
             body: JSON.stringify({
                 sdp: offer.sdp,
@@ -83,14 +82,13 @@ function negotiate() {
     }).then(function(response) {
         return response.json();
     }).then(function(answer) {
-        document.getElementById('answer-sdp').textContent = answer.sdp;
         return pc.setRemoteDescription(answer);
     }).catch(function(e) {
         alert(e);
     });
 }
 function display(message) {
-    document.getElementById("message").innerHTML = message;
+    document.getElementById('basicstats').innerHTML = message;
 }
 
 function start() {
@@ -113,22 +111,22 @@ function start() {
         dc = pc.createDataChannel('chat', parameters);
         dc.onclose = function() {
             clearInterval(dcInterval);
-            dataChannelLog.textContent += '- close\n';
+            // dataChannelLog.textContent += '- close\n';
         };
         dc.onopen = function() {
-            dataChannelLog.textContent += '- open\n';
+            // dataChannelLog.textContent += '- open\n';
             dcInterval = setInterval(function() {
                 var message = 'ping ' + current_stamp();
-                dataChannelLog.textContent += '> ' + message + '\n';
+                // dataChannelLog.textContent += '> ' + message + '\n';
                 dc.send(message);
             }, 1000);
         };
         dc.onmessage = function(evt) {
-            dataChannelLog.textContent += '< ' + evt.data + '\n';
+            // dataChannelLog.textContent += '< ' + evt.data + '\n';
 
             if (evt.data.substring(0, 4) === 'pong') {
                 var elapsed_ms = current_stamp() - parseInt(evt.data.substring(5), 10);
-                dataChannelLog.textContent += ' RTT ' + elapsed_ms + ' ms\n';
+                // dataChannelLog.textContent += ' RTT ' + elapsed_ms + ' ms\n';
             }
             if (evt.data.startsWith("drowsy level: ")) {
                 display(evt.data)
