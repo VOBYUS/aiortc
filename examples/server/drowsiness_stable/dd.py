@@ -438,11 +438,11 @@ def process_image( frame ):
                                             )
                         print(f"len(deque_blinks)={len(deque_blinks)}")
                         if len(deque_blinks) < 30:
-                            data_to_send = {"blink count":len(deque_blinks), "drowsy_level": "waiting for blinks..."}
+                            data_to_send = {"blinkCount":len(deque_blinks), "drowsy_level": "waiting for blinks..."}
                         if len(deque_blinks) == 30:
                             deque_blinks_reshaped = np.array(deque_blinks).reshape(1,-1,4)
                             np_array_to_list = deque_blinks_reshaped.tolist()
-                            data_to_send = {"blink count":blink_count, "drowsy_level": str(Infer.how_drowsy(deque_blinks_reshaped)[0][0])}
+                            data_to_send = {"blinkCount":blink_count, "drowsy_level": str(Infer.how_drowsy(deque_blinks_reshaped)[0][0])}
                             # json_file = "file.json" 
                             # json.dump(np_array_to_list, codecs.open(json_file, 'w', encoding='utf-8'), sort_keys=True, indent=4)
                             
@@ -600,7 +600,7 @@ EAR_series=np.zeros([13])
 reference_frame=0
 First_frame=True
 blink_count=0
-data_to_send={}
+data_to_send={"blinkCount": 0, "drowsy_level":[0]}
 # top = tk.Tk()
 # frame1 = Frame(top)
 # frame1.grid(row=0, column=0)

@@ -46,7 +46,6 @@ function createPeerConnection() {
 }
 
 function negotiate() {
-    debugger;
     return pc.createOffer().then(function(offer) {
         return pc.setLocalDescription(offer);
     }).then(function() {
@@ -88,7 +87,8 @@ function negotiate() {
     });
 }
 function display(message) {
-    document.getElementById('basicstats').innerHTML = message;
+    var data = JSON.parse(message);
+    document.getElementById('basicstats').innerHTML = data.blinkCount;
 }
 
 function start() {
