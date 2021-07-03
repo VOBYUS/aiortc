@@ -39,10 +39,10 @@ class VideoTransformTrack(MediaStreamTrack):
         self.count += 1
         frame = await self.track.recv()
         img = frame.to_ndarray(format="bgr24")
-        img, drowsy_level = dd.process_image(img)
+        img, data_to_send = dd.process_image(img)
         if self.count % 10 == 0 and message_channel:
-            print(f"drowsy level: {drowsy_level}")
-            message_channel.send(f"drowsy level: {drowsy_level}")
+            print(json.dumps(data_to_send))
+            message_channel.send(json.dumps(data_to_send))
         new_frame = VideoFrame.from_ndarray(img, format="bgr24")
         new_frame.pts = frame.pts
         new_frame.time_base = frame.time_base

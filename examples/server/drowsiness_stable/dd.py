@@ -312,6 +312,8 @@ def process_image( frame ):
     global leftEAR 
     global rightEAR 
     global Current_Blink
+    global blink_count
+    global data_to_send
     # (grabbed, frame) = stream.read()
     # if not grabbed:
     #     print('not grabbed')
@@ -319,7 +321,6 @@ def process_image( frame ):
     #     return
 
     frame = imutils.resize(frame, width=450)
-
     # To Rotate by 90 degreees
     # rows=np.shape(frame)[0]
     # cols = np.shape(frame)[1]
@@ -428,6 +429,8 @@ def process_image( frame ):
                     print(detected_blink.duration, detected_blink.velocity)
                     print('-------------------')
                     if(detected_blink.velocity>0):
+                        print(blink_count)
+                        blink_count= blink_count+1
                         deque_blinks.append([BLINK_FRAME_FREQ*100,
                                                 detected_blink.amplitude,
                                                 detected_blink.duration,
@@ -435,11 +438,11 @@ def process_image( frame ):
                                             )
                         print(f"len(deque_blinks)={len(deque_blinks)}")
                         if len(deque_blinks) < 30:
-                            drowsy_level = f"Blink count ={len(deque_blinks)}"
+                            data_to_send = {"blink count":len(deque_blinks), "drowsy_level": "waiting for blinks..."}
                         if len(deque_blinks) == 30:
                             deque_blinks_reshaped = np.array(deque_blinks).reshape(1,-1,4)
-                            drowsy_level = Infer.how_drowsy(deque_blinks_reshaped)
                             np_array_to_list = deque_blinks_reshaped.tolist()
+                            data_to_send = {"blink count":blink_count, "drowsy_level": str(Infer.how_drowsy(deque_blinks_reshaped)[0][0])}
                             # json_file = "file.json" 
                             # json.dump(np_array_to_list, codecs.open(json_file, 'w', encoding='utf-8'), sort_keys=True, indent=4)
                             
@@ -544,7 +547,7 @@ def process_image( frame ):
 
     if Q.full():
         junk = Q.get()
-    return frame, drowsy_level
+    return frame, data_to_send
 #############
 ####Main#####
 #############
@@ -596,6 +599,8 @@ EAR_series=np.zeros([13])
 # Frame_series=np.linspace(1,13,13)
 reference_frame=0
 First_frame=True
+blink_count=0
+data_to_send={}
 # top = tk.Tk()
 # frame1 = Frame(top)
 # frame1.grid(row=0, column=0)

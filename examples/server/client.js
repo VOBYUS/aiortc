@@ -122,15 +122,9 @@ function start() {
             }, 1000);
         };
         dc.onmessage = function(evt) {
-            // dataChannelLog.textContent += '< ' + evt.data + '\n';
-
-            if (evt.data.substring(0, 4) === 'pong') {
-                var elapsed_ms = current_stamp() - parseInt(evt.data.substring(5), 10);
-                // dataChannelLog.textContent += ' RTT ' + elapsed_ms + ' ms\n';
-            }
-            if (evt.data.startsWith("drowsy level: ")) {
-                display(evt.data)
-           }
+            // dataChannelLog.textContent += '< ' + evt.data + '\n'    
+            display(evt.data)
+           
         };
 
     var constraints = {
