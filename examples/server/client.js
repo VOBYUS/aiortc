@@ -6,7 +6,6 @@
 
 // peer connection
 var pc = null;
-
 // data channel
 var dc = null, dcInterval = null;
 
@@ -89,6 +88,30 @@ function negotiate() {
 function display(message) {
     var data = JSON.parse(message);
     document.getElementById('basicstats').innerHTML = data.blinkCount;
+    var graph = document.getElementById('graph');
+    var size = graph.getBoundingClientRect();
+    var height = size.height;
+    if(data.drowsy_level.startsWith("waiting")){return;}
+    console.log(data.drowsy_level);
+    drowsyLevel = JSON.parse(data.drowsy_level)[0];
+    var bar = document.getElementById('bar');
+    var ratio = height/10;
+    var barheight = drowsyLevel*ratio;
+    bar.style.width = size.width + "px";
+    bar.style.height = barheight + 'px';
+    bar.style.backgroundColor = 'red';
+    bar.style.bottom = 0;
+    bar.style.left = 0;
+    bar.style.position = 'absolute';
+    graph.style.position = 'relative';
+
+    /*
+    1. get size of graph div
+    2. get drowsy detection data from message
+    3. create a div
+    4. size the div based on drowsy detection level
+    5. put the div inside the graph div
+    */
 }
 
 function start() {
@@ -132,7 +155,7 @@ function start() {
         video: false
     };
 
-        var resolution = "320x240"
+        var resolution = "1280x960"
         if (resolution) {
             resolution = resolution.split('x');
             constraints.video = {

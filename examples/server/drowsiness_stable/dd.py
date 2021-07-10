@@ -600,7 +600,7 @@ EAR_series=np.zeros([13])
 reference_frame=0
 First_frame=True
 blink_count=0
-data_to_send={"blinkCount": 0, "drowsy_level":[0]}
+data_to_send={"blinkCount": 0, "drowsy_level":"[0]"}
 # top = tk.Tk()
 # frame1 = Frame(top)
 # frame1.grid(row=0, column=0)
