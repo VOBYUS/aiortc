@@ -95,15 +95,29 @@ function display(message) {
     console.log(data.drowsy_level);
     drowsyLevel = JSON.parse(data.drowsy_level)[0];
     var bar = document.getElementById('bar');
+    bar.innerHTML = '';
     var ratio = height/10;
     var barheight = drowsyLevel*ratio;
     bar.style.width = size.width + "px";
     bar.style.height = barheight + 'px';
-    bar.style.backgroundColor = 'red';
+    bar.style.backgroundColor = drowsyLevel > 9.5 ? 'red' : 'teal';
     bar.style.bottom = 0;
     bar.style.left = 0;
     bar.style.position = 'absolute';
     graph.style.position = 'relative';
+    var alert = document.getElementById('alert');
+    if (drowsyLevel >= 9.8) {
+        alert.innerHTML = '😪'
+    }
+    if (drowsyLevel < 9.8 && drowsyLevel >= 9.7) {
+        alert.innerHTML = '😴'
+    }
+    if (drowsyLevel < 9.7 && drowsyLevel >= 9.5) {
+        alert.innerHTML = '🥱'
+    }
+    if (drowsyLevel < 9.5 && drowsyLevel >= 0) {
+        alert.innerHTML = '👀'
+    }
 
     /*
     1. get size of graph div

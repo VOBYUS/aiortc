@@ -79,6 +79,11 @@
             #alert {
 				grid-area: a;
 				border:solid 1px black;
+                font-size: 100px;
+                display: flex;
+				align-items:center;
+				justify-content:center; 
+
 			}
 			
 			#drowsystats {
@@ -109,7 +114,9 @@
 <body>
 
     <main>
-        <div id='alert'></div>
+        <div id='alert'>
+            🤔
+        </div>
         <div id='drowsystats'>
             <button id="stop" style="display: none" onclick="stop()">Stop</button>
             <button id="start" onclick="start()">Start</button>
@@ -124,7 +131,9 @@
                 <audio id="audio" autoplay="true"></audio>
                 <video id="video" autoplay="true" playsinline="true"></video>
             </div> -->
-            <div id='bar'></div>
+            <div id='bar'>
+                <h1> <blink> Analyzing blinking patterns... please wait. </blink> </h1>
+            </div>
         </div>
     </main>
 
