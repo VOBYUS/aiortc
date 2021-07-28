@@ -15,6 +15,7 @@ from aiortc import MediaStreamTrack, RTCPeerConnection, RTCSessionDescription
 from aiortc.contrib.media import MediaBlackhole, MediaPlayer, MediaRecorder, MediaRelay
 
 ROOT = os.path.dirname(__file__)
+number_of_connections=0
 
 logger = logging.getLogger("pc")
 pcs = set()
@@ -51,13 +52,15 @@ class VideoTransformTrack(MediaStreamTrack):
 
 
 async def index(request):
+    global number_of_connections
+    number_of_connections += 1
     content = open(os.path.join(ROOT, "index.html"), "r").read()
     return web.Response(content_type="text/html", text=content)
 
 
 async def javascript(request):
     content = open(os.path.join(ROOT, "client.js"), "r").read()
-    return web.Response(content_type="application/javascript", text=content)
+    return web.Response(content_type="application/javascript", text=content + "\n var number_of_connections =" + str(number_of_connections))
 
 
 async def offer(request):
@@ -110,6 +113,8 @@ async def offer(request):
 
         @track.on("ended")
         async def on_ended():
+            global number_of_connections
+            number_of_connections -= 1
             log_info("Track %s ended", track.kind)
             await recorder.stop()
 
