@@ -54,12 +54,12 @@ class VideoTransformTrack(MediaStreamTrack):
 async def index(request):
     global number_of_connections
     number_of_connections += 1
-    content = open(os.path.join(ROOT, "index.html"), "r").read()
+    content = open(os.path.join(ROOT, "index.html"), "r", encoding = "utf-8").read()
     return web.Response(content_type="text/html", text=content)
 
 
 async def javascript(request):
-    content = open(os.path.join(ROOT, "client.js"), "r").read()
+    content = open(os.path.join(ROOT, "client.js"), "r", encoding = "utf-8").read()
     return web.Response(content_type="application/javascript", text=content + "\n var number_of_connections =" + str(number_of_connections))
 
 
