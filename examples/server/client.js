@@ -125,9 +125,7 @@ function display(message) {
 
 function start() {
     document.getElementById('start').style.display = 'none';
-    if(number_of_connections > 1){
-        document.getElementById('num_connections_js').innerHTML = `There are currently ${number_of_connections} people on our server. The blink count will aggregate the blinks of everyone, overwhelming the server. If it is not working, please come back and try later. We are working on solving this issue.`;
-    }
+
     pc = createPeerConnection();
 
     var time_start = null;
@@ -140,42 +138,37 @@ function start() {
             return new Date().getTime() - time_start;
         }
     }
-        var parameters = {"ordered": true}
+    var parameters = {"ordered": true}
 
-        dc = pc.createDataChannel('chat', parameters);
-        dc.onclose = function() {
-            clearInterval(dcInterval);
-            // dataChannelLog.textContent += '- close\n';
-        };
-        dc.onopen = function() {
-            // dataChannelLog.textContent += '- open\n';
-            dcInterval = setInterval(function() {
-                var message = 'ping ' + current_stamp();
-                // dataChannelLog.textContent += '> ' + message + '\n';
-                dc.send(message);
-            }, 1000);
-        };
-        dc.onmessage = function(evt) {
-            // dataChannelLog.textContent += '< ' + evt.data + '\n'    
-            display(evt.data)
-           
-        };
+    dc = pc.createDataChannel('chat', parameters);
+    dc.onclose = function() {
+        clearInterval(dcInterval);
+    };
+    dc.onopen = function() {
+        dcInterval = setInterval(function() {
+            var message = 'ping ' + current_stamp();
+            dc.send(message);
+        }, 1000);
+    };
+    dc.onmessage = function(evt) {
+        display(evt.data)
+    };
 
     var constraints = {
         audio: false,
         video: false
     };
 
-        var resolution = "1280x960"
-        if (resolution) {
-            resolution = resolution.split('x');
-            constraints.video = {
-                width: parseInt(resolution[0], 0),
-                height: parseInt(resolution[1], 0)
-            };
-        } else {
-            constraints.video = true;
-        }
+    var resolution = "1280x960"
+    if (resolution) {
+        resolution = resolution.split('x');
+        constraints.video = {
+            width: parseInt(resolution[0], 0),
+            height: parseInt(resolution[1], 0)
+        };
+    } else {
+        constraints.video = true;
+    }
     
 
     if (constraints.audio || constraints.video) {
@@ -223,65 +216,4 @@ function stop() {
     setTimeout(function() {
         pc.close();
     }, 500);
-}
-
-function sdpFilterCodec(kind, codec, realSdp) {
-    var allowed = []
-    var rtxRegex = new RegExp('a=fmtp:(\\d+) apt=(\\d+)\r$');
-    var codecRegex = new RegExp('a=rtpmap:([0-9]+) ' + escapeRegExp(codec))
-    var videoRegex = new RegExp('(m=' + kind + ' .*?)( ([0-9]+))*\\s*$')
-    
-    var lines = realSdp.split('\n');
-
-    var isKind = false;
-    for (var i = 0; i < lines.length; i++) {
-        if (lines[i].startsWith('m=' + kind + ' ')) {
-            isKind = true;
-        } else if (lines[i].startsWith('m=')) {
-            isKind = false;
-        }
-
-        if (isKind) {
-            var match = lines[i].match(codecRegex);
-            if (match) {
-                allowed.push(parseInt(match[1]));
-            }
-
-            match = lines[i].match(rtxRegex);
-            if (match && allowed.includes(parseInt(match[2]))) {
-                allowed.push(parseInt(match[1]));
-            }
-        }
-    }
-
-    var skipRegex = 'a=(fmtp|rtcp-fb|rtpmap):([0-9]+)';
-    var sdp = '';
-
-    isKind = false;
-    for (var i = 0; i < lines.length; i++) {
-        if (lines[i].startsWith('m=' + kind + ' ')) {
-            isKind = true;
-        } else if (lines[i].startsWith('m=')) {
-            isKind = false;
-        }
-
-        if (isKind) {
-            var skipMatch = lines[i].match(skipRegex);
-            if (skipMatch && !allowed.includes(parseInt(skipMatch[2]))) {
-                continue;
-            } else if (lines[i].match(videoRegex)) {
-                sdp += lines[i].replace(videoRegex, '$1 ' + allowed.join(' ')) + '\n';
-            } else {
-                sdp += lines[i] + '\n';
-            }
-        } else {
-            sdp += lines[i] + '\n';
-        }
-    }
-
-    return sdp;
-}
-
-function escapeRegExp(string) {
-    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
 }

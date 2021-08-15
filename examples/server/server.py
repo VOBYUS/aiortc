@@ -15,7 +15,6 @@ from aiortc import MediaStreamTrack, RTCPeerConnection, RTCSessionDescription
 from aiortc.contrib.media import MediaBlackhole, MediaPlayer, MediaRecorder, MediaRelay
 
 ROOT = os.path.dirname(__file__)
-number_of_connections=0
 
 logger = logging.getLogger("pc")
 pcs = set()
@@ -30,7 +29,7 @@ class VideoTransformTrack(MediaStreamTrack):
 
     kind = "video"
 
-    def __init__(self, track, transform):
+    def __init__(self, track, transform, drowsyDetector):
         super().__init__()  # don't forget this!
         self.track = track
         self.transform = transform
@@ -40,7 +39,7 @@ class VideoTransformTrack(MediaStreamTrack):
         self.count += 1
         frame = await self.track.recv()
         img = frame.to_ndarray(format="bgr24")
-        img, data_to_send = dd.process_image(img)
+        img, data_to_send = drowsyDetector.process_image(img)
         if self.count % 10 == 0 and message_channel:
             print(json.dumps(data_to_send))
             message_channel.send(json.dumps(data_to_send))
@@ -52,21 +51,24 @@ class VideoTransformTrack(MediaStreamTrack):
 
 
 async def index(request):
-    global number_of_connections
-    number_of_connections += 1
     content = open(os.path.join(ROOT, "index.html"), "r", encoding = "utf-8").read()
     return web.Response(content_type="text/html", text=content)
+
+async def css(request):
+    content = open(os.path.join(ROOT, "base.css"), "r", encoding = "utf-8").read()
+    return web.Response(content_type="text/css", text=content)
 
 
 async def javascript(request):
     content = open(os.path.join(ROOT, "client.js"), "r", encoding = "utf-8").read()
-    return web.Response(content_type="application/javascript", text=content + "\n var number_of_connections =" + str(number_of_connections))
+    return web.Response(content_type="application/javascript", text=content)
 
 
 async def offer(request):
     params = await request.json()
     offer = RTCSessionDescription(sdp=params["sdp"], type=params["type"])
 
+    drowsyDetector = dd.DrowsyDetector()
     pc = RTCPeerConnection()
     pc_id = "PeerConnection(%s)" % uuid.uuid4()
     pcs.add(pc)
@@ -105,7 +107,7 @@ async def offer(request):
         elif track.kind == "video":
             pc.addTrack(
                 VideoTransformTrack(
-                    relay.subscribe(track), transform=params["video_transform"]
+                    relay.subscribe(track), transform=params["video_transform"], drowsyDetector
                 )
             )
             if args.record_to:
@@ -172,6 +174,7 @@ if __name__ == "__main__":
     app.on_shutdown.append(on_shutdown)
     app.router.add_get("/", index)
     app.router.add_get("/client.js", javascript)
+    app.router.add_get("/base.css", css)
     app.router.add_post("/offer", offer)
     web.run_app(
         app, access_log=None, host=args.host, port=args.port, ssl_context=ssl_context
