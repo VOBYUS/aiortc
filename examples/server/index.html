@@ -2,10 +2,10 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WebRTC demo</title>
+    <title>Vobyus Drowsiness Detection Demo</title>
     <link rel="stylesheet" type="text/css" href="base.css" />
     <style>
-    
+
 
 
             body {
@@ -16,7 +16,7 @@
 				align-items:center;
 				justify-content:center;
 			}
-			
+
 			main {
 				display:grid;
 				border: solid 1px black;
@@ -34,31 +34,31 @@
                 font-size: 100px;
                 display: flex;
 				align-items:center;
-				justify-content:center; 
+				justify-content:center;
 
 			}
-			
+
 			#drowsystats {
 				grid-area:d;
 				border:solid 1px black;
                 display:flex;
 				align-items:center;
-				justify-content:center;                
+				justify-content:center;
 			}
-			
+
 			#basicstats {
 				grid-area:b;
 				border:solid 1px black;
                 font-size: 100px;
                 display: flex;
 				align-items:center;
-				justify-content:center; 
+				justify-content:center;
 			}
-			
+
 			#graph {
 				grid-area:g;
 				border:solid 1px black;
-				
+
 			}
 
     </style>
@@ -66,21 +66,24 @@
 <body>
 
     <main>
-        <div id='alert'>
+
+		<div id='alert'>
             🤔
         </div>
-        <div id='drowsystats'>
+
+		<div id='drowsystats'>
             <button id="stop" style="display: none" onclick="stop()">Stop</button>
             <button id="start" onclick="start()">Start</button>
             <div id='num_connections_js'></div>
         </div>
-        <div id='basicstats'>
-            
+
+		<div id='basicstats'>
         </div>
-        <div id='graph'>
+
+		<div id='graph'>
             <!-- <div id = "video_container">
                 <h2>Media</h2>
-            
+
                 <audio id="audio" autoplay="true"></audio>
                 <video id="video" autoplay="true" playsinline="true"></video>
             </div> -->

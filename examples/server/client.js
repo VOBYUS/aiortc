@@ -23,7 +23,7 @@ function createPeerConnection() {
     //     iceGatheringLog.textContent += ' -> ' + pc.iceGatheringState;
     // }, false);
 
-    // pc.addEventListener('iceconnectionstatechange', function()  
+    // pc.addEventListener('iceconnectionstatechange', function()
     //     iceConnectionLog.textContent += ' -> ' + pc.iceConnectionState;
     // }, false);
     // iceConnectionLog.textContent = pc.iceConnectionState;
@@ -159,7 +159,8 @@ function start() {
         video: false
     };
 
-    var resolution = "1280x960"
+    //var resolution = "1280x960"
+    var resolution = "320x240"
     if (resolution) {
         resolution = resolution.split('x');
         constraints.video = {
@@ -169,7 +170,7 @@ function start() {
     } else {
         constraints.video = true;
     }
-    
+
 
     if (constraints.audio || constraints.video) {
         if (constraints.video) {

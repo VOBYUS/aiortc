@@ -23,7 +23,7 @@ import cv2
 #import twilio for text/call
 #from twilio.rest import Client
 #client = Client('AC70ff03021de6e57806ce0912d513db66','f495894474109fd17ccbb79145680e4b')
-               
+
 # inference
 import drowsiness_stable.Infer as Infer
 from collections import deque
@@ -41,8 +41,8 @@ class DrowsyDetector():
         self.output_file = 'alert.txt'  # The text file to write to (for blinks)#
         self.path = 0 # the path to the input video
 
-        self.self.Q = Queue(maxsize=7)
-        self.self.deque_blinks = deque(maxlen=30)
+        self.Q = Queue(maxsize=7)
+        self.deque_blinks = deque(maxlen=30)
 
         self.FRAME_MARGIN_BTW_2BLINKS=3
         self.MIN_AMPLITUDE=0.04
@@ -53,16 +53,17 @@ class DrowsyDetector():
         self.EPSILON=0.01  # for discrete derivative (avoiding zero derivative)
 
         # initialize the frame counters and the total number of yawnings
-        self.self.COUNTER = 0
-        self.self.MCOUNTER=0
-        self.self.TOTAL = 0
-        self.self.MTOTAL=0
-        self.self.TOTAL_BLINKS=0
-        self.self.Counter4blinks=0
-        self.self.Current_Blink = None
-        self.self.skip=False # to make sure a blink is not counted twice in the Blink_Tracker function
-        self.Last_Blink=Blink()
-        self.self.drowsy_level = "Blink count =" 
+        self.COUNTER = 0
+        self.MCOUNTER=0
+        self.TOTAL = 0
+        self.MTOTAL=0
+        self.TOTAL_BLINKS=0
+        self.Counter4blinks=0
+        self.Current_Blink = None
+        self.skip=False # to make sure a blink is not counted twice in the Blink_Tracker function
+        self.Last_Blink=self.Blink()
+        self.drowsy_level = "Blink count ="
+        self.BLINK_READY = False
 
         print("[INFO] loading facial landmark predictor...")
         self.detector = dlib.get_frontal_face_detector()
@@ -83,15 +84,15 @@ class DrowsyDetector():
 
         print("[INFO] starting video stream thread...")
 
-        self.self.lk_params=dict( winSize  = (13,13),
+        self.lk_params=dict( winSize  = (13,13),
                             maxLevel = 2,
                             criteria = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 0.03))
-        self.self.EAR_series=np.zeros([13])
+        self.EAR_series=np.zeros([13])
         # Frame_series=np.linspace(1,13,13)
-        self.self.reference_frame=0
-        self.self.First_frame=True
-        self.self.blink_count=0
-        self.self.data_to_send={"blinkCount": 0, "self.drowsy_level":"[0]"}
+        self.reference_frame=0
+        self.First_frame=True
+        self.blink_count=0
+        self.data_to_send={"blinkCount": 0, "drowsy_level":"[0]"}
         # top = tk.Tk()
         # frame1 = Frame(top)
         # frame1.grid(row=0, column=0)
@@ -102,10 +103,11 @@ class DrowsyDetector():
         # plt.ylim([0.0, 0.5])
         # line, = ax.plot(Frame_series,self.EAR_series)
         # plot_frame.draw()
-        self.self.number_of_frames=0
+        self.number_of_frames=0
         self.start = datetime.datetime.now()
+        self.infer = Infer.Infer()
 
-    def adjust_gamma(image, gamma=1.0):
+    def adjust_gamma(self, image, gamma=1.0):
         # build a lookup table mapping the pixel values [0, 255] to
         # their adjusted gamma values
         invGamma = 1.0 / gamma
@@ -130,7 +132,7 @@ class DrowsyDetector():
             self.values=[]
             self.velocity=0  #Eye-closing velocity
 
-    def eye_aspect_ratio(eye):
+    def eye_aspect_ratio(self, eye):
         # compute the euclidean distances between the two sets of
         # vertical eye landmarks (x, y)-coordinates
         A = dist.euclidean(eye[1], eye[5])
@@ -150,7 +152,7 @@ class DrowsyDetector():
         # return the eye aspect ratio
         return ear
 
-    def mouth_aspect_ratio(mouth):
+    def mouth_aspect_ratio(self, mouth):
 
         A = dist.euclidean(mouth[14], mouth[18])
 
@@ -165,7 +167,7 @@ class DrowsyDetector():
         # return the mouth aspect ratio
         return mar
 
-    def EMERGENCY(ear, self.COUNTER):
+    def EMERGENCY(self, ear, COUNTER):
         if ear < 0.21:
             self.COUNTER += 1
 
@@ -187,17 +189,17 @@ class DrowsyDetector():
             self.COUNTER=0
         return self.COUNTER
 
-    def Linear_Interpolate(start,end,N):
+    def Linear_Interpolate(self, start,end,N):
         m=(end-start)/(N+1)
         x=np.linspace(1,N,N)
         y=m*(x-0)+start
         return list(y)
 
-    def Ultimate_Blink_Check():
+    def Ultimate_Blink_Check(self):
         #Given the input "values", retrieve blinks and their quantities
         retrieved_blinks=[]
         MISSED_BLINKS=False
-        values=np.asarray(Last_Blink.values)
+        values=np.asarray(self.Last_Blink.values)
         THRESHOLD=0.4*np.min(values)+0.6*np.max(values)   # this is to split extrema in highs and lows
         N=len(values)
         Derivative=values[1:N]-values[0:N-1]    #[-1 1] is used for derivative
@@ -205,9 +207,9 @@ class DrowsyDetector():
         if len(i[0])!=0:
             for k in i[0]:
                 if k==0:
-                    Derivative[0]=-EPSILON
+                    Derivative[0]=-self.EPSILON
                 else:
-                    Derivative[k]=EPSILON*Derivative[k-1]
+                    Derivative[k]=self.EPSILON*Derivative[k-1]
         M=N-1    #len(Derivative)
         ZeroCrossing=Derivative[1:M]*Derivative[0:M-1]
         x = np.where(ZeroCrossing < 0)
@@ -231,11 +233,11 @@ class DrowsyDetector():
         if numberOfblinks>1:
             MISSED_BLINKS=True
         if numberOfblinks ==0:
-            print(Updown,Last_Blink.duration)
+            print(Updown,self.Last_Blink.duration)
             print(values)
             print(Derivative)
         for j in range(numberOfblinks):
-            detected_blink=Blink()
+            detected_blink=self.Blink()
             detected_blink.start=selected_index_First[2*j]
             detected_blink.peak = selected_index_Sec[2*j]
             detected_blink.end = selected_index_Sec[2*j + 1]
@@ -253,8 +255,7 @@ class DrowsyDetector():
 
         return MISSED_BLINKS,retrieved_blinks
 
-    def Blink_Tracker(EAR,IF_Closed_Eyes,self.Counter4blinks,self.TOTAL_BLINKS,self.skip, self.Current_Blink):
-        global self.BLINK_READY
+    def Blink_Tracker(self, EAR, IF_Closed_Eyes, Counter4blinks, TOTAL_BLINKS, skip, Current_Blink):
         self.BLINK_READY=False
         #If the eyes are closed
         if int(IF_Closed_Eyes)==1:
@@ -269,29 +270,24 @@ class DrowsyDetector():
             if self.Current_Blink.peakEAR>=EAR:    #deciding the min point of the EAR signal
                 self.Current_Blink.peakEAR =EAR
                 self.Current_Blink.peak=self.reference_frame-6
-
-
-
-
-
         # otherwise, the eyes are open in this frame
         else:
 
             if self.Counter4blinks <2 and self.skip==False :           # Wait to approve or reject the last blink
-                if Last_Blink.duration>15:
-                    FRAME_MARGIN_BTW_2BLINKS=8
+                if self.Last_Blink.duration>15:
+                    self.FRAME_MARGIN_BTW_2BLINKS=8
                 else:
-                    FRAME_MARGIN_BTW_2BLINKS=1
-                if ( (self.reference_frame-6) - Last_Blink.end) > FRAME_MARGIN_BTW_2BLINKS:
+                    self.FRAME_MARGIN_BTW_2BLINKS=1
+                if ( (self.reference_frame-6) - self.Last_Blink.end) > self.FRAME_MARGIN_BTW_2BLINKS:
                     # Check so the prev blink signal is not monotonic or too small (noise)
-                    if  Last_Blink.peakEAR < Last_Blink.startEAR and Last_Blink.peakEAR < Last_Blink.endEAR and Last_Blink.amplitude>MIN_AMPLITUDE and Last_Blink.start<Last_Blink.peak:
-                        if((Last_Blink.startEAR - Last_Blink.peakEAR)> (Last_Blink.endEAR - Last_Blink.peakEAR)*0.25 and (Last_Blink.startEAR - Last_Blink.peakEAR)*0.25< (Last_Blink.endEAR - Last_Blink.peakEAR)): # the amplitude is balanced
+                    if  self.Last_Blink.peakEAR < self.Last_Blink.startEAR and self.Last_Blink.peakEAR < self.Last_Blink.endEAR and self.Last_Blink.amplitude>self.MIN_AMPLITUDE and self.Last_Blink.start<self.Last_Blink.peak:
+                        if((self.Last_Blink.startEAR - self.Last_Blink.peakEAR)> (self.Last_Blink.endEAR - self.Last_Blink.peakEAR)*0.25 and (self.Last_Blink.startEAR - self.Last_Blink.peakEAR)*0.25< (self.Last_Blink.endEAR - self.Last_Blink.peakEAR)): # the amplitude is balanced
                             self.BLINK_READY = True
                             #####THE ULTIMATE BLINK Check
 
-                            Last_Blink.values=signal.convolve1d(Last_Blink.values, [1/3.0, 1/3.0,1/3.0],mode='nearest')
-                            # Last_Blink.values=signal.median_filter(Last_Blink.values, 3, mode='reflect')   # smoothing the signal
-                            [MISSED_BLINKS,retrieved_blinks]=Ultimate_Blink_Check()
+                            self.Last_Blink.values=signal.convolve1d(self.Last_Blink.values, [1/3.0, 1/3.0,1/3.0],mode='nearest')
+                            # self.Last_Blink.values=signal.median_filter(self.Last_Blink.values, 3, mode='reflect')   # smoothing the signal
+                            [MISSED_BLINKS,retrieved_blinks]=self.Ultimate_Blink_Check()
                             #####
                             self.TOTAL_BLINKS =self.TOTAL_BLINKS+len(retrieved_blinks)  # Finally, approving/counting the previous blink candidate
                             ###Now You can count on the info of the last separate and valid blink and analyze it
@@ -303,9 +299,9 @@ class DrowsyDetector():
                             print('rejected due to imbalance')
                     else:
                         self.skip = True
-                        print('rejected due to noise,magnitude is {}'.format(Last_Blink.amplitude))
-                        print(Last_Blink.start<Last_Blink.peak)
-            
+                        print('rejected due to noise,magnitude is {}'.format(self.Last_Blink.amplitude))
+                        print(self.Last_Blink.start<self.Last_Blink.peak)
+
 
             # if the eyes were closed for a sufficient number of frames (2 or more)
             # then this is a valid CANDIDATE for a blink
@@ -315,40 +311,40 @@ class DrowsyDetector():
                 self.Current_Blink.amplitude = (self.Current_Blink.startEAR + self.Current_Blink.endEAR - 2 * self.Current_Blink.peakEAR) / 2
                 self.Current_Blink.duration = self.Current_Blink.end - self.Current_Blink.start + 1
 
-                if Last_Blink.duration>15:
-                    FRAME_MARGIN_BTW_2BLINKS=8
+                if self.Last_Blink.duration>15:
+                    self.FRAME_MARGIN_BTW_2BLINKS=8
                 else:
-                    FRAME_MARGIN_BTW_2BLINKS=1
-                if (self.Current_Blink.start-Last_Blink.end )<=FRAME_MARGIN_BTW_2BLINKS+1:  #Merging two close blinks
+                    self.FRAME_MARGIN_BTW_2BLINKS=1
+                if (self.Current_Blink.start-self.Last_Blink.end )<=self.FRAME_MARGIN_BTW_2BLINKS+1:  #Merging two close blinks
                     print('Merging...')
-                    frames_in_between=self.Current_Blink.start - Last_Blink.end-1
-                    print(self.Current_Blink.start ,Last_Blink.end, frames_in_between)
-                    valuesBTW=Linear_Interpolate(Last_Blink.endEAR,self.Current_Blink.startEAR,frames_in_between)
-                    Last_Blink.values=Last_Blink.values+valuesBTW+self.Current_Blink.values
-                    Last_Blink.end = self.Current_Blink.end            # update the end
-                    Last_Blink.endEAR = self.Current_Blink.endEAR
-                    if Last_Blink.peakEAR>self.Current_Blink.peakEAR:  #update the peak
-                        Last_Blink.peakEAR=self.Current_Blink.peakEAR
-                        Last_Blink.peak = self.Current_Blink.peak
+                    frames_in_between=self.Current_Blink.start - self.Last_Blink.end-1
+                    print(self.Current_Blink.start ,self.Last_Blink.end, frames_in_between)
+                    valuesBTW=self.Linear_Interpolate(self.Last_Blink.endEAR,self.Current_Blink.startEAR,frames_in_between)
+                    self.Last_Blink.values=self.Last_Blink.values+valuesBTW+self.Current_Blink.values
+                    self.Last_Blink.end = self.Current_Blink.end            # update the end
+                    self.Last_Blink.endEAR = self.Current_Blink.endEAR
+                    if self.Last_Blink.peakEAR>self.Current_Blink.peakEAR:  #update the peak
+                        self.Last_Blink.peakEAR=self.Current_Blink.peakEAR
+                        self.Last_Blink.peak = self.Current_Blink.peak
                         #update duration and amplitude
-                    Last_Blink.amplitude = (Last_Blink.startEAR + Last_Blink.endEAR - 2 * Last_Blink.peakEAR) / 2
-                    Last_Blink.duration = Last_Blink.end - Last_Blink.start + 1
+                    self.Last_Blink.amplitude = (self.Last_Blink.startEAR + self.Last_Blink.endEAR - 2 * self.Last_Blink.peakEAR) / 2
+                    self.Last_Blink.duration = self.Last_Blink.end - self.Last_Blink.start + 1
                 else:                                             #Should not Merge (a Separate blink)
 
-                    Last_Blink.values=self.Current_Blink.values        #update the EAR list
+                    self.Last_Blink.values=self.Current_Blink.values        #update the EAR list
 
 
-                    Last_Blink.end = self.Current_Blink.end            # update the end
-                    Last_Blink.endEAR = self.Current_Blink.endEAR
+                    self.Last_Blink.end = self.Current_Blink.end            # update the end
+                    self.Last_Blink.endEAR = self.Current_Blink.endEAR
 
-                    Last_Blink.start = self.Current_Blink.start        #update the start
-                    Last_Blink.startEAR = self.Current_Blink.startEAR
+                    self.Last_Blink.start = self.Current_Blink.start        #update the start
+                    self.Last_Blink.startEAR = self.Current_Blink.startEAR
 
-                    Last_Blink.peakEAR = self.Current_Blink.peakEAR    #update the peak
-                    Last_Blink.peak = self.Current_Blink.peak
+                    self.Last_Blink.peakEAR = self.Current_Blink.peakEAR    #update the peak
+                    self.Last_Blink.peak = self.Current_Blink.peak
 
-                    Last_Blink.amplitude = self.Current_Blink.amplitude
-                    Last_Blink.duration = self.Current_Blink.duration
+                    self.Last_Blink.amplitude = self.Current_Blink.amplitude
+                    self.Last_Blink.duration = self.Current_Blink.duration
 
 
 
@@ -358,7 +354,7 @@ class DrowsyDetector():
         retrieved_blinks=0
         return retrieved_blinks,int(self.TOTAL_BLINKS),self.Counter4blinks,self.BLINK_READY,self.skip
 
-    def process_image( self, frame ):
+    def process_image(self, frame ):
         self.reference_frame
         self.number_of_frames
         self.COUNTER
@@ -368,20 +364,16 @@ class DrowsyDetector():
         self.TOTAL_BLINKS
         self.Counter4blinks
         self.EAR_series
-        self.Q 
+        self.Q
         self.deque_blinks
         self.skip
         self.lk_params
         self.First_frame
         self.drowsy_level
-        self.BLINK_READY
-        self.leftEye 
-        self.rightEye 
-        self.leftEAR 
-        self.rightEAR 
+
         self.Current_Blink
         self.blink_count
-        self.data_to_send
+
 
         # (grabbed, frame) = stream.read()
         # if not grabbed:
@@ -399,14 +391,14 @@ class DrowsyDetector():
 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)   #Brighten the image(Gamma correction)
         self.reference_frame = self.reference_frame + 1
-        gray=adjust_gamma(gray,gamma=1.5)
-        self.Q.put(frame)    
-        end = datetime.datetime.now()
-        ElapsedTime=(end - start).total_seconds()
-        
+        gray=self.adjust_gamma(gray,gamma=1.5)
+        self.Q.put(frame)
+        self.end = datetime.datetime.now()
+        ElapsedTime=(self.end - self.start).total_seconds()
+
 
         # detect faces in the grayscale frame
-        rects = detector(gray, 0)
+        rects = self.detector(gray, 0)
 
         if (np.size(rects) != 0):
             self.number_of_frames = self.number_of_frames + 1  # we only consider frames that face is detected
@@ -416,21 +408,21 @@ class DrowsyDetector():
         #     # determine the facial landmarks for the face region, then
         #     # convert the facial landmark (x, y)-coordinates to a NumPy
         #     # array
-            shape = predictor(gray, rects[0])
+            shape = self.predictor(gray, rects[0])
             shape = face_utils.shape_to_np(shape)
 
         #     ###############YAWNING##################
         #     #######################################
-            Mouth = shape[mStart:mEnd]
-            MAR = mouth_aspect_ratio(Mouth)
+            Mouth = shape[self.middlePos[0]:self.middlePos[1]]
+            MAR = self.mouth_aspect_ratio(Mouth)
             MouthHull = cv2.convexHull(Mouth)
             cv2.drawContours(frame, [MouthHull], -1, (255, 0, 0), 1)
 
-            if MAR > MOUTH_AR_THRESH:
+            if MAR > self.MOUTH_AR_THRESH:
                 self.MCOUNTER += 1
 
-            elif MAR < MOUTH_AR_THRESH_ALERT:
-                if self.MCOUNTER >= MOUTH_AR_CONSEC_FRAMES:
+            elif MAR < self.MOUTH_AR_THRESH_ALERT:
+                if self.MCOUNTER >= self.MOUTH_AR_CONSEC_FRAMES:
                     self.MTOTAL += 1
                 self.MCOUNTER = 0
 
@@ -441,9 +433,9 @@ class DrowsyDetector():
             # coordinates to compute the eye aspect ratio for both eyes
 
             self.leftEye = shape[self.leftPos[0]:self.leftPos[1]]
-            self.rightEye = shape[self.rightPos[0]:self.rightPos[0]]
-            self.leftEAR = eye_aspect_ratio(self.leftEye)
-            self.rightEAR = eye_aspect_ratio(self.rightEye)
+            self.rightEye = shape[self.rightPos[0]:self.rightPos[1]]
+            self.leftEAR = self.eye_aspect_ratio(self.leftEye)
+            self.rightEAR = self.eye_aspect_ratio(self.rightEye)
 
             # average the eye aspect ratio together for both eyes
             ear = (self.leftEAR + self.rightEAR) / 2.0
@@ -456,10 +448,10 @@ class DrowsyDetector():
             rightEyeHull = cv2.convexHull(self.rightEye)
             cv2.drawContours(frame, [leftEyeHull], -1, (0, 255, 0), 1)
             cv2.drawContours(frame, [rightEyeHull], -1, (0, 255, 0), 1)
-            
+
             ############ Show drowsiness level ########################
             ###########################################################
-            
+
             cv2.putText(frame,f"Drowsy Level:{self.drowsy_level}",
                         (10,250),
                         cv2.FONT_HERSHEY_SIMPLEX,
@@ -467,11 +459,11 @@ class DrowsyDetector():
                         [0,0,255],
                         1
                         )
-            
+
             ############HANDLING THE EMERGENCY SITATION################
             ###########################################################
             ###########################################################
-            self.COUNTER=EMERGENCY(ear,self.COUNTER)
+            self.COUNTER=self.EMERGENCY(ear,self.COUNTER)
 
                 # EMERGENCY SITUATION (EYES TOO LONG CLOSED) ALERT THE DRIVER IMMEDIATELY
             ############HANDLING THE EMERGENCY SITATION################
@@ -480,21 +472,21 @@ class DrowsyDetector():
 
             if self.Q.full() and (self.reference_frame>15):  #to make sure the frame of interest for the EAR vector is int the mid
                 EAR_table = self.EAR_series
-                IF_Closed_Eyes = loaded_svm.predict(self.EAR_series.reshape(1,-1))
+                IF_Closed_Eyes = self.loaded_svm.predict(self.EAR_series.reshape(1,-1))
                 if self.Counter4blinks==0:
-                    self.Current_Blink = Blink()
-                retrieved_blinks, self.TOTAL_BLINKS, self.Counter4blinks, self.BLINK_READY, self.skip = Blink_Tracker(self.EAR_series[6],
+                    self.Current_Blink = self.Blink()
+                retrieved_blinks, self.TOTAL_BLINKS, self.Counter4blinks, self.BLINK_READY, self.skip = self.Blink_Tracker(self.EAR_series[6],
                         IF_Closed_Eyes,
                         self.Counter4blinks,
                         self.TOTAL_BLINKS, self.skip,self.Current_Blink)
-                    
+
                 if (self.BLINK_READY==True):
                     self.reference_frame=20   #initialize to a random number to avoid overflow in large numbers
                     self.skip = True
                     #####
                     BLINK_FRAME_FREQ = self.TOTAL_BLINKS / self.number_of_frames
                     for detected_blink in retrieved_blinks:
-                        print(detected_blink.amplitude, Last_Blink.amplitude)
+                        print(detected_blink.amplitude, self.Last_Blink.amplitude)
                         print(detected_blink.duration, detected_blink.velocity)
                         print('-------------------')
                         if(detected_blink.velocity>0):
@@ -507,23 +499,24 @@ class DrowsyDetector():
                                                 )
                             print(f"len(self.deque_blinks)={len(self.deque_blinks)}")
                             if len(self.deque_blinks) < 30:
-                                self.data_to_send = {"blinkCount":len(self.deque_blinks), "self.drowsy_level": "waiting for blinks..."}
+                                self.data_to_send = {"blinkCount":len(self.deque_blinks), "drowsy_level": "waiting for blinks..."}
                             if len(self.deque_blinks) == 30:
                                 deque_blinks_reshaped = np.array(self.deque_blinks).reshape(1,-1,4)
                                 np_array_to_list = deque_blinks_reshaped.tolist()
-                                self.data_to_send = {"blinkCount":self.blink_count, "self.drowsy_level": str(Infer.how_drowsy(deque_blinks_reshaped)[0][0])}
-                                # json_file = "file.json" 
+                                print("###### deque_blinks_reshaped =",deque_blinks_reshaped.shape)
+                                self.drowsy_level = self.infer.how_drowsy(deque_blinks_reshaped)[0][0]
+                                self.data_to_send = {"blinkCount":self.blink_count, "drowsy_level": str(self.drowsy_level)}
+                                # json_file = "file.json"
                                 # json.dump(np_array_to_list, codecs.open(json_file, 'w', encoding='utf-8'), sort_keys=True, indent=4)
-                                
+
                                 print(f"Drowsy Level={self.drowsy_level}")
 
                         if(detected_blink.velocity>0):
                             with open(self.output_file, 'ab') as f_handle:
                                 f_handle.write(b'\n')
                                 np.savetxt(f_handle,[self.TOTAL_BLINKS,BLINK_FRAME_FREQ*100,detected_blink.amplitude,detected_blink.duration,detected_blink.velocity], delimiter=', ', newline=' ',fmt='%.4f')
-                    Last_Blink.end = -10 # re initialization
+                    self.Last_Blink.end = -10 # re initialization
 
         if self.Q.full():
             junk = self.Q.get()
         return frame, self.data_to_send
-

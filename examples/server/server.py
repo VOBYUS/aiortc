@@ -5,6 +5,7 @@ import logging
 import os
 import ssl
 import uuid
+import time
 import drowsiness_stable.dd as dd
 
 import cv2
@@ -19,7 +20,6 @@ ROOT = os.path.dirname(__file__)
 logger = logging.getLogger("pc")
 pcs = set()
 relay = MediaRelay()
-message_channel = None
 
 
 class VideoTransformTrack(MediaStreamTrack):
@@ -29,25 +29,27 @@ class VideoTransformTrack(MediaStreamTrack):
 
     kind = "video"
 
-    def __init__(self, track, transform, drowsyDetector):
+    def __init__(self, track, transform, drowsyDetector, message_channels):
         super().__init__()  # don't forget this!
         self.track = track
         self.transform = transform
         self.count = 0
+        self.drowsyDetector = drowsyDetector
+        self.message_channels = message_channels
 
     async def recv(self):
         self.count += 1
         frame = await self.track.recv()
         img = frame.to_ndarray(format="bgr24")
-        img, data_to_send = drowsyDetector.process_image(img)
-        if self.count % 10 == 0 and message_channel:
+        img, data_to_send = self.drowsyDetector.process_image(img)
+        if self.count % 10 == 0 and len(self.message_channels)!=0:
             print(json.dumps(data_to_send))
-            message_channel.send(json.dumps(data_to_send))
+            self.message_channels[0].send(json.dumps(data_to_send))
         new_frame = VideoFrame.from_ndarray(img, format="bgr24")
         new_frame.pts = frame.pts
         new_frame.time_base = frame.time_base
         return new_frame
- 
+
 
 
 async def index(request):
@@ -72,6 +74,7 @@ async def offer(request):
     pc = RTCPeerConnection()
     pc_id = "PeerConnection(%s)" % uuid.uuid4()
     pcs.add(pc)
+    message_channels = []
 
     def log_info(msg, *args):
         logger.info(pc_id + " " + msg, *args)
@@ -87,9 +90,10 @@ async def offer(request):
 
     @pc.on("datachannel")
     def on_datachannel(channel):
-        global message_channel
-        message_channel = channel
- 
+        log_info("data channel created message_channels appended")
+        print(f"datachannel from browser... accepted {channel}")
+        message_channels.append(channel)
+
     @pc.on("connectionstatechange")
     async def on_connectionstatechange():
         log_info("Connection state is %s", pc.connectionState)
@@ -105,9 +109,10 @@ async def offer(request):
             pc.addTrack(player.audio)
             recorder.addTrack(track)
         elif track.kind == "video":
+            log_info(f"##### Ontrace video, # of channels {len(message_channels)}")
             pc.addTrack(
                 VideoTransformTrack(
-                    relay.subscribe(track), transform=params["video_transform"], drowsyDetector
+                    relay.subscribe(track), transform=params["video_transform"], drowsyDetector=drowsyDetector, message_channels=message_channels
                 )
             )
             if args.record_to:
@@ -115,8 +120,6 @@ async def offer(request):
 
         @track.on("ended")
         async def on_ended():
-            global number_of_connections
-            number_of_connections -= 1
             log_info("Track %s ended", track.kind)
             await recorder.stop()
 
