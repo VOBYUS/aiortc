@@ -11,6 +11,7 @@ import dlib
 import matplotlib.pyplot as plt
 import json
 import codecs
+import time
 # import tkinter as tk
 # from tkinter import *
 #from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -347,8 +348,17 @@ def process_image( frame ):
     #     # determine the facial landmarks for the face region, then
     #     # convert the facial landmark (x, y)-coordinates to a NumPy
     #     # array
+
+        before = time.time()
         shape = predictor(gray, rects[0])
         shape = face_utils.shape_to_np(shape)
+        after = time.time()
+        delay = after - before 
+        fid = open("delay.txt", "a")
+        fid.write(str(delay) + "\n")
+        #print("delay:" + str(delay))
+        fid.close()
+
 
     #     ###############YAWNING##################
     #     #######################################
