@@ -34,12 +34,6 @@ function createPeerConnection() {
     // signalingLog.textContent = pc.signalingState;
 
     // connect audio / video
-    pc.addEventListener('track', function(evt) {
-        if (evt.track.kind == 'video')
-            document.getElementById('video').srcObject = evt.streams[0];
-        else
-            document.getElementById('audio').srcObject = evt.streams[0];
-    });
 
     return pc;
 }
@@ -94,28 +88,29 @@ function display(message) {
     if(data.drowsy_level.startsWith("waiting")){return;}
     console.log(data.drowsy_level);
     drowsyLevel = JSON.parse(data.drowsy_level)[0];
+    drowsyLevel = drowsyLevel - 5;
     var bar = document.getElementById('bar');
     bar.innerHTML = '';
     var ratio = height/10;
     var barheight = drowsyLevel*ratio;
     bar.style.width = size.width + "px";
     bar.style.height = barheight + 'px';
-    bar.style.backgroundColor = drowsyLevel > 9.5 ? 'red' : 'teal';
+    bar.style.backgroundColor = drowsyLevel > 4.85 ? 'red' : 'teal';
     bar.style.bottom = 0;
     bar.style.left = 0;
     bar.style.position = 'absolute';
     graph.style.position = 'relative';
     var alert = document.getElementById('alert');
-    if (drowsyLevel >= 9.8) {
+    if (drowsyLevel >= 4.9) {
         alert.innerHTML = '😪'
     }
-    if (drowsyLevel < 9.8 && drowsyLevel >= 9.7) {
+    if (drowsyLevel < 4.9 && drowsyLevel >= 4.85) {
         alert.innerHTML = '😴'
     }
-    if (drowsyLevel < 9.7 && drowsyLevel >= 9.5) {
+    if (drowsyLevel < 4.85 && drowsyLevel >= 4.8) {
         alert.innerHTML = '🥱'
     }
-    if (drowsyLevel < 9.5 && drowsyLevel >= 0) {
+    if (drowsyLevel < 4.8 && drowsyLevel >= 0) {
         alert.innerHTML = '👀'
     }
 
@@ -130,7 +125,9 @@ function display(message) {
 
 function start() {
     document.getElementById('start').style.display = 'none';
-
+    if(number_of_connections > 1){
+        document.getElementById('num_connections_js').innerHTML = `There are currently ${number_of_connections} people on our server. The blink count will aggregate the blinks of everyone, overwhelming the server. If it is not working, please come back and try later. We are working on solving this issue.`;
+    }
     pc = createPeerConnection();
 
     var time_start = null;
