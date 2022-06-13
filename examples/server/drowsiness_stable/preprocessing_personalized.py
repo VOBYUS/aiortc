@@ -129,6 +129,7 @@ def gen(folder_list,window_size,stride,path1):
         if ID > 0:
             output = np.concatenate((output, tempX), axis=0)
             labels = np.concatenate((labels, tempY), axis=0)
+<<<<<<< HEAD
             new_index = start_indices[-1]+len(tempX)
             start_indices.append(new_index)
         else:
@@ -136,6 +137,12 @@ def gen(folder_list,window_size,stride,path1):
             labels = tempY
             start_indices = [0]
     return output,labels, start_indices
+=======
+        else:
+            output = tempX
+            labels = tempY
+    return output,labels
+>>>>>>> fd752f710b77d7ab5afe4369a5fd9c3b0bc5eb1e
 
 
 
@@ -147,6 +154,7 @@ def Preprocess(path1,window_size,stride,test_folder):
     #output=[N,T,F]
     output = []
     labels = []
+<<<<<<< HEAD
     outTest = []
     labelTest = []
     start_indices = []
@@ -156,6 +164,14 @@ def Preprocess(path1,window_size,stride,test_folder):
             continue
         if folder==test_folder:
             outTest,labelTest, start_indices =gen([folder],window_size,stride,path1)
+=======
+    folder_list = os.listdir(path1)
+    for ID,folder in enumerate(folder_list):
+        if folder.startswith(".DS"):
+            continue
+        if folder==test_folder:
+            outTest,labelTest=gen([folder],window_size,stride,path1)
+>>>>>>> fd752f710b77d7ab5afe4369a5fd9c3b0bc5eb1e
             print("Not this fold ;)")
             continue
         print("#########\n")
@@ -254,6 +270,7 @@ def Preprocess(path1,window_size,stride,test_folder):
             output=np.concatenate((output,tempX),axis=0)
             labels=np.concatenate((labels,tempY),axis=0)
       
+<<<<<<< HEAD
     #output,labels=unison_shuffled_copies(output,labels)
     print('We have %d training datapoints!!!' %len(labels))
     print('We have %d test datapoints!!!' % len(labelTest))
@@ -262,15 +279,33 @@ def Preprocess(path1,window_size,stride,test_folder):
 
 #path1 is the address to the folder of all subjects, each subject has three txt files for alert, semisleepy and sleepy levels
 path1='./personalized_videos'
+=======
+    output,labels=unison_shuffled_copies(output,labels)
+    print('We have %d training datapoints!!!' %len(labels))
+    print('We have %d test datapoints!!!' % len(labelTest))
+    print('We have in TOTAL %d datapoints!!!' % (len(labelTest)+len(labels)))
+    return output,labels,outTest,labelTest
+
+#path1 is the address to the folder of all subjects, each subject has three txt files for alert, semisleepy and sleepy levels
+path1='./Sunny_Videos'
+>>>>>>> fd752f710b77d7ab5afe4369a5fd9c3b0bc5eb1e
 window_size=30
 stride=2
 for i in range(7):
     Training= './Blinks_30_%d.npy'%(i+1)
     Testing='./BlinksTest_30_%d.npy'%(i+1)
     #################Normalizing with respect to different individuals####First Phase
+<<<<<<< HEAD
     blinks,labels,blinksTest,labelTest, start_indices =Preprocess(path1,window_size,stride,test_folder=str(i+1))
+=======
+    blinks,labels,blinksTest,labelTest=Preprocess(path1,window_size,stride,test_folder=i)
+>>>>>>> fd752f710b77d7ab5afe4369a5fd9c3b0bc5eb1e
     np.save(open(Training,'wb'),blinks)
     np.save(open('./Labels_30_%d.npy'%(i+1), 'wb'),labels)
     np.save(open(Testing, 'wb'),blinksTest)
     np.save(open('./LabelsTest_30_%d.npy'%(i+1), 'wb'),labelTest)
+<<<<<<< HEAD
     np.save(open('./StartIndices_30_%d.npy'%(i+1), 'wb'),start_indices)
+=======
+
+>>>>>>> fd752f710b77d7ab5afe4369a5fd9c3b0bc5eb1e

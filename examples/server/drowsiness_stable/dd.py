@@ -20,6 +20,7 @@ from queue import Queue
 # import the necessary packages
 import numpy as np
 import cv2
+import time
 #import twilio for text/call
 #from twilio.rest import Client
 #client = Client('AC70ff03021de6e57806ce0912d513db66','f495894474109fd17ccbb79145680e4b')
@@ -354,8 +355,11 @@ def process_image( frame ):
         after = time.time()*1000
 
         first_lag = after - before
+        f = open("68points_lag_computer.txt", "a")
+        f.write(str(first_lag)+"\n")
+        f.close()
 
-        print("before: " + str(before) + " | after: " + str(after) + "\npoints lag: " + str(first_lag))
+        print("before: " + str(before) + " | after: " + str(after) + "\n68 points lag: " + str(first_lag))
 
     #     ###############YAWNING##################
     #     #######################################
@@ -422,7 +426,10 @@ def process_image( frame ):
             IF_Closed_Eyes = loaded_svm.predict(EAR_series.reshape(1,-1))
             after_blinks = time.time()*1000
             second_lag = after_blinks - before_blinks
-            print("before: " + str(before_blinks) + " | after: " + str(after_blinks) + "\drowsy lag: " + str(second_lag))
+            f = open("blinks_lag.txt", "a")
+            f.write(str(second_lag)+"\n")
+            f.close()
+            print("before: " + str(before_blinks) + " | after: " + str(after_blinks) + "\nblinks lag: " + str(second_lag))
             if Counter4blinks==0:
                 Current_Blink = Blink()
             retrieved_blinks, TOTAL_BLINKS, Counter4blinks, BLINK_READY, skip = Blink_Tracker(EAR_series[6],
@@ -457,7 +464,10 @@ def process_image( frame ):
                             data_to_send = {"blinkCount":blink_count, "drowsy_level": str(Infer.how_drowsy(deque_blinks_reshaped)[0][0])}
                             after_drowsy = time.time()*1000
                             third_lag = after_drowsy - before_drowsy
-                            print("before: " + str(before_drowsy) + " | after: " + str(after_drowsy) + "\drowsy lag: " + str(third_lag))
+                            f = open("drowsy_lag.txt", "a")
+                            f.write(str(third_lag)+"\n")
+                            f.close()                           
+                            print("before: " + str(before_drowsy) + " | after: " + str(after_drowsy) + "\ndrowsy lag: " + str(third_lag))
                             # json_file = "file.json" 
                             # json.dump(np_array_to_list, codecs.open(json_file, 'w', encoding='utf-8'), sort_keys=True, indent=4)
                             

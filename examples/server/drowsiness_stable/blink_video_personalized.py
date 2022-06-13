@@ -576,23 +576,23 @@ def blink_detector(output_textfile,input_video):
 ####Main#####
 #############
     
-path2 = './personalized_videos/unconverted' # the path to the directory with all of the days
+path2 = './personalized_videos/' # the path to the directory with all of the days
 folder_list = os.listdir(path2)
-# for f,folder in enumerate(folder_list):
-#     if(folder.startswith('.DS') or folder.startswith('1') or folder.startswith('2')): 
-#         continue
-#     path1 = path2 + '/' + folder
-#     videos_list = os.listdir(path1)
-for v,video in enumerate(folder_list):
-    if(video.startswith('.DS')):
+for f,folder in enumerate(folder_list):
+    if(folder.startswith('.DS')):
         continue
-    path = path2+'/'+ video
-    output_file = path + ".txt"
-    # if(video.startswith("0")):
-    #     output_file += "/alert.txt"
-    # if(video.startswith("5")):
-    #     output_file += "/semisleepy.txt"
-    # if(video.startswith("10")):
-    #     output_file += "/sleepy.txt"
-    print(output_file)
-    blink_detector(output_file,path)
+    path1 = path2 + folder
+    videos_list = os.listdir(path1)
+    for v,video in enumerate(videos_list):
+        if(video.startswith('.DS')):
+            continue
+        path = path1+ '/'+ video
+        output_file = path2 + folder + "/" + video + ".txt"
+        # if(video.startswith("0")):
+        #     output_file += "/alert.txt"
+        # if(video.startswith("5")):
+        #     output_file += "/semisleepy.txt"
+        # if(video.startswith("10")):
+        #     output_file += "/sleepy.txt"
+        print("Generating.... " + output_file)
+        blink_detector(output_file,path)
