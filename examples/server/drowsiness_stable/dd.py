@@ -347,8 +347,15 @@ def process_image( frame ):
     #     # determine the facial landmarks for the face region, then
     #     # convert the facial landmark (x, y)-coordinates to a NumPy
     #     # array
+
+        before = time.time() * 1000
         shape = predictor(gray, rects[0])
         shape = face_utils.shape_to_np(shape)
+        after = time.time()*1000
+
+        first_lag = after - before
+
+        print("before: " + str(before) + " | after: " + str(after) + "\npoints lag: " + str(first_lag))
 
     #     ###############YAWNING##################
     #     #######################################
@@ -411,7 +418,11 @@ def process_image( frame ):
 
         if Q.full() and (reference_frame>15):  #to make sure the frame of interest for the EAR vector is int the mid
             EAR_table = EAR_series
+            before_blinks = time.time() * 1000
             IF_Closed_Eyes = loaded_svm.predict(EAR_series.reshape(1,-1))
+            after_blinks = time.time()*1000
+            second_lag = after_blinks - before_blinks
+            print("before: " + str(before_blinks) + " | after: " + str(after_blinks) + "\drowsy lag: " + str(second_lag))
             if Counter4blinks==0:
                 Current_Blink = Blink()
             retrieved_blinks, TOTAL_BLINKS, Counter4blinks, BLINK_READY, skip = Blink_Tracker(EAR_series[6],
@@ -442,7 +453,11 @@ def process_image( frame ):
                         if len(deque_blinks) == 30:
                             deque_blinks_reshaped = np.array(deque_blinks).reshape(1,-1,4)
                             np_array_to_list = deque_blinks_reshaped.tolist()
+                            before_drowsy = time.time() * 1000
                             data_to_send = {"blinkCount":blink_count, "drowsy_level": str(Infer.how_drowsy(deque_blinks_reshaped)[0][0])}
+                            after_drowsy = time.time()*1000
+                            third_lag = after_drowsy - before_drowsy
+                            print("before: " + str(before_drowsy) + " | after: " + str(after_drowsy) + "\drowsy lag: " + str(third_lag))
                             # json_file = "file.json" 
                             # json.dump(np_array_to_list, codecs.open(json_file, 'w', encoding='utf-8'), sort_keys=True, indent=4)
                             
