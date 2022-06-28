@@ -46,7 +46,8 @@ def gen(folder_list,window_size,stride,path1):
         print("#########\n")
         files_per_person = os.listdir(path1 + '/' + folder)
         for txt_file in files_per_person:
-            if txt_file == 'alert.txt':
+            print("processing " +txt_file)
+            if txt_file[:2] == '0_' and txt_file[-4:]=='.txt':
                 alertTXT = path1 + '/' + folder + '/' + txt_file
                 Freq = np.loadtxt(alertTXT, usecols=1)
                 Amp = np.loadtxt(alertTXT, usecols=2)
@@ -87,7 +88,7 @@ def gen(folder_list,window_size,stride,path1):
                 # sweep a window over the blinks to chunk
                 alert_labels = 0 * np.ones([len(alert_blink_unrolled), 1])
 
-            if txt_file == 'semisleepy.txt':
+            if txt_file[:2] == '5_' and txt_file[-4:]=='.txt':
                 blinksTXT = path1 + '/' + folder + '/' + txt_file
                 Freq = np.loadtxt(blinksTXT, usecols=1)
                 Amp = np.loadtxt(blinksTXT, usecols=2)
@@ -105,7 +106,7 @@ def gen(folder_list,window_size,stride,path1):
                 semi_blink_unrolled = unroll_in_time(normalized_blinks, window_size, stride)
                 semi_labels = 5 * np.ones([len(semi_blink_unrolled), 1])
 
-            if txt_file == 'sleepy.txt':
+            if txt_file[:3] == '10_' and txt_file[-4:]=='.txt':
                 blinksTXT = path1 + '/' + folder + '/' + txt_file
                 Freq = np.loadtxt(blinksTXT, usecols=1)
                 Amp = np.loadtxt(blinksTXT, usecols=2)
@@ -157,8 +158,10 @@ def Preprocess(path1,window_size,stride,test_folder):
         print("#########\n")
         files_per_person = os.listdir(path1 + '/' + folder)
         for txt_file in files_per_person:
-            if txt_file=='alert.txt':
+            if txt_file[:2]=='0_' and txt_file[-4:]=='.txt':
                 alertTXT = path1 + '/' + folder + '/' + txt_file
+                print("txt_file " +txt_file)
+                print("alertTXT " +alertTXT)
                 Freq = np.loadtxt(alertTXT, usecols=1)
                 Amp = np.loadtxt(alertTXT, usecols=2)
                 Dur = np.loadtxt(alertTXT, usecols=3)
@@ -200,7 +203,7 @@ def Preprocess(path1,window_size,stride,test_folder):
 
 
 
-            if txt_file=='semisleepy.txt':
+            if txt_file[:2]=='5_' and txt_file[-4:]=='.txt' :
                 blinksTXT = path1 + '/' + folder + '/' + txt_file
                 Freq = np.loadtxt(blinksTXT, usecols=1)
                 Amp = np.loadtxt(blinksTXT, usecols=2)
@@ -219,7 +222,7 @@ def Preprocess(path1,window_size,stride,test_folder):
                 semi_blink_unrolled = unroll_in_time(normalized_blinks, window_size, stride)
                 semi_labels = 5* np.ones([len(semi_blink_unrolled), 1])
 
-            if txt_file == 'sleepy.txt':
+            if txt_file[:3] == '10_' and txt_file[-4:]=='.txt':
                 blinksTXT = path1 + '/' + folder + '/' + txt_file
                 Freq = np.loadtxt(blinksTXT, usecols=1)
                 Amp = np.loadtxt(blinksTXT, usecols=2)
@@ -255,7 +258,7 @@ def Preprocess(path1,window_size,stride,test_folder):
     return output,labels,outTest,labelTest
 
 #path1 is the address to the folder of all subjects, each subject has three txt files for alert, semisleepy and sleepy levels
-path1='./Sunny_Videos'
+path1='./Videos'
 window_size=30
 stride=2
 for i in range(7):
