@@ -230,7 +230,7 @@ def blink_detector(output_textfile,input_video):
                             TOTAL_BLINKS =TOTAL_BLINKS+len(retrieved_blinks)  # Finally, approving/counting the previous blink candidate
                             ###Now You can count on the info of the last separate and valid blink and analyze it
                             Counter4blinks = 0
-                            print("MISSED BLINKS= {}".format(len(retrieved_blinks)))
+                            print("number of retrieved_blinks = {}".format(len(retrieved_blinks)))
                             return retrieved_blinks,int(TOTAL_BLINKS),Counter4blinks,BLINK_READY,skip
                         else:
                             skip=True
