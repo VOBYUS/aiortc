@@ -217,6 +217,5 @@ examples/server/drowsiness_stable/my_model4.meta
 examples/server/drowsiness_stable/my_model5.data-00000-of-00001
 examples/server/drowsiness_stable/my_model5.index
 examples/server/drowsiness_stable/my_model5.meta
-examples/server/68points_lag_computer.txt
 examples/server/blinks_lag.txt
 examples/server/delay.txt
