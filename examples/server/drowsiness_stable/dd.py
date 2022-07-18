@@ -21,10 +21,12 @@ from queue import Queue
 import numpy as np
 import cv2
 import time
+import logging
+logging.basicConfig(filename="./Lag/computer_inference_lag.log", level=logging.INFO)
 #import twilio for text/call
 #from twilio.rest import Client
 #client = Client('AC70ff03021de6e57806ce0912d513db66','f495894474109fd17ccbb79145680e4b')
-               
+    
 # inference
 import drowsiness_stable.Infer as Infer
 from collections import deque
@@ -315,12 +317,13 @@ def process_image( frame ):
     global Current_Blink
     global blink_count
     global data_to_send
+    global lag_time
     # (grabbed, frame) = stream.read()
     # if not grabbed:
     #     print('not grabbed')
     #     print(number_of_frames)
     #     return
-
+    logging.info("frame received:" + str(time.time()*1000) + "\n")
     frame = imutils.resize(frame, width=450)
     # To Rotate by 90 degreees
     # rows=np.shape(frame)[0]
@@ -349,17 +352,10 @@ def process_image( frame ):
     #     # convert the facial landmark (x, y)-coordinates to a NumPy
     #     # array
 
-        before = time.time() * 1000
         shape = predictor(gray, rects[0])
         shape = face_utils.shape_to_np(shape)
-        after = time.time()*1000
 
-        first_lag = after - before
-        f = open("68points_lag_computer.txt", "a")
-        f.write(str(first_lag)+"\n")
-        f.close()
-
-        print("before: " + str(before) + " | after: " + str(after) + "\n68 points lag: " + str(first_lag))
+        logging.info("68 points detected:" + str(time.time()*1000) + "\n")
 
     #     ###############YAWNING##################
     #     #######################################
@@ -422,14 +418,8 @@ def process_image( frame ):
 
         if Q.full() and (reference_frame>15):  #to make sure the frame of interest for the EAR vector is int the mid
             EAR_table = EAR_series
-            before_blinks = time.time() * 1000
             IF_Closed_Eyes = loaded_svm.predict(EAR_series.reshape(1,-1))
-            after_blinks = time.time()*1000
-            second_lag = after_blinks - before_blinks
-            f = open("blinks_lag.txt", "a")
-            f.write(str(second_lag)+"\n")
-            f.close()
-            print("before: " + str(before_blinks) + " | after: " + str(after_blinks) + "\nblinks lag: " + str(second_lag))
+            logging.info("blinks_detected:" + str(time.time()*1000) + "\n")
             if Counter4blinks==0:
                 Current_Blink = Blink()
             retrieved_blinks, TOTAL_BLINKS, Counter4blinks, BLINK_READY, skip = Blink_Tracker(EAR_series[6],
@@ -460,15 +450,8 @@ def process_image( frame ):
                         if len(deque_blinks) == 30:
                             deque_blinks_reshaped = np.array(deque_blinks).reshape(1,-1,4)
                             np_array_to_list = deque_blinks_reshaped.tolist()
-                            before_drowsy = time.time() * 1000
-                            data_to_send = {"blinkCount":blink_count, "drowsy_level": str(Infer.how_drowsy(deque_blinks_reshaped)[0][0])}
-                            after_drowsy = time.time()*1000
-                            third_lag = after_drowsy - before_drowsy
-                            f = open("drowsy_lag.txt", "a")
-                            f.write(str(third_lag)+"\n")
-                            f.close()                           
-                            print("before: " + str(before_drowsy) + " | after: " + str(after_drowsy) + "\ndrowsy lag: " + str(third_lag))
-                            # json_file = "file.json" 
+                            data_to_send = {"blinkCount":blink_count, "drowsy_level": str(Infer.how_drowsy(deque_blinks_reshaped)[0][0])}                       
+                             # json_file = "file.json" 
                             # json.dump(np_array_to_list, codecs.open(json_file, 'w', encoding='utf-8'), sort_keys=True, indent=4)
                             
                             print(f"Drowsy Level={drowsy_level}")
@@ -626,6 +609,7 @@ reference_frame=0
 First_frame=True
 blink_count=0
 data_to_send={"blinkCount": 0, "drowsy_level":"[0]"}
+lag_time = ""
 # top = tk.Tk()
 # frame1 = Frame(top)
 # frame1.grid(row=0, column=0)
