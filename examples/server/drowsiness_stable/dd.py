@@ -22,7 +22,7 @@ import numpy as np
 import cv2
 import time
 import logging
-logging.basicConfig(filename="./Lag/computer_inference_lag.log", level=logging.INFO)
+logging.basicConfig(filename="./wLag/computer_inference_lag.log", level=logging.INFO)
 #import twilio for text/call
 #from twilio.rest import Client
 #client = Client('AC70ff03021de6e57806ce0912d513db66','f495894474109fd17ccbb79145680e4b')

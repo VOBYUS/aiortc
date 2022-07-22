@@ -125,9 +125,6 @@ function display(message) {
 
 function start() {
     document.getElementById('start').style.display = 'none';
-    if(number_of_connections > 1){
-        document.getElementById('num_connections_js').innerHTML = `There are currently ${number_of_connections} people on our server. The blink count will aggregate the blinks of everyone, overwhelming the server. If it is not working, please come back and try later. We are working on solving this issue.`;
-    }
     pc = createPeerConnection();
 
     var time_start = null;

@@ -1,3 +1,19 @@
+# How to get changes made in Visual Studio Code to Cloud Run
+
+1. Commit and push changes to Github
+2. Create Docker Container
+3. Bash into the Container
+4. Pull changes from Github
+5. Copy Files from local files to workspace
+6. Test files to see if they work
+7. Exit the container
+8. Docker commit container to tag new image
+9. Re-add the command to run server.py
+10. Expose port 8080 by default
+11. Docker push
+12. Update Cloud Run to run new version  
+
+
 #  Realistic Dataset and Baseline Temporal Model for Early Drowsiness Detection
 
 

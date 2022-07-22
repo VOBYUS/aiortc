@@ -14,7 +14,7 @@ import dlib
 
 import matplotlib.pyplot as plt
 import tkinter as tk
-from tkinter import*
+from tkinter import *
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from scipy.ndimage.interpolation import shift
 import pickle
@@ -230,7 +230,7 @@ def blink_detector(output_textfile,input_video):
                             TOTAL_BLINKS =TOTAL_BLINKS+len(retrieved_blinks)  # Finally, approving/counting the previous blink candidate
                             ###Now You can count on the info of the last separate and valid blink and analyze it
                             Counter4blinks = 0
-                            print("MISSED BLINKS= {}".format(len(retrieved_blinks)))
+                            print("number of retrieved_blinks = {}".format(len(retrieved_blinks)))
                             return retrieved_blinks,int(TOTAL_BLINKS),Counter4blinks,BLINK_READY,skip
                         else:
                             skip=True
@@ -345,7 +345,6 @@ def blink_detector(output_textfile,input_video):
 
     # loop over frames from the video stream
 
-
     stream = cv2.VideoCapture(path)
     start = datetime.datetime.now()
     number_of_frames=0
@@ -360,10 +359,10 @@ def blink_detector(output_textfile,input_video):
         frame = imutils.resize(frame, width=450)
 
         # To Rotate by 90 degreees
-        rows=np.shape(frame)[0]
-        cols = np.shape(frame)[1]
-        M = cv2.getRotationMatrix2D((cols / 2, rows / 2),-90, 1)
-        frame = cv2.warpAffine(frame, M, (cols, rows))
+        # rows=np.shape(frame)[0]
+        # cols = np.shape(frame)[1]
+        # M = cv2.getRotationMatrix2D((cols / 2, rows / 2),-90, 1)
+        # frame = cv2.warpAffine(frame, M, (cols, rows))
 
 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)   #Brighten the image(Gamma correction)
@@ -576,7 +575,7 @@ def blink_detector(output_textfile,input_video):
 ####Main#####
 #############
     
-path2 = './personalizedvideos/' # the path to the directory with all of the days
+path2 = './Videos/' # the path to the directory with all of the days
 folder_list = os.listdir(path2)
 for f,folder in enumerate(folder_list):
     if(folder.startswith('.DS')):
