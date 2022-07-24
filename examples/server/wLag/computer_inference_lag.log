@@ -1,0 +1,3899 @@
+WARNING:tensorflow:Deprecation warnings have been disabled. Set TF_ENABLE_DEPRECATION_WARNINGS=1 to re-enable them.
+WARNING:tensorflow:From /workspace/examples/server/drowsiness_stable/Infer.py:5: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /workspace/examples/server/drowsiness_stable/Infer.py:6: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+WARNING:tensorflow:From /workspace/examples/server/drowsiness_stable/Infer.py:7: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+INFO:tensorflow:Restoring parameters from ./drowsiness_stable/my_model1
+WARNING:tensorflow:From /workspace/examples/server/drowsiness_stable/Infer.py:9: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+INFO:pc:PeerConnection(806e5fb0-d69b-483a-b34c-e2677b05080e) Created for 192.168.1.17
+INFO:pc:PeerConnection(806e5fb0-d69b-483a-b34c-e2677b05080e) Track video received
+INFO:aioice.ice:Connection(0) Check CandidatePair(('192.168.1.55', 56898) -> ('192.168.1.17', 50297)) State.FROZEN -> State.WAITING
+INFO:aioice.ice:Connection(0) Check CandidatePair(('172.17.0.1', 60407) -> ('192.168.1.17', 50297)) State.FROZEN -> State.WAITING
+INFO:aioice.ice:Connection(0) Check CandidatePair(('192.168.1.55', 56898) -> ('73.70.190.112', 50297)) State.FROZEN -> State.WAITING
+INFO:pc:PeerConnection(806e5fb0-d69b-483a-b34c-e2677b05080e) Connection state is connecting
+INFO:aioice.ice:Connection(0) Check CandidatePair(('192.168.1.55', 56898) -> ('192.168.1.17', 50297)) State.WAITING -> State.IN_PROGRESS
+INFO:aioice.ice:Connection(0) Check CandidatePair(('192.168.1.55', 56898) -> ('192.168.1.17', 50297)) State.IN_PROGRESS -> State.SUCCEEDED
+INFO:aioice.ice:Connection(0) Check CandidatePair(('172.17.0.1', 60407) -> ('192.168.1.17', 50297)) State.WAITING -> State.FAILED
+INFO:aioice.ice:Connection(0) Check CandidatePair(('192.168.1.55', 56898) -> ('73.70.190.112', 50297)) State.WAITING -> State.FAILED
+INFO:aioice.ice:Connection(0) Check CandidatePair(('172.17.0.1', 60407) -> ('73.70.190.112', 50297)) State.FROZEN -> State.FAILED
+INFO:aioice.ice:Connection(0) ICE completed
+INFO:pc:PeerConnection(806e5fb0-d69b-483a-b34c-e2677b05080e) Connection state is connected
+INFO:root:frame received:1658704445473.594
+
+INFO:root:68 points detected:1658704445701.0278
+
+INFO:root:frame received:1658704445747.5815
+
+INFO:root:68 points detected:1658704445829.7856
+
+INFO:root:frame received:1658704445847.573
+
+INFO:root:68 points detected:1658704445928.7842
+
+INFO:root:frame received:1658704445944.5662
+
+INFO:root:68 points detected:1658704446025.922
+
+INFO:root:frame received:1658704446047.8406
+
+INFO:root:68 points detected:1658704446128.9966
+
+INFO:root:frame received:1658704446149.3442
+
+INFO:root:68 points detected:1658704446231.5967
+
+INFO:root:frame received:1658704446251.1694
+
+INFO:root:68 points detected:1658704446332.0955
+
+INFO:root:frame received:1658704446349.8584
+
+INFO:root:68 points detected:1658704446430.4854
+
+INFO:root:frame received:1658704446447.5632
+
+INFO:root:68 points detected:1658704446528.434
+
+INFO:root:frame received:1658704446547.4329
+
+INFO:root:68 points detected:1658704446628.1821
+
+INFO:root:frame received:1658704446649.1377
+
+INFO:root:68 points detected:1658704446729.772
+
+INFO:root:frame received:1658704446749.7827
+
+INFO:root:68 points detected:1658704446830.409
+
+INFO:root:frame received:1658704446850.7036
+
+INFO:root:68 points detected:1658704446931.1843
+
+INFO:root:frame received:1658704446950.7998
+
+INFO:root:68 points detected:1658704447031.8167
+
+INFO:root:frame received:1658704447051.2993
+
+INFO:root:68 points detected:1658704447132.3115
+
+INFO:root:frame received:1658704447152.5383
+
+INFO:root:68 points detected:1658704447233.329
+
+INFO:root:blinks_detected:1658704447235.7966
+
+INFO:root:frame received:1658704447255.7925
+
+INFO:root:68 points detected:1658704447336.3699
+
+INFO:root:blinks_detected:1658704447338.8154
+
+INFO:root:frame received:1658704447360.742
+
+INFO:root:68 points detected:1658704447442.0464
+
+INFO:root:blinks_detected:1658704447444.4053
+
+INFO:root:frame received:1658704447462.4993
+
+INFO:root:68 points detected:1658704447543.3503
+
+INFO:root:blinks_detected:1658704447545.7095
+
+INFO:root:frame received:1658704447564.3044
+
+INFO:root:68 points detected:1658704447645.0286
+
+INFO:root:blinks_detected:1658704447647.3948
+
+INFO:root:frame received:1658704447669.3542
+
+INFO:root:68 points detected:1658704447750.339
+
+INFO:root:blinks_detected:1658704447752.6777
+
+INFO:root:frame received:1658704447773.0369
+
+INFO:root:68 points detected:1658704447853.993
+
+INFO:root:blinks_detected:1658704447856.3125
+
+INFO:root:frame received:1658704447877.3457
+
+INFO:root:68 points detected:1658704447958.802
+
+INFO:root:blinks_detected:1658704447961.1125
+
+INFO:root:frame received:1658704447980.8904
+
+INFO:root:68 points detected:1658704448061.6367
+
+INFO:root:blinks_detected:1658704448063.9456
+
+INFO:root:frame received:1658704448081.8252
+
+INFO:root:68 points detected:1658704448162.4387
+
+INFO:root:blinks_detected:1658704448164.7512
+
+INFO:root:frame received:1658704448182.8074
+
+INFO:root:68 points detected:1658704448263.8523
+
+INFO:root:blinks_detected:1658704448266.2498
+
+INFO:root:frame received:1658704448284.7117
+
+INFO:root:68 points detected:1658704448365.495
+
+INFO:root:blinks_detected:1658704448367.8413
+
+INFO:root:frame received:1658704448384.5867
+
+INFO:root:68 points detected:1658704448465.6328
+
+INFO:root:blinks_detected:1658704448467.9404
+
+INFO:root:frame received:1658704448485.1643
+
+INFO:root:68 points detected:1658704448565.9592
+
+INFO:root:blinks_detected:1658704448568.2698
+
+INFO:root:frame received:1658704448586.1262
+
+INFO:root:68 points detected:1658704448667.455
+
+INFO:root:blinks_detected:1658704448669.7944
+
+INFO:root:frame received:1658704448689.769
+
+INFO:root:68 points detected:1658704448771.408
+
+INFO:root:blinks_detected:1658704448773.7683
+
+INFO:root:frame received:1658704448792.582
+
+INFO:root:68 points detected:1658704448874.2725
+
+INFO:root:blinks_detected:1658704448876.583
+
+INFO:root:frame received:1658704448896.3396
+
+INFO:root:68 points detected:1658704448977.265
+
+INFO:root:blinks_detected:1658704448979.631
+
+INFO:root:frame received:1658704448999.5635
+
+INFO:root:68 points detected:1658704449080.221
+
+INFO:root:blinks_detected:1658704449082.6052
+
+INFO:root:frame received:1658704449103.0898
+
+INFO:root:68 points detected:1658704449186.9294
+
+INFO:root:blinks_detected:1658704449189.33
+
+INFO:root:frame received:1658704449216.0288
+
+INFO:root:68 points detected:1658704449296.8445
+
+INFO:root:blinks_detected:1658704449299.2324
+
+INFO:root:frame received:1658704449317.59
+
+INFO:root:68 points detected:1658704449398.307
+
+INFO:root:blinks_detected:1658704449400.6018
+
+INFO:root:frame received:1658704449420.0266
+
+INFO:root:68 points detected:1658704449501.1533
+
+INFO:root:blinks_detected:1658704449503.5383
+
+INFO:root:frame received:1658704449523.3384
+
+INFO:root:68 points detected:1658704449603.9465
+
+INFO:root:blinks_detected:1658704449606.3306
+
+INFO:root:frame received:1658704449625.5283
+
+INFO:root:68 points detected:1658704449706.406
+
+INFO:root:blinks_detected:1658704449708.7244
+
+INFO:root:frame received:1658704449731.0962
+
+INFO:root:68 points detected:1658704449814.1343
+
+INFO:root:blinks_detected:1658704449816.4673
+
+INFO:root:frame received:1658704449840.1755
+
+INFO:root:68 points detected:1658704449921.3523
+
+INFO:root:blinks_detected:1658704449923.885
+
+INFO:root:frame received:1658704449943.3706
+
+INFO:root:68 points detected:1658704450024.6597
+
+INFO:root:blinks_detected:1658704450027.044
+
+INFO:root:frame received:1658704450045.7388
+
+INFO:root:68 points detected:1658704450126.9458
+
+INFO:root:blinks_detected:1658704450129.2563
+
+INFO:root:frame received:1658704450149.0046
+
+INFO:root:68 points detected:1658704450229.8918
+
+INFO:root:blinks_detected:1658704450232.244
+
+INFO:root:frame received:1658704450250.493
+
+INFO:root:68 points detected:1658704450331.2507
+
+INFO:root:blinks_detected:1658704450333.6177
+
+INFO:root:frame received:1658704450351.4507
+
+INFO:root:68 points detected:1658704450433.8088
+
+INFO:root:blinks_detected:1658704450436.1301
+
+INFO:root:frame received:1658704450458.2617
+
+INFO:root:68 points detected:1658704450539.4116
+
+INFO:root:blinks_detected:1658704450541.7817
+
+INFO:root:frame received:1658704450560.8887
+
+INFO:root:68 points detected:1658704450642.2163
+
+INFO:root:blinks_detected:1658704450644.969
+
+INFO:root:frame received:1658704450665.7842
+
+INFO:root:68 points detected:1658704450750.8635
+
+INFO:root:blinks_detected:1658704450753.1697
+
+INFO:root:frame received:1658704450772.8833
+
+INFO:root:68 points detected:1658704450853.789
+
+INFO:root:blinks_detected:1658704450856.096
+
+INFO:root:frame received:1658704450874.3235
+
+INFO:root:68 points detected:1658704450955.2153
+
+INFO:root:blinks_detected:1658704450957.5764
+
+INFO:root:frame received:1658704450973.0923
+
+INFO:root:68 points detected:1658704451054.0022
+
+INFO:root:blinks_detected:1658704451056.4084
+
+INFO:root:frame received:1658704451074.1807
+
+INFO:root:68 points detected:1658704451157.3813
+
+INFO:root:blinks_detected:1658704451159.7812
+
+INFO:root:frame received:1658704451177.828
+
+INFO:root:68 points detected:1658704451260.4768
+
+INFO:root:blinks_detected:1658704451262.9011
+
+INFO:root:frame received:1658704451280.5928
+
+INFO:root:68 points detected:1658704451361.3318
+
+INFO:root:blinks_detected:1658704451363.7192
+
+INFO:root:frame received:1658704451395.8577
+
+INFO:root:68 points detected:1658704451478.9485
+
+INFO:root:blinks_detected:1658704451481.2927
+
+INFO:root:frame received:1658704451496.2515
+
+INFO:root:68 points detected:1658704451578.5908
+
+INFO:root:blinks_detected:1658704451580.9023
+
+INFO:root:frame received:1658704451597.5955
+
+INFO:root:68 points detected:1658704451678.4783
+
+INFO:root:blinks_detected:1658704451680.7808
+
+INFO:root:frame received:1658704451696.8928
+
+INFO:root:68 points detected:1658704451777.9895
+
+INFO:root:blinks_detected:1658704451780.2913
+
+INFO:root:frame received:1658704451800.5498
+
+INFO:root:68 points detected:1658704451883.3674
+
+INFO:root:blinks_detected:1658704451885.7566
+
+INFO:root:frame received:1658704451912.3867
+
+INFO:root:68 points detected:1658704451997.5674
+
+INFO:root:blinks_detected:1658704451999.9175
+
+INFO:root:frame received:1658704452020.6726
+
+INFO:root:68 points detected:1658704452103.5398
+
+INFO:root:blinks_detected:1658704452106.453
+
+INFO:root:frame received:1658704452124.7444
+
+INFO:root:68 points detected:1658704452206.199
+
+INFO:root:blinks_detected:1658704452208.5278
+
+INFO:root:frame received:1658704452226.261
+
+INFO:root:68 points detected:1658704452307.41
+
+INFO:root:blinks_detected:1658704452309.7695
+
+INFO:root:frame received:1658704452325.9265
+
+INFO:root:68 points detected:1658704452408.49
+
+INFO:root:blinks_detected:1658704452410.9243
+
+INFO:root:frame received:1658704452428.1023
+
+INFO:root:68 points detected:1658704452509.065
+
+INFO:root:blinks_detected:1658704452511.442
+
+INFO:root:frame received:1658704452528.0122
+
+INFO:root:68 points detected:1658704452609.392
+
+INFO:root:blinks_detected:1658704452611.7605
+
+INFO:root:frame received:1658704452630.9214
+
+INFO:root:68 points detected:1658704452711.821
+
+INFO:root:blinks_detected:1658704452714.2097
+
+INFO:root:frame received:1658704452734.127
+
+INFO:root:68 points detected:1658704452815.2463
+
+INFO:root:blinks_detected:1658704452817.612
+
+INFO:root:frame received:1658704452834.5085
+
+INFO:root:68 points detected:1658704452915.122
+
+INFO:root:blinks_detected:1658704452917.4922
+
+INFO:root:frame received:1658704452937.8164
+
+INFO:root:68 points detected:1658704453018.7354
+
+INFO:root:blinks_detected:1658704453021.0583
+
+INFO:root:frame received:1658704453040.2578
+
+INFO:root:68 points detected:1658704453122.6365
+
+INFO:root:blinks_detected:1658704453125.0356
+
+INFO:root:frame received:1658704453145.0603
+
+INFO:root:68 points detected:1658704453226.3496
+
+INFO:root:blinks_detected:1658704453228.6504
+
+INFO:root:frame received:1658704453248.7605
+
+INFO:root:68 points detected:1658704453329.967
+
+INFO:root:blinks_detected:1658704453332.2842
+
+INFO:root:frame received:1658704453351.029
+
+INFO:root:68 points detected:1658704453431.8677
+
+INFO:root:blinks_detected:1658704453434.258
+
+INFO:root:frame received:1658704453454.418
+
+INFO:root:68 points detected:1658704453535.4688
+
+INFO:root:blinks_detected:1658704453537.837
+
+INFO:root:frame received:1658704453556.634
+
+INFO:root:68 points detected:1658704453637.8083
+
+INFO:root:blinks_detected:1658704453640.1233
+
+INFO:root:frame received:1658704453660.6243
+
+INFO:root:68 points detected:1658704453741.83
+
+INFO:root:blinks_detected:1658704453744.1443
+
+INFO:root:frame received:1658704453765.9463
+
+INFO:root:68 points detected:1658704453846.6882
+
+INFO:root:blinks_detected:1658704453848.9941
+
+INFO:root:frame received:1658704453869.5437
+
+INFO:root:68 points detected:1658704453952.1316
+
+INFO:root:blinks_detected:1658704453954.5247
+
+INFO:root:frame received:1658704453977.8176
+
+INFO:root:68 points detected:1658704454058.6965
+
+INFO:root:blinks_detected:1658704454061.0203
+
+INFO:root:frame received:1658704454081.9329
+
+INFO:root:68 points detected:1658704454162.5938
+
+INFO:root:blinks_detected:1658704454164.9026
+
+INFO:root:frame received:1658704454183.562
+
+INFO:root:68 points detected:1658704454264.7827
+
+INFO:root:blinks_detected:1658704454267.1824
+
+INFO:root:frame received:1658704454289.356
+
+INFO:root:68 points detected:1658704454370.2717
+
+INFO:root:blinks_detected:1658704454372.5945
+
+INFO:root:frame received:1658704454391.5872
+
+INFO:root:68 points detected:1658704454472.5999
+
+INFO:root:blinks_detected:1658704454475.0137
+
+INFO:root:frame received:1658704454496.5056
+
+INFO:root:68 points detected:1658704454577.3267
+
+INFO:root:blinks_detected:1658704454579.7043
+
+INFO:root:frame received:1658704454600.9055
+
+INFO:root:68 points detected:1658704454682.094
+
+INFO:root:blinks_detected:1658704454684.4167
+
+INFO:root:frame received:1658704454704.894
+
+INFO:root:68 points detected:1658704454792.2778
+
+INFO:root:blinks_detected:1658704454794.7607
+
+INFO:root:frame received:1658704454816.1165
+
+INFO:root:68 points detected:1658704454898.745
+
+INFO:root:blinks_detected:1658704454901.061
+
+INFO:root:frame received:1658704454919.0076
+
+INFO:root:68 points detected:1658704454999.829
+
+INFO:root:blinks_detected:1658704455002.2188
+
+INFO:root:frame received:1658704455019.465
+
+INFO:root:68 points detected:1658704455100.9155
+
+INFO:root:blinks_detected:1658704455103.3052
+
+INFO:root:frame received:1658704455121.4797
+
+INFO:root:68 points detected:1658704455205.56
+
+INFO:root:blinks_detected:1658704455207.8806
+
+INFO:root:frame received:1658704455225.971
+
+INFO:root:68 points detected:1658704455306.7097
+
+INFO:root:blinks_detected:1658704455309.0208
+
+INFO:root:frame received:1658704455323.882
+
+INFO:root:68 points detected:1658704455405.0706
+
+INFO:root:blinks_detected:1658704455407.434
+
+INFO:root:frame received:1658704455426.3718
+
+INFO:root:68 points detected:1658704455508.17
+
+INFO:root:blinks_detected:1658704455510.5474
+
+INFO:root:frame received:1658704455528.947
+
+INFO:root:68 points detected:1658704455612.3882
+
+INFO:root:blinks_detected:1658704455614.8064
+
+INFO:root:frame received:1658704455634.6047
+
+INFO:root:68 points detected:1658704455717.2222
+
+INFO:root:blinks_detected:1658704455719.5974
+
+INFO:root:frame received:1658704455739.641
+
+INFO:root:68 points detected:1658704455820.8474
+
+INFO:root:blinks_detected:1658704455823.2876
+
+INFO:root:frame received:1658704455840.6016
+
+INFO:root:68 points detected:1658704455923.673
+
+INFO:root:blinks_detected:1658704455926.1338
+
+INFO:root:frame received:1658704455944.066
+
+INFO:root:68 points detected:1658704456026.3325
+
+INFO:root:blinks_detected:1658704456028.6582
+
+INFO:root:frame received:1658704456046.7732
+
+INFO:root:68 points detected:1658704456127.5957
+
+INFO:root:blinks_detected:1658704456129.9944
+
+INFO:root:frame received:1658704456147.1814
+
+INFO:root:68 points detected:1658704456228.1304
+
+INFO:root:blinks_detected:1658704456230.5032
+
+INFO:root:frame received:1658704456246.939
+
+INFO:root:68 points detected:1658704456330.8198
+
+INFO:root:blinks_detected:1658704456333.1284
+
+INFO:root:frame received:1658704456351.0115
+
+INFO:root:68 points detected:1658704456433.0881
+
+INFO:root:blinks_detected:1658704456435.4683
+
+INFO:root:frame received:1658704456453.014
+
+INFO:root:68 points detected:1658704456537.4001
+
+INFO:root:blinks_detected:1658704456539.768
+
+INFO:root:frame received:1658704456556.5308
+
+INFO:root:68 points detected:1658704456637.2344
+
+INFO:root:blinks_detected:1658704456639.6045
+
+INFO:root:frame received:1658704456660.1262
+
+INFO:root:68 points detected:1658704456740.8684
+
+INFO:root:blinks_detected:1658704456743.2434
+
+INFO:root:frame received:1658704456764.865
+
+INFO:root:68 points detected:1658704456846.0532
+
+INFO:root:blinks_detected:1658704456848.372
+
+INFO:root:frame received:1658704456864.3777
+
+INFO:root:68 points detected:1658704456946.812
+
+INFO:root:blinks_detected:1658704456949.16
+
+INFO:root:frame received:1658704456965.158
+
+INFO:root:68 points detected:1658704457045.9888
+
+INFO:root:blinks_detected:1658704457048.607
+
+INFO:root:frame received:1658704457065.1204
+
+INFO:root:68 points detected:1658704457147.5254
+
+INFO:root:blinks_detected:1658704457149.8977
+
+INFO:root:frame received:1658704457166.6191
+
+INFO:root:68 points detected:1658704457249.1765
+
+INFO:root:blinks_detected:1658704457251.5874
+
+INFO:root:frame received:1658704457274.46
+
+INFO:root:68 points detected:1658704457355.1548
+
+INFO:root:blinks_detected:1658704457357.5144
+
+INFO:root:frame received:1658704457376.7852
+
+INFO:root:68 points detected:1658704457458.2576
+
+INFO:root:blinks_detected:1658704457460.591
+
+INFO:root:frame received:1658704457478.0115
+
+INFO:root:68 points detected:1658704457558.8193
+
+INFO:root:blinks_detected:1658704457561.1482
+
+INFO:root:frame received:1658704457578.4395
+
+INFO:root:68 points detected:1658704457660.477
+
+INFO:root:blinks_detected:1658704457662.9397
+
+INFO:root:frame received:1658704457681.165
+
+INFO:root:68 points detected:1658704457762.2942
+
+INFO:root:blinks_detected:1658704457764.641
+
+INFO:root:frame received:1658704457781.3945
+
+INFO:root:68 points detected:1658704457863.0513
+
+INFO:root:blinks_detected:1658704457865.4077
+
+INFO:root:frame received:1658704457883.4045
+
+INFO:root:68 points detected:1658704457966.125
+
+INFO:root:blinks_detected:1658704457968.5532
+
+INFO:root:frame received:1658704457985.127
+
+INFO:root:68 points detected:1658704458066.4387
+
+INFO:root:blinks_detected:1658704458068.7603
+
+INFO:root:frame received:1658704458085.1326
+
+INFO:root:68 points detected:1658704458168.504
+
+INFO:root:blinks_detected:1658704458170.9238
+
+INFO:root:frame received:1658704458192.641
+
+INFO:root:68 points detected:1658704458273.883
+
+INFO:root:blinks_detected:1658704458276.1938
+
+INFO:root:frame received:1658704458295.0215
+
+INFO:root:68 points detected:1658704458376.1296
+
+INFO:root:blinks_detected:1658704458378.5166
+
+INFO:root:frame received:1658704458399.067
+
+INFO:root:68 points detected:1658704458480.2524
+
+INFO:root:blinks_detected:1658704458482.6804
+
+INFO:root:frame received:1658704458500.2896
+
+INFO:root:68 points detected:1658704458581.1768
+
+INFO:root:blinks_detected:1658704458583.5618
+
+INFO:root:frame received:1658704458599.614
+
+INFO:root:68 points detected:1658704458680.3606
+
+INFO:root:blinks_detected:1658704458682.7761
+
+INFO:root:frame received:1658704458699.4253
+
+INFO:root:68 points detected:1658704458781.7488
+
+INFO:root:blinks_detected:1658704458784.078
+
+INFO:root:frame received:1658704458806.0957
+
+INFO:root:68 points detected:1658704458888.7012
+
+INFO:root:blinks_detected:1658704458891.1306
+
+INFO:root:frame received:1658704458910.0957
+
+INFO:root:68 points detected:1658704458991.4297
+
+INFO:root:blinks_detected:1658704458993.7886
+
+INFO:root:frame received:1658704459010.1042
+
+INFO:root:68 points detected:1658704459093.3958
+
+INFO:root:blinks_detected:1658704459095.8167
+
+INFO:root:frame received:1658704459112.9316
+
+INFO:root:68 points detected:1658704459193.9675
+
+INFO:root:blinks_detected:1658704459196.2903
+
+INFO:root:frame received:1658704459212.1084
+
+INFO:root:68 points detected:1658704459292.9023
+
+INFO:root:blinks_detected:1658704459295.29
+
+INFO:root:frame received:1658704459313.793
+
+INFO:root:68 points detected:1658704459394.5469
+
+INFO:root:blinks_detected:1658704459396.8894
+
+INFO:root:frame received:1658704459413.701
+
+INFO:root:68 points detected:1658704459494.8367
+
+INFO:root:blinks_detected:1658704459497.18
+
+INFO:root:frame received:1658704459512.7317
+
+INFO:root:68 points detected:1658704459593.896
+
+INFO:root:blinks_detected:1658704459596.22
+
+INFO:root:frame received:1658704459617.6052
+
+INFO:root:68 points detected:1658704459699.2034
+
+INFO:root:blinks_detected:1658704459701.5747
+
+INFO:root:frame received:1658704459718.193
+
+INFO:root:68 points detected:1658704459798.9238
+
+INFO:root:blinks_detected:1658704459801.3132
+
+INFO:root:frame received:1658704459819.2805
+
+INFO:root:68 points detected:1658704459900.5603
+
+INFO:root:blinks_detected:1658704459902.9836
+
+INFO:root:frame received:1658704459919.3792
+
+INFO:root:68 points detected:1658704460000.9666
+
+INFO:root:blinks_detected:1658704460003.381
+
+INFO:root:frame received:1658704460019.4722
+
+INFO:root:68 points detected:1658704460100.8892
+
+INFO:root:blinks_detected:1658704460103.383
+
+INFO:root:frame received:1658704460119.3074
+
+INFO:root:68 points detected:1658704460202.5474
+
+INFO:root:blinks_detected:1658704460204.919
+
+INFO:root:frame received:1658704460222.5073
+
+INFO:root:68 points detected:1658704460303.7021
+
+INFO:root:blinks_detected:1658704460306.0774
+
+INFO:root:frame received:1658704460321.3376
+
+INFO:root:68 points detected:1658704460402.444
+
+INFO:root:blinks_detected:1658704460404.771
+
+INFO:root:frame received:1658704460421.2332
+
+INFO:root:68 points detected:1658704460502.3413
+
+INFO:root:blinks_detected:1658704460504.6704
+
+INFO:root:frame received:1658704460522.883
+
+INFO:root:68 points detected:1658704460604.0298
+
+INFO:root:blinks_detected:1658704460606.4116
+
+INFO:root:frame received:1658704460624.063
+
+INFO:root:68 points detected:1658704460705.3848
+
+INFO:root:blinks_detected:1658704460707.7512
+
+INFO:root:frame received:1658704460729.0164
+
+INFO:root:68 points detected:1658704460811.7356
+
+INFO:root:blinks_detected:1658704460814.1082
+
+INFO:root:frame received:1658704460830.1736
+
+INFO:root:68 points detected:1658704460912.8447
+
+INFO:root:blinks_detected:1658704460915.2134
+
+INFO:root:frame received:1658704460931.8677
+
+INFO:root:68 points detected:1658704461012.9583
+
+INFO:root:blinks_detected:1658704461015.4165
+
+INFO:root:frame received:1658704461031.5933
+
+INFO:root:68 points detected:1658704461114.3557
+
+INFO:root:blinks_detected:1658704461116.7144
+
+INFO:root:frame received:1658704461134.0432
+
+INFO:root:68 points detected:1658704461216.7954
+
+INFO:root:blinks_detected:1658704461219.2034
+
+INFO:root:frame received:1658704461237.8171
+
+INFO:root:68 points detected:1658704461318.664
+
+INFO:root:blinks_detected:1658704461320.9783
+
+INFO:root:frame received:1658704461337.7014
+
+INFO:root:68 points detected:1658704461418.7551
+
+INFO:root:blinks_detected:1658704461421.076
+
+INFO:root:frame received:1658704461438.9263
+
+INFO:root:68 points detected:1658704461520.5474
+
+INFO:root:blinks_detected:1658704461522.9685
+
+INFO:root:frame received:1658704461538.6042
+
+INFO:root:68 points detected:1658704461623.1694
+
+INFO:root:blinks_detected:1658704461625.5989
+
+INFO:root:frame received:1658704461643.484
+
+INFO:root:68 points detected:1658704461724.4678
+
+INFO:root:blinks_detected:1658704461726.8774
+
+INFO:root:frame received:1658704461743.293
+
+INFO:root:68 points detected:1658704461824.309
+
+INFO:root:blinks_detected:1658704461826.7175
+
+INFO:root:frame received:1658704461844.4238
+
+INFO:root:68 points detected:1658704461925.7046
+
+INFO:root:blinks_detected:1658704461928.0242
+
+INFO:root:frame received:1658704461943.8857
+
+INFO:root:68 points detected:1658704462024.6697
+
+INFO:root:blinks_detected:1658704462027.0642
+
+INFO:root:frame received:1658704462044.6543
+
+INFO:root:68 points detected:1658704462125.6511
+
+INFO:root:blinks_detected:1658704462128.0176
+
+INFO:root:frame received:1658704462152.5454
+
+INFO:root:68 points detected:1658704462233.686
+
+INFO:root:blinks_detected:1658704462236.0042
+
+INFO:root:frame received:1658704462253.9116
+
+INFO:root:68 points detected:1658704462334.9788
+
+INFO:root:blinks_detected:1658704462337.2993
+
+INFO:root:frame received:1658704462354.3315
+
+INFO:root:68 points detected:1658704462438.1787
+
+INFO:root:blinks_detected:1658704462440.4766
+
+INFO:root:frame received:1658704462454.8877
+
+INFO:root:68 points detected:1658704462535.7908
+
+INFO:root:blinks_detected:1658704462538.173
+
+INFO:root:frame received:1658704462553.2341
+
+INFO:root:68 points detected:1658704462635.9314
+
+INFO:root:blinks_detected:1658704462638.2866
+
+INFO:root:frame received:1658704462657.0637
+
+INFO:root:68 points detected:1658704462739.513
+
+INFO:root:blinks_detected:1658704462741.891
+
+INFO:root:frame received:1658704462756.6362
+
+INFO:root:68 points detected:1658704462837.7734
+
+INFO:root:blinks_detected:1658704462840.0881
+
+INFO:root:frame received:1658704462856.6582
+
+INFO:root:68 points detected:1658704462939.5552
+
+INFO:root:blinks_detected:1658704462941.922
+
+INFO:root:frame received:1658704462960.366
+
+INFO:root:68 points detected:1658704463043.6333
+
+INFO:root:blinks_detected:1658704463046.0024
+
+INFO:root:frame received:1658704463068.0771
+
+INFO:root:68 points detected:1658704463149.077
+
+INFO:root:blinks_detected:1658704463151.4744
+
+INFO:root:frame received:1658704463170.3516
+
+INFO:root:68 points detected:1658704463251.3943
+
+INFO:root:blinks_detected:1658704463253.8
+
+INFO:root:frame received:1658704463272.6477
+
+INFO:root:68 points detected:1658704463353.7903
+
+INFO:root:blinks_detected:1658704463356.0994
+
+INFO:root:frame received:1658704463372.3552
+
+INFO:root:68 points detected:1658704463453.2856
+
+INFO:root:blinks_detected:1658704463455.6812
+
+INFO:root:frame received:1658704463471.6707
+
+INFO:root:68 points detected:1658704463552.2632
+
+INFO:root:blinks_detected:1658704463554.6729
+
+INFO:root:frame received:1658704463571.3708
+
+INFO:root:68 points detected:1658704463653.8042
+
+INFO:root:blinks_detected:1658704463656.1194
+
+INFO:root:frame received:1658704463673.475
+
+INFO:root:68 points detected:1658704463754.6267
+
+INFO:root:blinks_detected:1658704463756.9377
+
+INFO:root:frame received:1658704463773.6167
+
+INFO:root:68 points detected:1658704463854.9397
+
+INFO:root:blinks_detected:1658704463857.2747
+
+INFO:root:frame received:1658704463875.4446
+
+INFO:root:68 points detected:1658704463956.3584
+
+INFO:root:blinks_detected:1658704463958.8013
+
+INFO:root:frame received:1658704463973.826
+
+INFO:root:68 points detected:1658704464056.3933
+
+INFO:root:blinks_detected:1658704464058.817
+
+INFO:root:frame received:1658704464076.572
+
+INFO:root:68 points detected:1658704464159.1958
+
+INFO:root:blinks_detected:1658704464161.5647
+
+INFO:root:frame received:1658704464179.6006
+
+INFO:root:68 points detected:1658704464260.7131
+
+INFO:root:blinks_detected:1658704464263.1492
+
+INFO:root:frame received:1658704464280.4458
+
+INFO:root:68 points detected:1658704464361.4585
+
+INFO:root:blinks_detected:1658704464363.771
+
+INFO:root:frame received:1658704464382.6692
+
+INFO:root:68 points detected:1658704464465.2644
+
+INFO:root:blinks_detected:1658704464467.6545
+
+INFO:root:frame received:1658704464485.1414
+
+INFO:root:68 points detected:1658704464566.4973
+
+INFO:root:blinks_detected:1658704464568.8071
+
+INFO:root:frame received:1658704464588.0295
+
+INFO:root:68 points detected:1658704464668.9832
+
+INFO:root:blinks_detected:1658704464671.361
+
+INFO:root:frame received:1658704464694.3105
+
+INFO:root:68 points detected:1658704464777.095
+
+INFO:root:blinks_detected:1658704464779.471
+
+INFO:root:frame received:1658704464799.2568
+
+INFO:root:68 points detected:1658704464880.5327
+
+INFO:root:blinks_detected:1658704464883.025
+
+INFO:root:frame received:1658704464901.1892
+
+INFO:root:68 points detected:1658704464982.2266
+
+INFO:root:blinks_detected:1658704464984.544
+
+INFO:root:frame received:1658704465003.3792
+
+INFO:root:68 points detected:1658704465086.049
+
+INFO:root:blinks_detected:1658704465088.5364
+
+INFO:root:frame received:1658704465109.7793
+
+INFO:root:68 points detected:1658704465191.0728
+
+INFO:root:blinks_detected:1658704465193.407
+
+INFO:root:frame received:1658704465211.9993
+
+INFO:root:68 points detected:1658704465293.293
+
+INFO:root:blinks_detected:1658704465295.6802
+
+INFO:root:frame received:1658704465313.7043
+
+INFO:root:68 points detected:1658704465394.5823
+
+INFO:root:blinks_detected:1658704465396.8945
+
+INFO:root:frame received:1658704465414.0454
+
+INFO:root:68 points detected:1658704465495.3623
+
+INFO:root:blinks_detected:1658704465497.7302
+
+INFO:root:frame received:1658704465517.269
+
+INFO:root:68 points detected:1658704465599.869
+
+INFO:root:blinks_detected:1658704465602.239
+
+INFO:root:frame received:1658704465618.2837
+
+INFO:root:68 points detected:1658704465699.4065
+
+INFO:root:blinks_detected:1658704465701.7717
+
+INFO:root:frame received:1658704465720.409
+
+INFO:root:68 points detected:1658704465801.354
+
+INFO:root:blinks_detected:1658704465803.7327
+
+INFO:root:frame received:1658704465818.106
+
+INFO:root:68 points detected:1658704465899.3174
+
+INFO:root:blinks_detected:1658704465901.6963
+
+INFO:root:frame received:1658704465918.348
+
+INFO:root:68 points detected:1658704466000.972
+
+INFO:root:blinks_detected:1658704466003.3315
+
+INFO:root:frame received:1658704466021.468
+
+INFO:root:68 points detected:1658704466104.0789
+
+INFO:root:blinks_detected:1658704466106.4558
+
+INFO:root:frame received:1658704466123.3267
+
+INFO:root:68 points detected:1658704466204.3738
+
+INFO:root:blinks_detected:1658704466206.806
+
+INFO:root:frame received:1658704466225.3845
+
+INFO:root:68 points detected:1658704466308.9207
+
+INFO:root:blinks_detected:1658704466311.3618
+
+INFO:root:frame received:1658704466328.7043
+
+INFO:root:68 points detected:1658704466409.9841
+
+INFO:root:blinks_detected:1658704466412.2942
+
+INFO:root:frame received:1658704466427.0703
+
+INFO:root:68 points detected:1658704466509.8823
+
+INFO:root:blinks_detected:1658704466512.1978
+
+INFO:root:frame received:1658704466527.811
+
+INFO:root:68 points detected:1658704466608.6538
+
+INFO:root:blinks_detected:1658704466611.0613
+
+INFO:root:frame received:1658704466629.7817
+
+INFO:root:68 points detected:1658704466710.7283
+
+INFO:root:blinks_detected:1658704466713.051
+
+INFO:root:frame received:1658704466731.2773
+
+INFO:root:68 points detected:1658704466812.2385
+
+INFO:root:blinks_detected:1658704466814.611
+
+INFO:root:frame received:1658704466831.6194
+
+INFO:root:68 points detected:1658704466912.718
+
+INFO:root:blinks_detected:1658704466915.1228
+
+INFO:root:frame received:1658704466933.4114
+
+INFO:root:68 points detected:1658704467016.262
+
+INFO:root:blinks_detected:1658704467018.668
+
+INFO:root:frame received:1658704467035.7542
+
+INFO:root:68 points detected:1658704467117.0803
+
+INFO:root:blinks_detected:1658704467119.454
+
+INFO:root:frame received:1658704467136.2783
+
+INFO:root:68 points detected:1658704467220.127
+
+INFO:root:blinks_detected:1658704467222.5234
+
+INFO:root:frame received:1658704467239.518
+
+INFO:root:68 points detected:1658704467320.806
+
+INFO:root:blinks_detected:1658704467323.179
+
+INFO:root:frame received:1658704467343.1245
+
+INFO:root:68 points detected:1658704467423.7368
+
+INFO:root:blinks_detected:1658704467426.1067
+
+INFO:root:frame received:1658704467442.0476
+
+INFO:root:68 points detected:1658704467523.1672
+
+INFO:root:blinks_detected:1658704467525.5408
+
+INFO:root:frame received:1658704467542.2383
+
+INFO:root:68 points detected:1658704467622.9036
+
+INFO:root:blinks_detected:1658704467625.2048
+
+INFO:root:frame received:1658704467641.284
+
+INFO:root:68 points detected:1658704467722.4243
+
+INFO:root:blinks_detected:1658704467724.729
+
+INFO:root:frame received:1658704467741.8538
+
+INFO:root:68 points detected:1658704467823.0288
+
+INFO:root:blinks_detected:1658704467825.3613
+
+INFO:root:frame received:1658704467847.1555
+
+INFO:root:68 points detected:1658704467928.3787
+
+INFO:root:blinks_detected:1658704467930.7932
+
+INFO:root:frame received:1658704467956.3376
+
+INFO:root:68 points detected:1658704468037.5967
+
+INFO:root:blinks_detected:1658704468039.926
+
+INFO:root:frame received:1658704468065.732
+
+INFO:root:68 points detected:1658704468146.736
+
+INFO:root:blinks_detected:1658704468149.0627
+
+INFO:root:frame received:1658704468174.3613
+
+INFO:root:68 points detected:1658704468255.9182
+
+INFO:root:blinks_detected:1658704468258.416
+
+INFO:root:frame received:1658704468284.3562
+
+INFO:root:68 points detected:1658704468365.7312
+
+INFO:root:blinks_detected:1658704468368.0547
+
+INFO:root:frame received:1658704468399.488
+
+INFO:root:68 points detected:1658704468481.6165
+
+INFO:root:blinks_detected:1658704468483.9265
+
+INFO:root:frame received:1658704468508.6226
+
+INFO:root:68 points detected:1658704468589.6714
+
+INFO:root:blinks_detected:1658704468592.022
+
+INFO:root:frame received:1658704468623.0352
+
+INFO:root:68 points detected:1658704468704.311
+
+INFO:root:blinks_detected:1658704468706.7473
+
+INFO:root:frame received:1658704468732.8633
+
+INFO:root:68 points detected:1658704468813.9084
+
+INFO:root:blinks_detected:1658704468816.2292
+
+INFO:root:frame received:1658704468838.465
+
+INFO:root:68 points detected:1658704468919.6887
+
+INFO:root:blinks_detected:1658704468922.0642
+
+INFO:root:frame received:1658704468946.3044
+
+INFO:root:68 points detected:1658704469027.5945
+
+INFO:root:blinks_detected:1658704469029.9646
+
+INFO:root:frame received:1658704469047.0051
+
+INFO:root:68 points detected:1658704469128.4504
+
+INFO:root:blinks_detected:1658704469130.864
+
+INFO:root:frame received:1658704469149.381
+
+INFO:root:68 points detected:1658704469230.7786
+
+INFO:root:blinks_detected:1658704469233.0837
+
+INFO:root:frame received:1658704469250.9998
+
+INFO:root:68 points detected:1658704469332.3438
+
+INFO:root:blinks_detected:1658704469334.784
+
+INFO:root:frame received:1658704469350.951
+
+INFO:root:68 points detected:1658704469432.0872
+
+INFO:root:blinks_detected:1658704469434.476
+
+INFO:root:frame received:1658704469454.3042
+
+INFO:root:68 points detected:1658704469535.6428
+
+INFO:root:blinks_detected:1658704469538.0244
+
+INFO:root:frame received:1658704469556.1375
+
+INFO:root:68 points detected:1658704469637.3933
+
+INFO:root:blinks_detected:1658704469639.768
+
+INFO:root:frame received:1658704469654.6086
+
+INFO:root:68 points detected:1658704469735.9473
+
+INFO:root:blinks_detected:1658704469738.3198
+
+INFO:root:frame received:1658704469756.754
+
+INFO:root:68 points detected:1658704469837.832
+
+INFO:root:blinks_detected:1658704469840.1785
+
+INFO:root:frame received:1658704469855.7605
+
+INFO:root:68 points detected:1658704469936.9697
+
+INFO:root:blinks_detected:1658704469939.4094
+
+INFO:root:frame received:1658704469957.4849
+
+INFO:root:68 points detected:1658704470038.8154
+
+INFO:root:blinks_detected:1658704470041.118
+
+INFO:root:frame received:1658704470059.8948
+
+INFO:root:68 points detected:1658704470141.3208
+
+INFO:root:blinks_detected:1658704470143.692
+
+INFO:root:frame received:1658704470159.5847
+
+INFO:root:68 points detected:1658704470241.1072
+
+INFO:root:blinks_detected:1658704470243.49
+
+INFO:root:frame received:1658704470262.0154
+
+INFO:root:68 points detected:1658704470343.165
+
+INFO:root:blinks_detected:1658704470345.5437
+
+INFO:root:frame received:1658704470363.2878
+
+INFO:root:68 points detected:1658704470444.3267
+
+INFO:root:blinks_detected:1658704470446.723
+
+INFO:root:frame received:1658704470465.785
+
+INFO:root:68 points detected:1658704470546.6619
+
+INFO:root:blinks_detected:1658704470548.9922
+
+INFO:root:frame received:1658704470566.5688
+
+INFO:root:68 points detected:1658704470647.9321
+
+INFO:root:blinks_detected:1658704470650.306
+
+INFO:root:frame received:1658704470668.4258
+
+INFO:root:68 points detected:1658704470749.773
+
+INFO:root:blinks_detected:1658704470752.0996
+
+INFO:root:frame received:1658704470767.832
+
+INFO:root:68 points detected:1658704470851.7363
+
+INFO:root:blinks_detected:1658704470854.1042
+
+INFO:root:frame received:1658704470871.6782
+
+INFO:root:68 points detected:1658704470952.673
+
+INFO:root:blinks_detected:1658704470955.065
+
+INFO:root:frame received:1658704470974.791
+
+INFO:root:68 points detected:1658704471055.9004
+
+INFO:root:blinks_detected:1658704471058.3037
+
+INFO:root:frame received:1658704471074.9705
+
+INFO:root:68 points detected:1658704471156.5007
+
+INFO:root:blinks_detected:1658704471158.915
+
+INFO:root:frame received:1658704471175.8276
+
+INFO:root:68 points detected:1658704471257.2576
+
+INFO:root:blinks_detected:1658704471259.5974
+
+INFO:root:frame received:1658704471279.1978
+
+INFO:root:68 points detected:1658704471360.06
+
+INFO:root:blinks_detected:1658704471362.4585
+
+INFO:root:frame received:1658704471379.2969
+
+INFO:root:68 points detected:1658704471462.1814
+
+INFO:root:blinks_detected:1658704471464.5078
+
+INFO:root:frame received:1658704471483.688
+
+INFO:root:68 points detected:1658704471564.7783
+
+INFO:root:blinks_detected:1658704471567.1455
+
+INFO:root:frame received:1658704471583.6729
+
+INFO:root:68 points detected:1658704471664.951
+
+INFO:root:blinks_detected:1658704471667.32
+
+INFO:root:frame received:1658704471684.1157
+
+INFO:root:68 points detected:1658704471765.3013
+
+INFO:root:blinks_detected:1658704471767.656
+
+INFO:root:frame received:1658704471784.2937
+
+INFO:root:68 points detected:1658704471865.1326
+
+INFO:root:blinks_detected:1658704471867.5142
+
+INFO:root:frame received:1658704471884.6965
+
+INFO:root:68 points detected:1658704471966.8108
+
+INFO:root:blinks_detected:1658704471969.26
+
+INFO:root:frame received:1658704471989.6335
+
+INFO:root:68 points detected:1658704472072.2468
+
+INFO:root:blinks_detected:1658704472074.6692
+
+INFO:root:frame received:1658704472092.4475
+
+INFO:root:68 points detected:1658704472173.412
+
+INFO:root:blinks_detected:1658704472175.7783
+
+INFO:root:frame received:1658704472194.078
+
+INFO:root:68 points detected:1658704472275.2156
+
+INFO:root:blinks_detected:1658704472277.601
+
+INFO:root:frame received:1658704472296.311
+
+INFO:root:68 points detected:1658704472377.3125
+
+INFO:root:blinks_detected:1658704472379.7002
+
+INFO:root:frame received:1658704472396.5525
+
+INFO:root:68 points detected:1658704472477.9092
+
+INFO:root:blinks_detected:1658704472480.2683
+
+INFO:root:frame received:1658704472496.8267
+
+INFO:root:68 points detected:1658704472577.7131
+
+INFO:root:blinks_detected:1658704472580.02
+
+INFO:root:frame received:1658704472596.3677
+
+INFO:root:68 points detected:1658704472677.3484
+
+INFO:root:blinks_detected:1658704472679.74
+
+INFO:root:frame received:1658704472699.4883
+
+INFO:root:68 points detected:1658704472780.6877
+
+INFO:root:blinks_detected:1658704472783.0908
+
+INFO:root:frame received:1658704472801.3035
+
+INFO:root:68 points detected:1658704472882.5051
+
+INFO:root:blinks_detected:1658704472884.8286
+
+INFO:root:frame received:1658704472903.1226
+
+INFO:root:68 points detected:1658704472984.2432
+
+INFO:root:blinks_detected:1658704472986.641
+
+INFO:root:frame received:1658704473003.3396
+
+INFO:root:68 points detected:1658704473086.092
+
+INFO:root:blinks_detected:1658704473088.4248
+
+INFO:root:frame received:1658704473104.2556
+
+INFO:root:68 points detected:1658704473185.3713
+
+INFO:root:blinks_detected:1658704473187.7388
+
+INFO:root:frame received:1658704473204.2869
+
+INFO:root:68 points detected:1658704473285.3872
+
+INFO:root:blinks_detected:1658704473287.7449
+
+INFO:root:frame received:1658704473304.539
+
+INFO:root:68 points detected:1658704473387.3523
+
+INFO:root:blinks_detected:1658704473389.7583
+
+INFO:root:frame received:1658704473406.416
+
+INFO:root:68 points detected:1658704473487.9197
+
+INFO:root:blinks_detected:1658704473490.3037
+
+INFO:root:frame received:1658704473509.8125
+
+INFO:root:68 points detected:1658704473590.7065
+
+INFO:root:blinks_detected:1658704473593.038
+
+INFO:root:frame received:1658704473611.0464
+
+INFO:root:68 points detected:1658704473692.585
+
+INFO:root:blinks_detected:1658704473695.002
+
+INFO:root:frame received:1658704473714.6372
+
+INFO:root:68 points detected:1658704473795.6047
+
+INFO:root:blinks_detected:1658704473798.0066
+
+INFO:root:frame received:1658704473817.8218
+
+INFO:root:68 points detected:1658704473899.4238
+
+INFO:root:blinks_detected:1658704473901.79
+
+INFO:root:frame received:1658704473917.8071
+
+INFO:root:68 points detected:1658704473998.5059
+
+INFO:root:blinks_detected:1658704474000.8196
+
+INFO:root:frame received:1658704474015.9177
+
+INFO:root:68 points detected:1658704474096.739
+
+INFO:root:blinks_detected:1658704474099.1323
+
+INFO:root:frame received:1658704474113.5696
+
+INFO:root:68 points detected:1658704474194.377
+
+INFO:root:blinks_detected:1658704474196.691
+
+INFO:root:frame received:1658704474217.0222
+
+INFO:root:68 points detected:1658704474298.436
+
+INFO:root:blinks_detected:1658704474300.7515
+
+INFO:root:frame received:1658704474316.7317
+
+INFO:root:68 points detected:1658704474399.5125
+
+INFO:root:blinks_detected:1658704474401.8752
+
+INFO:root:frame received:1658704474420.4795
+
+INFO:root:68 points detected:1658704474501.65
+
+INFO:root:blinks_detected:1658704474503.9675
+
+INFO:root:frame received:1658704474521.3506
+
+INFO:root:68 points detected:1658704474602.5786
+
+INFO:root:blinks_detected:1658704474604.8875
+
+INFO:root:frame received:1658704474621.2283
+
+INFO:root:68 points detected:1658704474702.7993
+
+INFO:root:blinks_detected:1658704474705.1401
+
+INFO:root:frame received:1658704474721.1367
+
+INFO:root:68 points detected:1658704474802.2678
+
+INFO:root:blinks_detected:1658704474804.5896
+
+INFO:root:frame received:1658704474820.31
+
+INFO:root:68 points detected:1658704474901.3015
+
+INFO:root:blinks_detected:1658704474903.6802
+
+INFO:root:frame received:1658704474916.9546
+
+INFO:root:68 points detected:1658704474997.7866
+
+INFO:root:blinks_detected:1658704475000.156
+
+INFO:root:frame received:1658704475024.7185
+
+INFO:root:68 points detected:1658704475106.437
+
+INFO:root:blinks_detected:1658704475108.978
+
+INFO:root:frame received:1658704475126.0212
+
+INFO:root:68 points detected:1658704475209.1934
+
+INFO:root:blinks_detected:1658704475211.5576
+
+INFO:root:frame received:1658704475227.4465
+
+INFO:root:68 points detected:1658704475308.8652
+
+INFO:root:blinks_detected:1658704475311.236
+
+INFO:root:frame received:1658704475331.3342
+
+INFO:root:68 points detected:1658704475412.6638
+
+INFO:root:blinks_detected:1658704475415.0403
+
+INFO:root:frame received:1658704475432.919
+
+INFO:root:68 points detected:1658704475515.2896
+
+INFO:root:blinks_detected:1658704475517.65
+
+INFO:root:frame received:1658704475536.0244
+
+INFO:root:68 points detected:1658704475616.68
+
+INFO:root:blinks_detected:1658704475619.0632
+
+INFO:root:frame received:1658704475640.831
+
+INFO:root:68 points detected:1658704475721.836
+
+INFO:root:blinks_detected:1658704475724.1567
+
+INFO:root:frame received:1658704475744.3513
+
+INFO:root:68 points detected:1658704475825.7168
+
+INFO:root:blinks_detected:1658704475828.035
+
+INFO:root:frame received:1658704475846.6792
+
+INFO:root:68 points detected:1658704475928.0735
+
+INFO:root:blinks_detected:1658704475930.4666
+
+INFO:root:frame received:1658704475946.4917
+
+INFO:root:68 points detected:1658704476027.556
+
+INFO:root:blinks_detected:1658704476029.929
+
+INFO:root:frame received:1658704476046.6257
+
+INFO:root:68 points detected:1658704476127.4116
+
+INFO:root:blinks_detected:1658704476129.7957
+
+INFO:root:frame received:1658704476149.568
+
+INFO:root:68 points detected:1658704476230.5754
+
+INFO:root:blinks_detected:1658704476232.8958
+
+INFO:root:frame received:1658704476252.6382
+
+INFO:root:68 points detected:1658704476333.4604
+
+INFO:root:blinks_detected:1658704476335.7993
+
+INFO:root:frame received:1658704476354.06
+
+INFO:root:68 points detected:1658704476435.0232
+
+INFO:root:blinks_detected:1658704476437.3606
+
+INFO:root:frame received:1658704476455.5918
+
+INFO:root:68 points detected:1658704476536.5928
+
+INFO:root:blinks_detected:1658704476539.0212
+
+INFO:root:frame received:1658704476556.1917
+
+INFO:root:68 points detected:1658704476641.7273
+
+INFO:root:blinks_detected:1658704476644.0525
+
+INFO:root:frame received:1658704476661.2515
+
+INFO:root:68 points detected:1658704476742.2822
+
+INFO:root:blinks_detected:1658704476744.6113
+
+INFO:root:frame received:1658704476760.8296
+
+INFO:root:68 points detected:1658704476841.9268
+
+INFO:root:blinks_detected:1658704476844.242
+
+INFO:root:frame received:1658704476861.2073
+
+INFO:root:68 points detected:1658704476946.58
+
+INFO:root:blinks_detected:1658704476948.8972
+
+INFO:root:frame received:1658704476965.2004
+
+INFO:root:68 points detected:1658704477046.2783
+
+INFO:root:blinks_detected:1658704477048.6167
+
+INFO:root:frame received:1658704477067.6675
+
+INFO:root:68 points detected:1658704477148.9514
+
+INFO:root:blinks_detected:1658704477151.3625
+
+INFO:root:frame received:1658704477168.6736
+
+INFO:root:68 points detected:1658704477249.9033
+
+INFO:root:blinks_detected:1658704477252.2249
+
+INFO:root:frame received:1658704477268.519
+
+INFO:root:68 points detected:1658704477349.3552
+
+INFO:root:blinks_detected:1658704477351.7258
+
+INFO:root:frame received:1658704477366.9246
+
+INFO:root:68 points detected:1658704477448.3982
+
+INFO:root:blinks_detected:1658704477450.8044
+
+INFO:root:frame received:1658704477467.356
+
+INFO:root:68 points detected:1658704477548.324
+
+INFO:root:blinks_detected:1658704477550.7476
+
+INFO:root:frame received:1658704477569.5876
+
+INFO:root:68 points detected:1658704477650.4983
+
+INFO:root:blinks_detected:1658704477652.8145
+
+INFO:root:frame received:1658704477670.395
+
+INFO:root:68 points detected:1658704477751.4922
+
+INFO:root:blinks_detected:1658704477753.8523
+
+INFO:root:frame received:1658704477771.2231
+
+INFO:root:68 points detected:1658704477854.1868
+
+INFO:root:blinks_detected:1658704477856.493
+
+INFO:root:frame received:1658704477873.8447
+
+INFO:root:68 points detected:1658704477955.0916
+
+INFO:root:blinks_detected:1658704477957.413
+
+INFO:root:frame received:1658704477977.2861
+
+INFO:root:68 points detected:1658704478058.4712
+
+INFO:root:blinks_detected:1658704478060.787
+
+INFO:root:frame received:1658704478078.9485
+
+INFO:root:68 points detected:1658704478159.9998
+
+INFO:root:blinks_detected:1658704478162.382
+
+INFO:root:frame received:1658704478179.3955
+
+INFO:root:68 points detected:1658704478262.6926
+
+INFO:root:blinks_detected:1658704478265.0093
+
+INFO:root:frame received:1658704478280.794
+
+INFO:root:68 points detected:1658704478363.1875
+
+INFO:root:blinks_detected:1658704478365.5432
+
+INFO:root:frame received:1658704478384.8271
+
+INFO:root:68 points detected:1658704478466.195
+
+INFO:root:blinks_detected:1658704478468.5828
+
+INFO:root:frame received:1658704478487.7134
+
+INFO:root:68 points detected:1658704478568.9656
+
+INFO:root:blinks_detected:1658704478571.3455
+
+INFO:root:frame received:1658704478588.3005
+
+INFO:root:68 points detected:1658704478669.299
+
+INFO:root:blinks_detected:1658704478671.7026
+
+INFO:root:frame received:1658704478694.811
+
+INFO:root:68 points detected:1658704478777.3103
+
+INFO:root:blinks_detected:1658704478779.719
+
+INFO:root:frame received:1658704478797.021
+
+INFO:root:68 points detected:1658704478880.1748
+
+INFO:root:blinks_detected:1658704478882.5605
+
+INFO:root:frame received:1658704478900.5085
+
+INFO:root:68 points detected:1658704478981.3308
+
+INFO:root:blinks_detected:1658704478983.7012
+
+INFO:root:frame received:1658704478999.6865
+
+INFO:root:68 points detected:1658704479080.7869
+
+INFO:root:blinks_detected:1658704479083.1711
+
+INFO:root:frame received:1658704479099.8328
+
+INFO:root:68 points detected:1658704479180.8425
+
+INFO:root:blinks_detected:1658704479183.2234
+
+INFO:root:frame received:1658704479201.584
+
+INFO:root:68 points detected:1658704479282.8213
+
+INFO:root:blinks_detected:1658704479285.1353
+
+INFO:root:frame received:1658704479304.813
+
+INFO:root:68 points detected:1658704479385.759
+
+INFO:root:blinks_detected:1658704479388.0825
+
+INFO:root:frame received:1658704479404.3098
+
+INFO:root:68 points detected:1658704479485.94
+
+INFO:root:blinks_detected:1658704479488.2502
+
+INFO:root:frame received:1658704479507.1973
+
+INFO:root:68 points detected:1658704479588.4663
+
+INFO:root:blinks_detected:1658704479590.879
+
+INFO:root:frame received:1658704479608.432
+
+INFO:root:68 points detected:1658704479689.498
+
+INFO:root:blinks_detected:1658704479691.8147
+
+INFO:root:frame received:1658704479710.8428
+
+INFO:root:68 points detected:1658704479791.9385
+
+INFO:root:blinks_detected:1658704479794.312
+
+INFO:root:frame received:1658704479813.2148
+
+INFO:root:68 points detected:1658704479894.7627
+
+INFO:root:blinks_detected:1658704479897.096
+
+INFO:root:frame received:1658704479917.6855
+
+INFO:root:68 points detected:1658704479998.4966
+
+INFO:root:blinks_detected:1658704480002.1406
+
+INFO:root:frame received:1658704480021.0972
+
+INFO:root:68 points detected:1658704480102.6064
+
+INFO:root:blinks_detected:1658704480105.0664
+
+INFO:root:frame received:1658704480122.3452
+
+INFO:root:68 points detected:1658704480203.4216
+
+INFO:root:blinks_detected:1658704480205.797
+
+INFO:root:frame received:1658704480227.814
+
+INFO:root:68 points detected:1658704480309.263
+
+INFO:root:blinks_detected:1658704480311.6292
+
+INFO:root:frame received:1658704480331.0808
+
+INFO:root:68 points detected:1658704480414.0754
+
+INFO:root:blinks_detected:1658704480416.394
+
+INFO:root:frame received:1658704480434.914
+
+INFO:root:68 points detected:1658704480516.1187
+
+INFO:root:blinks_detected:1658704480518.5205
+
+INFO:root:frame received:1658704480538.1094
+
+INFO:root:68 points detected:1658704480618.9807
+
+INFO:root:blinks_detected:1658704480621.2942
+
+INFO:root:frame received:1658704480640.671
+
+INFO:root:68 points detected:1658704480722.647
+
+INFO:root:blinks_detected:1658704480724.9795
+
+INFO:root:frame received:1658704480743.3914
+
+INFO:root:68 points detected:1658704480824.4326
+
+INFO:root:blinks_detected:1658704480826.8596
+
+INFO:root:frame received:1658704480846.9634
+
+INFO:root:68 points detected:1658704480928.0303
+
+INFO:root:blinks_detected:1658704480930.4048
+
+INFO:root:frame received:1658704480948.6335
+
+INFO:root:68 points detected:1658704481029.6821
+
+INFO:root:blinks_detected:1658704481032.0002
+
+INFO:root:frame received:1658704481048.5383
+
+INFO:root:68 points detected:1658704481130.128
+
+INFO:root:blinks_detected:1658704481132.4543
+
+INFO:root:frame received:1658704481152.7407
+
+INFO:root:68 points detected:1658704481235.673
+
+INFO:root:blinks_detected:1658704481238.067
+
+INFO:root:frame received:1658704481255.2092
+
+INFO:root:68 points detected:1658704481336.4377
+
+INFO:root:blinks_detected:1658704481338.8477
+
+INFO:root:frame received:1658704481363.8904
+
+INFO:root:68 points detected:1658704481445.2773
+
+INFO:root:blinks_detected:1658704481447.6433
+
+INFO:root:frame received:1658704481465.2214
+
+INFO:root:68 points detected:1658704481549.1338
+
+INFO:root:blinks_detected:1658704481551.5078
+
+INFO:root:frame received:1658704481568.552
+
+INFO:root:68 points detected:1658704481650.0503
+
+INFO:root:blinks_detected:1658704481652.4204
+
+INFO:root:frame received:1658704481670.4822
+
+INFO:root:68 points detected:1658704481751.6943
+
+INFO:root:blinks_detected:1658704481754.062
+
+INFO:root:frame received:1658704481774.379
+
+INFO:root:68 points detected:1658704481855.149
+
+INFO:root:blinks_detected:1658704481857.5237
+
+INFO:root:frame received:1658704481872.6118
+
+INFO:root:68 points detected:1658704481955.4043
+
+INFO:root:blinks_detected:1658704481957.7844
+
+INFO:root:frame received:1658704481975.469
+
+INFO:root:68 points detected:1658704482056.4976
+
+INFO:root:blinks_detected:1658704482058.9058
+
+INFO:root:frame received:1658704482077.0366
+
+INFO:root:68 points detected:1658704482158.3389
+
+INFO:root:blinks_detected:1658704482160.6538
+
+INFO:root:frame received:1658704482179.0227
+
+INFO:root:68 points detected:1658704482260.1357
+
+INFO:root:blinks_detected:1658704482262.548
+
+INFO:root:frame received:1658704482278.6692
+
+INFO:root:68 points detected:1658704482360.024
+
+INFO:root:blinks_detected:1658704482362.4153
+
+INFO:root:frame received:1658704482382.6787
+
+INFO:root:68 points detected:1658704482463.6602
+
+INFO:root:blinks_detected:1658704482466.03
+
+INFO:root:frame received:1658704482485.1853
+
+INFO:root:68 points detected:1658704482566.6392
+
+INFO:root:blinks_detected:1658704482568.9678
+
+INFO:root:frame received:1658704482588.0293
+
+INFO:root:68 points detected:1658704482669.013
+
+INFO:root:blinks_detected:1658704482671.4282
+
+INFO:root:frame received:1658704482692.348
+
+INFO:root:68 points detected:1658704482773.8477
+
+INFO:root:blinks_detected:1658704482776.1829
+
+INFO:root:frame received:1658704482792.0957
+
+INFO:root:68 points detected:1658704482873.6138
+
+INFO:root:blinks_detected:1658704482875.9404
+
+INFO:root:frame received:1658704482892.872
+
+INFO:root:68 points detected:1658704482976.0076
+
+INFO:root:blinks_detected:1658704482978.4255
+
+INFO:root:frame received:1658704482996.154
+
+INFO:root:68 points detected:1658704483077.3154
+
+INFO:root:blinks_detected:1658704483079.6746
+
+INFO:root:frame received:1658704483096.7065
+
+INFO:root:68 points detected:1658704483177.639
+
+INFO:root:blinks_detected:1658704483179.9785
+
+INFO:root:frame received:1658704483200.6616
+
+INFO:root:68 points detected:1658704483281.8733
+
+INFO:root:blinks_detected:1658704483284.2014
+
+INFO:root:frame received:1658704483303.2407
+
+INFO:root:68 points detected:1658704483384.1235
+
+INFO:root:blinks_detected:1658704483386.5117
+
+INFO:root:frame received:1658704483404.477
+
+INFO:root:68 points detected:1658704483485.6484
+
+INFO:root:blinks_detected:1658704483487.9678
+
+INFO:root:frame received:1658704483507.1272
+
+INFO:root:68 points detected:1658704483588.5078
+
+INFO:root:blinks_detected:1658704483590.9724
+
+INFO:root:frame received:1658704483612.8538
+
+INFO:root:68 points detected:1658704483694.186
+
+INFO:root:blinks_detected:1658704483696.607
+
+INFO:root:frame received:1658704483720.8115
+
+INFO:root:68 points detected:1658704483802.1838
+
+INFO:root:blinks_detected:1658704483804.5222
+
+INFO:root:frame received:1658704483823.9321
+
+INFO:root:68 points detected:1658704483904.9065
+
+INFO:root:blinks_detected:1658704483907.2803
+
+INFO:root:frame received:1658704483925.936
+
+INFO:root:68 points detected:1658704484006.762
+
+INFO:root:blinks_detected:1658704484009.0825
+
+INFO:root:frame received:1658704484028.2258
+
+INFO:root:68 points detected:1658704484110.3054
+
+INFO:root:blinks_detected:1658704484112.642
+
+INFO:root:frame received:1658704484130.6477
+
+INFO:root:68 points detected:1658704484211.8635
+
+INFO:root:blinks_detected:1658704484214.2407
+
+INFO:root:frame received:1658704484232.65
+
+INFO:root:68 points detected:1658704484313.765
+
+INFO:root:blinks_detected:1658704484316.1128
+
+INFO:root:frame received:1658704484335.2686
+
+INFO:root:68 points detected:1658704484423.261
+
+INFO:root:blinks_detected:1658704484425.681
+
+INFO:root:frame received:1658704484444.8438
+
+INFO:root:68 points detected:1658704484525.6377
+
+INFO:root:blinks_detected:1658704484527.9724
+
+INFO:root:frame received:1658704484545.308
+
+INFO:root:68 points detected:1658704484626.288
+
+INFO:root:blinks_detected:1658704484628.6157
+
+INFO:root:frame received:1658704484646.5164
+
+INFO:root:68 points detected:1658704484727.859
+
+INFO:root:blinks_detected:1658704484730.2441
+
+INFO:root:frame received:1658704484748.184
+
+INFO:root:68 points detected:1658704484829.1145
+
+INFO:root:blinks_detected:1658704484831.4863
+
+INFO:root:frame received:1658704484848.5918
+
+INFO:root:68 points detected:1658704484929.5283
+
+INFO:root:blinks_detected:1658704484931.8386
+
+INFO:root:frame received:1658704484949.7544
+
+INFO:root:68 points detected:1658704485030.6877
+
+INFO:root:blinks_detected:1658704485033.1006
+
+INFO:root:frame received:1658704485050.5608
+
+INFO:root:68 points detected:1658704485131.8853
+
+INFO:root:blinks_detected:1658704485134.261
+
+INFO:root:frame received:1658704485152.4468
+
+INFO:root:68 points detected:1658704485233.9973
+
+INFO:root:blinks_detected:1658704485236.3196
+
+INFO:root:frame received:1658704485253.8901
+
+INFO:root:68 points detected:1658704485336.632
+
+INFO:root:blinks_detected:1658704485339.0466
+
+INFO:root:frame received:1658704485361.0205
+
+INFO:root:68 points detected:1658704485442.8306
+
+INFO:root:blinks_detected:1658704485445.149
+
+INFO:root:frame received:1658704485465.5645
+
+INFO:root:68 points detected:1658704485548.5322
+
+INFO:root:blinks_detected:1658704485551.024
+
+INFO:root:frame received:1658704485577.6873
+
+INFO:root:68 points detected:1658704485658.6316
+
+INFO:root:blinks_detected:1658704485661.0215
+
+INFO:root:frame received:1658704485690.103
+
+INFO:root:68 points detected:1658704485771.5652
+
+INFO:root:blinks_detected:1658704485774.0107
+
+INFO:root:frame received:1658704485789.5237
+
+INFO:root:68 points detected:1658704485874.3152
+
+INFO:root:blinks_detected:1658704485876.7527
+
+INFO:root:frame received:1658704485892.5547
+
+INFO:root:68 points detected:1658704485975.4946
+
+INFO:root:blinks_detected:1658704485977.8613
+
+INFO:root:frame received:1658704485996.5188
+
+INFO:root:68 points detected:1658704486079.439
+
+INFO:root:blinks_detected:1658704486081.8208
+
+INFO:root:frame received:1658704486098.6572
+
+INFO:root:68 points detected:1658704486179.6353
+
+INFO:root:blinks_detected:1658704486182.0242
+
+INFO:root:frame received:1658704486201.267
+
+INFO:root:68 points detected:1658704486282.4148
+
+INFO:root:blinks_detected:1658704486284.7524
+
+INFO:root:frame received:1658704486301.6885
+
+INFO:root:68 points detected:1658704486382.8186
+
+INFO:root:blinks_detected:1658704486385.128
+
+INFO:root:frame received:1658704486401.9265
+
+INFO:root:68 points detected:1658704486483.044
+
+INFO:root:blinks_detected:1658704486485.3818
+
+INFO:root:frame received:1658704486503.219
+
+INFO:root:68 points detected:1658704486584.0923
+
+INFO:root:blinks_detected:1658704486586.4558
+
+INFO:root:frame received:1658704486603.665
+
+INFO:root:68 points detected:1658704486684.6895
+
+INFO:root:blinks_detected:1658704486687.1023
+
+INFO:root:frame received:1658704486706.9543
+
+INFO:root:68 points detected:1658704486787.9258
+
+INFO:root:blinks_detected:1658704486790.3054
+
+INFO:root:frame received:1658704486808.1309
+
+INFO:root:68 points detected:1658704486889.1987
+
+INFO:root:blinks_detected:1658704486891.584
+
+INFO:root:frame received:1658704486911.441
+
+INFO:root:68 points detected:1658704486992.9368
+
+INFO:root:blinks_detected:1658704486995.3135
+
+INFO:root:frame received:1658704487010.935
+
+INFO:root:68 points detected:1658704487092.515
+
+INFO:root:blinks_detected:1658704487094.9285
+
+INFO:root:frame received:1658704487112.9744
+
+INFO:root:68 points detected:1658704487194.5337
+
+INFO:root:blinks_detected:1658704487196.919
+
+INFO:root:frame received:1658704487214.6738
+
+INFO:root:68 points detected:1658704487296.2786
+
+INFO:root:blinks_detected:1658704487298.7046
+
+INFO:root:frame received:1658704487319.9126
+
+INFO:root:68 points detected:1658704487401.1555
+
+INFO:root:blinks_detected:1658704487403.5388
+
+INFO:root:frame received:1658704487420.5767
+
+INFO:root:68 points detected:1658704487502.006
+
+INFO:root:blinks_detected:1658704487504.3408
+
+INFO:root:frame received:1658704487520.841
+
+INFO:root:68 points detected:1658704487602.1956
+
+INFO:root:blinks_detected:1658704487604.538
+
+INFO:root:frame received:1658704487626.673
+
+INFO:root:68 points detected:1658704487707.7324
+
+INFO:root:blinks_detected:1658704487710.1975
+
+INFO:root:frame received:1658704487728.6477
+
+INFO:root:68 points detected:1658704487810.589
+
+INFO:root:blinks_detected:1658704487812.9065
+
+INFO:root:frame received:1658704487829.6152
+
+INFO:root:68 points detected:1658704487910.4543
+
+INFO:root:blinks_detected:1658704487912.7988
+
+INFO:root:frame received:1658704487931.3767
+
+INFO:root:68 points detected:1658704488012.1467
+
+INFO:root:blinks_detected:1658704488014.5215
+
+INFO:root:frame received:1658704488031.7031
+
+INFO:root:68 points detected:1658704488112.7869
+
+INFO:root:blinks_detected:1658704488115.1785
+
+INFO:root:frame received:1658704488130.8645
+
+INFO:root:68 points detected:1658704488212.113
+
+INFO:root:blinks_detected:1658704488214.505
+
+INFO:root:frame received:1658704488230.3208
+
+INFO:root:68 points detected:1658704488311.4626
+
+INFO:root:blinks_detected:1658704488313.8435
+
+INFO:root:frame received:1658704488330.6372
+
+INFO:root:68 points detected:1658704488411.919
+
+INFO:root:blinks_detected:1658704488414.3083
+
+INFO:root:frame received:1658704488432.329
+
+INFO:root:68 points detected:1658704488513.9792
+
+INFO:root:blinks_detected:1658704488516.3052
+
+INFO:root:frame received:1658704488537.399
+
+INFO:root:68 points detected:1658704488618.4146
+
+INFO:root:blinks_detected:1658704488620.733
+
+INFO:root:frame received:1658704488639.02
+
+INFO:root:68 points detected:1658704488719.8503
+
+INFO:root:blinks_detected:1658704488722.2527
+
+INFO:root:frame received:1658704488739.7583
+
+INFO:root:68 points detected:1658704488822.1482
+
+INFO:root:blinks_detected:1658704488824.4475
+
+INFO:root:frame received:1658704488846.5935
+
+INFO:root:68 points detected:1658704488928.3167
+
+INFO:root:blinks_detected:1658704488930.7178
+
+INFO:root:frame received:1658704488946.758
+
+INFO:root:68 points detected:1658704489028.0642
+
+INFO:root:blinks_detected:1658704489030.4363
+
+INFO:root:frame received:1658704489046.512
+
+INFO:root:68 points detected:1658704489128.0857
+
+INFO:root:blinks_detected:1658704489130.6448
+
+INFO:root:frame received:1658704489148.0095
+
+INFO:root:68 points detected:1658704489232.5637
+
+INFO:root:blinks_detected:1658704489234.9849
+
+INFO:root:frame received:1658704489252.6538
+
+INFO:root:68 points detected:1658704489333.854
+
+INFO:root:blinks_detected:1658704489336.1797
+
+INFO:root:frame received:1658704489352.13
+
+INFO:root:68 points detected:1658704489433.5356
+
+INFO:root:blinks_detected:1658704489435.8604
+
+INFO:root:frame received:1658704489452.0046
+
+INFO:root:68 points detected:1658704489533.8577
+
+INFO:root:blinks_detected:1658704489536.1746
+
+INFO:root:frame received:1658704489552.711
+
+INFO:root:68 points detected:1658704489634.104
+
+INFO:root:blinks_detected:1658704489636.461
+
+INFO:root:frame received:1658704489652.5256
+
+INFO:root:68 points detected:1658704489734.188
+
+INFO:root:blinks_detected:1658704489736.5093
+
+INFO:root:frame received:1658704489752.566
+
+INFO:root:68 points detected:1658704489834.1064
+
+INFO:root:blinks_detected:1658704489836.4265
+
+INFO:root:frame received:1658704489853.559
+
+INFO:root:68 points detected:1658704489934.8975
+
+INFO:root:blinks_detected:1658704489937.2202
+
+INFO:root:frame received:1658704489955.8213
+
+INFO:root:68 points detected:1658704490037.1785
+
+INFO:root:blinks_detected:1658704490039.6013
+
+INFO:root:frame received:1658704490061.2131
+
+INFO:root:68 points detected:1658704490142.8875
+
+INFO:root:blinks_detected:1658704490145.2537
+
+INFO:root:frame received:1658704490163.032
+
+INFO:root:68 points detected:1658704490244.3928
+
+INFO:root:blinks_detected:1658704490246.7947
+
+INFO:root:frame received:1658704490264.1206
+
+INFO:root:68 points detected:1658704490345.8389
+
+INFO:root:blinks_detected:1658704490348.1577
+
+INFO:root:frame received:1658704490367.0598
+
+INFO:root:68 points detected:1658704490448.3816
+
+INFO:root:blinks_detected:1658704490450.801
+
+INFO:root:frame received:1658704490467.9712
+
+INFO:root:68 points detected:1658704490550.9639
+
+INFO:root:blinks_detected:1658704490553.2832
+
+INFO:root:frame received:1658704490570.8667
+
+INFO:root:68 points detected:1658704490652.117
+
+INFO:root:blinks_detected:1658704490654.512
+
+INFO:root:frame received:1658704490673.7449
+
+INFO:root:68 points detected:1658704490755.0947
+
+INFO:root:blinks_detected:1658704490757.514
+
+INFO:root:frame received:1658704490778.2583
+
+INFO:root:68 points detected:1658704490859.4646
+
+INFO:root:blinks_detected:1658704490861.8374
+
+INFO:root:frame received:1658704490880.911
+
+INFO:root:68 points detected:1658704490961.9807
+
+INFO:root:blinks_detected:1658704490964.3118
+
+INFO:root:frame received:1658704490982.1968
+
+INFO:root:68 points detected:1658704491063.3044
+
+INFO:root:blinks_detected:1658704491065.6643
+
+INFO:root:frame received:1658704491082.982
+
+INFO:root:68 points detected:1658704491164.2283
+
+INFO:root:blinks_detected:1658704491166.6523
+
+INFO:root:frame received:1658704491185.1958
+
+INFO:root:68 points detected:1658704491266.2322
+
+INFO:root:blinks_detected:1658704491268.5576
+
+INFO:root:frame received:1658704491288.7375
+
+INFO:root:68 points detected:1658704491372.2292
+
+INFO:root:blinks_detected:1658704491374.6584
+
+INFO:root:frame received:1658704491393.9324
+
+INFO:root:68 points detected:1658704491474.8652
+
+INFO:root:blinks_detected:1658704491477.1892
+
+INFO:root:frame received:1658704491494.6965
+
+INFO:root:68 points detected:1658704491576.239
+
+INFO:root:blinks_detected:1658704491578.6633
+
+INFO:root:frame received:1658704491598.935
+
+INFO:root:68 points detected:1658704491680.067
+
+INFO:root:blinks_detected:1658704491682.502
+
+INFO:root:frame received:1658704491702.7976
+
+INFO:root:68 points detected:1658704491784.1719
+
+INFO:root:blinks_detected:1658704491786.56
+
+INFO:root:frame received:1658704491804.7373
+
+INFO:root:68 points detected:1658704491887.0261
+
+INFO:root:blinks_detected:1658704491889.3525
+
+INFO:root:frame received:1658704491906.2114
+
+INFO:root:68 points detected:1658704491987.661
+
+INFO:root:blinks_detected:1658704491990.0442
+
+INFO:root:frame received:1658704492007.7957
+
+INFO:root:68 points detected:1658704492089.105
+
+INFO:root:blinks_detected:1658704492091.5188
+
+INFO:root:frame received:1658704492109.966
+
+INFO:root:68 points detected:1658704492191.2764
+
+INFO:root:blinks_detected:1658704492193.6343
+
+INFO:root:frame received:1658704492209.3386
+
+INFO:root:68 points detected:1658704492290.409
+
+INFO:root:blinks_detected:1658704492292.745
+
+INFO:root:frame received:1658704492309.5642
+
+INFO:root:68 points detected:1658704492390.5754
+
+INFO:root:blinks_detected:1658704492392.8962
+
+INFO:root:frame received:1658704492409.8745
+
+INFO:root:68 points detected:1658704492491.7246
+
+INFO:root:blinks_detected:1658704492494.1152
+
+INFO:root:frame received:1658704492514.9468
+
+INFO:root:68 points detected:1658704492596.0635
+
+INFO:root:blinks_detected:1658704492598.4712
+
+INFO:root:frame received:1658704492615.9849
+
+INFO:root:68 points detected:1658704492697.0354
+
+INFO:root:blinks_detected:1658704492699.4407
+
+INFO:root:frame received:1658704492717.207
+
+INFO:root:68 points detected:1658704492799.4119
+
+INFO:root:blinks_detected:1658704492801.7898
+
+INFO:root:frame received:1658704492819.2275
+
+INFO:root:68 points detected:1658704492900.3171
+
+INFO:root:blinks_detected:1658704492902.7058
+
+INFO:root:frame received:1658704492921.78
+
+INFO:root:68 points detected:1658704493002.675
+
+INFO:root:blinks_detected:1658704493005.0032
+
+INFO:root:frame received:1658704493022.7285
+
+INFO:root:68 points detected:1658704493103.627
+
+INFO:root:blinks_detected:1658704493106.0056
+
+INFO:root:frame received:1658704493125.1792
+
+INFO:root:68 points detected:1658704493207.142
+
+INFO:root:blinks_detected:1658704493209.5266
+
+INFO:root:frame received:1658704493227.5486
+
+INFO:root:68 points detected:1658704493308.7583
+
+INFO:root:blinks_detected:1658704493311.1392
+
+INFO:root:frame received:1658704493330.2117
+
+INFO:root:68 points detected:1658704493411.116
+
+INFO:root:blinks_detected:1658704493413.4712
+
+INFO:root:frame received:1658704493430.2944
+
+INFO:root:68 points detected:1658704493513.6824
+
+INFO:root:blinks_detected:1658704493516.0232
+
+INFO:root:frame received:1658704493534.1008
+
+INFO:root:68 points detected:1658704493615.2239
+
+INFO:root:blinks_detected:1658704493617.5989
+
+INFO:root:frame received:1658704493634.1763
+
+INFO:root:68 points detected:1658704493715.2832
+
+INFO:root:blinks_detected:1658704493717.651
+
+INFO:root:frame received:1658704493734.3442
+
+INFO:root:68 points detected:1658704493815.466
+
+INFO:root:blinks_detected:1658704493817.8506
+
+INFO:root:frame received:1658704493835.7737
+
+INFO:root:68 points detected:1658704493916.9905
+
+INFO:root:blinks_detected:1658704493919.3684
+
+INFO:root:frame received:1658704493941.9834
+
+INFO:root:68 points detected:1658704494023.5527
+
+INFO:root:blinks_detected:1658704494025.9292
+
+INFO:root:frame received:1658704494041.0054
+
+INFO:root:68 points detected:1658704494121.843
+
+INFO:root:blinks_detected:1658704494124.174
+
+INFO:root:frame received:1658704494144.2112
+
+INFO:root:68 points detected:1658704494225.2214
+
+INFO:root:blinks_detected:1658704494227.601
+
+INFO:root:frame received:1658704494244.4043
+
+INFO:root:68 points detected:1658704494325.3315
+
+INFO:root:blinks_detected:1658704494327.707
+
+INFO:root:frame received:1658704494346.2996
+
+INFO:root:68 points detected:1658704494427.5664
+
+INFO:root:blinks_detected:1658704494429.9392
+
+INFO:root:frame received:1658704494447.4155
+
+INFO:root:68 points detected:1658704494530.3577
+
+INFO:root:blinks_detected:1658704494532.6958
+
+INFO:root:frame received:1658704494550.9592
+
+INFO:root:68 points detected:1658704494632.1133
+
+INFO:root:blinks_detected:1658704494634.5215
+
+INFO:root:frame received:1658704494652.0422
+
+INFO:root:68 points detected:1658704494732.9978
+
+INFO:root:blinks_detected:1658704494735.3796
+
+INFO:root:frame received:1658704494753.634
+
+INFO:root:68 points detected:1658704494835.135
+
+INFO:root:blinks_detected:1658704494837.525
+
+INFO:root:frame received:1658704494854.6326
+
+INFO:root:68 points detected:1658704494936.05
+
+INFO:root:blinks_detected:1658704494938.4412
+
+INFO:root:frame received:1658704494955.2214
+
+INFO:root:68 points detected:1658704495036.5398
+
+INFO:root:blinks_detected:1658704495038.9924
+
+INFO:root:frame received:1658704495060.4387
+
+INFO:root:68 points detected:1658704495142.025
+
+INFO:root:blinks_detected:1658704495144.6548
+
+INFO:root:frame received:1658704495161.6824
+
+INFO:root:68 points detected:1658704495243.2456
+
+INFO:root:blinks_detected:1658704495245.6125
+
+INFO:root:frame received:1658704495263.584
+
+INFO:root:68 points detected:1658704495344.788
+
+INFO:root:blinks_detected:1658704495347.1677
+
+INFO:root:frame received:1658704495365.6377
+
+INFO:root:68 points detected:1658704495447.0876
+
+INFO:root:blinks_detected:1658704495449.4048
+
+INFO:root:frame received:1658704495467.2551
+
+INFO:root:68 points detected:1658704495548.2737
+
+INFO:root:blinks_detected:1658704495550.6843
+
+INFO:root:frame received:1658704495569.022
+
+INFO:root:68 points detected:1658704495649.8135
+
+INFO:root:blinks_detected:1658704495652.143
+
+INFO:root:frame received:1658704495671.116
+
+INFO:root:68 points detected:1658704495752.3367
+
+INFO:root:blinks_detected:1658704495754.7537
+
+INFO:root:frame received:1658704495772.33
+
+INFO:root:68 points detected:1658704495855.579
+
+INFO:root:blinks_detected:1658704495857.9863
+
+INFO:root:frame received:1658704495878.436
+
+INFO:root:68 points detected:1658704495959.9216
+
+INFO:root:blinks_detected:1658704495962.316
+
+INFO:root:frame received:1658704495980.0183
+
+INFO:root:68 points detected:1658704496060.9023
+
+INFO:root:blinks_detected:1658704496063.2837
+
+INFO:root:frame received:1658704496084.3953
+
+INFO:root:68 points detected:1658704496167.3918
+
+INFO:root:blinks_detected:1658704496169.7715
+
+INFO:root:frame received:1658704496187.2725
+
+INFO:root:68 points detected:1658704496268.485
+
+INFO:root:blinks_detected:1658704496270.9111
+
+INFO:root:frame received:1658704496289.9607
+
+INFO:root:68 points detected:1658704496371.476
+
+INFO:root:blinks_detected:1658704496373.861
+
+INFO:root:frame received:1658704496393.1968
+
+INFO:root:68 points detected:1658704496474.1584
+
+INFO:root:blinks_detected:1658704496476.4832
+
+INFO:root:frame received:1658704496492.3042
+
+INFO:root:68 points detected:1658704496573.075
+
+INFO:root:blinks_detected:1658704496575.4792
+
+INFO:root:frame received:1658704496594.0757
+
+INFO:root:68 points detected:1658704496675.1792
+
+INFO:root:blinks_detected:1658704496677.5571
+
+INFO:root:frame received:1658704496693.9763
+
+INFO:root:68 points detected:1658704496775.7468
+
+INFO:root:blinks_detected:1658704496778.1108
+
+INFO:root:frame received:1658704496794.9592
+
+INFO:root:68 points detected:1658704496877.6946
+
+INFO:root:blinks_detected:1658704496880.0422
+
+INFO:root:frame received:1658704496899.1604
+
+INFO:root:68 points detected:1658704496979.522
+
+INFO:root:blinks_detected:1658704496981.9126
+
+INFO:root:frame received:1658704496999.5469
+
+INFO:root:68 points detected:1658704497080.5154
+
+INFO:root:blinks_detected:1658704497082.9316
+
+INFO:root:frame received:1658704497101.832
+
+INFO:root:68 points detected:1658704497182.9873
+
+INFO:root:blinks_detected:1658704497185.29
+
+INFO:root:frame received:1658704497202.6428
+
+INFO:root:68 points detected:1658704497284.216
+
+INFO:root:blinks_detected:1658704497286.6611
+
+INFO:root:frame received:1658704497305.275
+
+INFO:root:68 points detected:1658704497386.2024
+
+INFO:root:blinks_detected:1658704497388.5173
+
+INFO:root:frame received:1658704497409.3203
+
+INFO:root:68 points detected:1658704497490.2905
+
+INFO:root:blinks_detected:1658704497492.609
+
+INFO:root:frame received:1658704497509.493
+
+INFO:root:68 points detected:1658704497590.509
+
+INFO:root:blinks_detected:1658704497592.8435
+
+INFO:root:frame received:1658704497610.5203
+
+INFO:root:68 points detected:1658704497691.6528
+
+INFO:root:blinks_detected:1658704497694.0356
+
+INFO:root:frame received:1658704497716.2468
+
+INFO:root:68 points detected:1658704497797.1792
+
+INFO:root:blinks_detected:1658704497799.554
+
+INFO:root:frame received:1658704497816.6494
+
+INFO:root:68 points detected:1658704497897.622
+
+INFO:root:blinks_detected:1658704497899.9534
+
+INFO:root:frame received:1658704497916.2922
+
+INFO:root:68 points detected:1658704497998.9897
+
+INFO:root:blinks_detected:1658704498001.3809
+
+INFO:root:frame received:1658704498019.1885
+
+INFO:root:68 points detected:1658704498100.248
+
+INFO:root:blinks_detected:1658704498102.6426
+
+INFO:root:frame received:1658704498118.6992
+
+INFO:root:68 points detected:1658704498201.543
+
+INFO:root:blinks_detected:1658704498203.9194
+
+INFO:root:frame received:1658704498221.0874
+
+INFO:root:68 points detected:1658704498302.2651
+
+INFO:root:blinks_detected:1658704498304.5781
+
+INFO:root:frame received:1658704498320.3103
+
+INFO:root:68 points detected:1658704498401.5908
+
+INFO:root:blinks_detected:1658704498403.9138
+
+INFO:root:frame received:1658704498420.3562
+
+INFO:root:68 points detected:1658704498501.7737
+
+INFO:root:blinks_detected:1658704498504.0908
+
+INFO:root:frame received:1658704498524.7148
+
+INFO:root:68 points detected:1658704498605.7947
+
+INFO:root:blinks_detected:1658704498608.132
+
+INFO:root:frame received:1658704498626.14
+
+INFO:root:68 points detected:1658704498707.1733
+
+INFO:root:blinks_detected:1658704498709.544
+
+INFO:root:frame received:1658704498728.8398
+
+INFO:root:68 points detected:1658704498812.694
+
+INFO:root:blinks_detected:1658704498815.0857
+
+INFO:root:frame received:1658704498833.4053
+
+INFO:root:68 points detected:1658704498914.4177
+
+INFO:root:blinks_detected:1658704498916.7317
+
+INFO:root:frame received:1658704498933.9033
+
+INFO:root:frame received:1658704499026.0583
+
+INFO:root:frame received:1658704499118.0007
+
+INFO:root:frame received:1658704499207.9578
+
+INFO:root:frame received:1658704499298.6902
+
+INFO:root:frame received:1658704499389.3076
+
+INFO:root:frame received:1658704499478.6035
+
+INFO:root:frame received:1658704499570.3533
+
+INFO:root:frame received:1658704499661.7686
+
+INFO:root:68 points detected:1658704499742.613
+
+INFO:root:blinks_detected:1658704499744.9482
+
+INFO:root:frame received:1658704499770.5312
+
+INFO:root:frame received:1658704499862.0332
+
+INFO:root:frame received:1658704499955.566
+
+INFO:root:frame received:1658704500045.2385
+
+INFO:root:frame received:1658704500137.817
+
+INFO:root:frame received:1658704500232.0635
+
+INFO:root:frame received:1658704500323.0435
+
+INFO:root:frame received:1658704500416.9678
+
+INFO:root:frame received:1658704500507.1782
+
+INFO:root:frame received:1658704500599.2537
+
+INFO:root:frame received:1658704500692.1208
+
+INFO:root:frame received:1658704500782.8542
+
+INFO:root:frame received:1658704500871.2861
+
+INFO:root:frame received:1658704500963.2954
+
+INFO:root:frame received:1658704501054.3901
+
+INFO:root:frame received:1658704501144.3486
+
+INFO:root:frame received:1658704501234.5383
+
+INFO:root:frame received:1658704501325.6914
+
+INFO:root:frame received:1658704501417.0754
+
+INFO:root:frame received:1658704501508.832
+
+INFO:root:frame received:1658704501599.2527
+
+INFO:root:frame received:1658704501690.5842
+
+INFO:root:frame received:1658704501783.461
+
+INFO:root:frame received:1658704501875.787
+
+INFO:root:frame received:1658704501963.9514
+
+INFO:root:frame received:1658704502059.5847
+
+INFO:root:frame received:1658704502155.6262
+
+INFO:root:frame received:1658704502246.7905
+
+INFO:root:frame received:1658704502343.0952
+
+INFO:root:frame received:1658704502433.0278
+
+INFO:root:frame received:1658704502527.348
+
+INFO:root:frame received:1658704502618.3726
+
+INFO:root:frame received:1658704502708.549
+
+INFO:root:frame received:1658704502802.7114
+
+INFO:root:frame received:1658704502894.983
+
+INFO:root:frame received:1658704502984.98
+
+INFO:root:frame received:1658704503076.4478
+
+INFO:root:frame received:1658704503165.9978
+
+INFO:root:frame received:1658704503256.5903
+
+INFO:root:frame received:1658704503348.6152
+
+INFO:root:frame received:1658704503439.1394
+
+INFO:root:frame received:1658704503529.1418
+
+INFO:root:frame received:1658704503620.9856
+
+INFO:root:frame received:1658704503715.6458
+
+INFO:root:frame received:1658704503809.3982
+
+INFO:root:frame received:1658704503899.4812
+
+INFO:root:frame received:1658704503990.2207
+
+INFO:root:frame received:1658704504082.9094
+
+INFO:root:frame received:1658704504172.1106
+
+INFO:root:frame received:1658704504261.6719
+
+INFO:root:frame received:1658704504353.48
+
+INFO:root:frame received:1658704504446.0178
+
+INFO:root:frame received:1658704504536.9329
+
+INFO:root:frame received:1658704504630.5608
+
+INFO:root:frame received:1658704504721.6902
+
+INFO:root:frame received:1658704504816.4038
+
+INFO:root:frame received:1658704504907.692
+
+INFO:root:frame received:1658704504996.465
+
+INFO:root:frame received:1658704505088.2407
+
+INFO:root:frame received:1658704505179.4014
+
+INFO:root:frame received:1658704505269.514
+
+INFO:root:frame received:1658704505360.7498
+
+INFO:root:frame received:1658704505448.641
+
+INFO:root:frame received:1658704505556.044
+
+INFO:root:frame received:1658704505648.406
+
+INFO:root:frame received:1658704505752.7087
+
+INFO:root:frame received:1658704505854.1863
+
+INFO:root:frame received:1658704505953.5623
+
+INFO:root:frame received:1658704506051.8645
+
+INFO:root:frame received:1658704506153.4678
+
+INFO:root:frame received:1658704506253.2244
+
+INFO:root:frame received:1658704506354.152
+
+INFO:root:frame received:1658704506452.0854
+
+INFO:root:frame received:1658704506548.1404
+
+INFO:root:frame received:1658704506640.6165
+
+INFO:root:frame received:1658704506730.5244
+
+INFO:root:frame received:1658704506823.6504
+
+INFO:root:frame received:1658704506914.7083
+
+INFO:root:frame received:1658704507004.5735
+
+INFO:root:frame received:1658704507095.6267
+
+INFO:root:frame received:1658704507190.6035
+
+INFO:root:frame received:1658704507282.1694
+
+INFO:root:frame received:1658704507373.7239
+
+INFO:root:frame received:1658704507463.7993
+
+INFO:root:frame received:1658704507555.7402
+
+INFO:root:frame received:1658704507646.549
+
+INFO:root:frame received:1658704507737.8271
+
+INFO:root:frame received:1658704507830.8179
+
+INFO:root:frame received:1658704507924.1116
+
+INFO:root:frame received:1658704508017.719
+
+INFO:root:frame received:1658704508111.9646
+
+INFO:root:frame received:1658704508203.9863
+
+INFO:root:frame received:1658704508294.5127
+
+INFO:root:frame received:1658704508386.973
+
+INFO:root:frame received:1658704508481.1702
+
+INFO:root:frame received:1658704508572.208
+
+INFO:root:frame received:1658704508661.299
+
+INFO:root:frame received:1658704508753.9485
+
+INFO:root:frame received:1658704508845.983
+
+INFO:root:frame received:1658704508937.61
+
+INFO:root:frame received:1658704509030.7754
+
+INFO:root:frame received:1658704509122.4607
+
+INFO:root:frame received:1658704509216.8716
+
+INFO:root:frame received:1658704509312.205
+
+INFO:root:frame received:1658704509403.1306
+
+INFO:root:frame received:1658704509493.0723
+
+INFO:root:frame received:1658704509585.1929
+
+INFO:root:frame received:1658704509675.3909
+
+INFO:root:frame received:1658704509764.602
+
+INFO:root:frame received:1658704509858.1838
+
+INFO:root:frame received:1658704509951.428
+
+INFO:root:frame received:1658704510044.0232
+
+INFO:root:frame received:1658704510133.8235
+
+INFO:root:frame received:1658704510226.8894
+
+INFO:root:frame received:1658704510319.9675
+
+INFO:root:frame received:1658704510411.7595
+
+INFO:root:frame received:1658704510503.0056
+
+INFO:root:frame received:1658704510595.3877
+
+INFO:root:frame received:1658704510686.9783
+
+INFO:root:frame received:1658704510781.793
+
+INFO:root:frame received:1658704510872.4028
+
+INFO:root:frame received:1658704510962.1833
+
+INFO:root:frame received:1658704511054.637
+
+INFO:root:frame received:1658704511149.3757
+
+INFO:root:frame received:1658704511241.941
+
+INFO:root:frame received:1658704511333.0132
+
+INFO:root:frame received:1658704511424.235
+
+INFO:root:frame received:1658704511517.8025
+
+INFO:root:frame received:1658704511610.8582
+
+INFO:root:frame received:1658704511702.5442
+
+INFO:root:frame received:1658704511793.5852
+
+INFO:root:frame received:1658704511884.9731
+
+INFO:root:frame received:1658704511977.5151
+
+INFO:root:frame received:1658704512072.59
+
+INFO:root:frame received:1658704512163.1174
+
+INFO:root:frame received:1658704512256.2517
+
+INFO:root:frame received:1658704512347.3481
+
+INFO:root:frame received:1658704512436.54
+
+INFO:root:frame received:1658704512527.1035
+
+INFO:root:frame received:1658704512616.932
+
+INFO:root:frame received:1658704512707.5264
+
+INFO:root:frame received:1658704512798.3323
+
+INFO:root:frame received:1658704512888.357
+
+INFO:root:frame received:1658704512979.766
+
+INFO:root:frame received:1658704513073.5327
+
+INFO:root:frame received:1658704513166.9258
+
+INFO:root:frame received:1658704513258.7717
+
+INFO:root:frame received:1658704513352.1328
+
+INFO:root:frame received:1658704513442.64
+
+INFO:root:frame received:1658704513532.046
+
+INFO:root:frame received:1658704513626.5107
+
+INFO:root:frame received:1658704513720.5469
+
+INFO:root:frame received:1658704513810.945
+
+INFO:root:frame received:1658704513900.1306
+
+INFO:root:frame received:1658704513988.849
+
+INFO:root:frame received:1658704514079.488
+
+INFO:root:frame received:1658704514173.1519
+
+INFO:root:frame received:1658704514262.002
+
+INFO:root:frame received:1658704514353.1301
+
+INFO:root:frame received:1658704514444.2334
+
+INFO:root:frame received:1658704514535.2266
+
+INFO:root:frame received:1658704514627.1118
+
+INFO:root:frame received:1658704514715.6987
+
+INFO:root:frame received:1658704514807.6172
+
+INFO:root:frame received:1658704514899.852
+
+INFO:root:frame received:1658704514991.0217
+
+INFO:root:frame received:1658704515082.3535
+
+INFO:root:frame received:1658704515172.4482
+
+INFO:root:frame received:1658704515263.5186
+
+INFO:root:frame received:1658704515354.9678
+
+INFO:root:frame received:1658704515446.0999
+
+INFO:root:frame received:1658704515535.8904
+
+INFO:root:frame received:1658704515625.824
+
+INFO:root:frame received:1658704515716.442
+
+INFO:root:frame received:1658704515805.9585
+
+INFO:root:frame received:1658704515895.4365
+
+INFO:root:frame received:1658704515991.8171
+
+INFO:root:frame received:1658704516087.9058
+
+INFO:root:frame received:1658704516180.1094
+
+INFO:root:frame received:1658704516276.5896
+
+INFO:root:frame received:1658704516368.8557
+
+INFO:root:frame received:1658704516463.724
+
+INFO:root:frame received:1658704516557.0105
+
+INFO:root:frame received:1658704516647.4607
+
+INFO:root:frame received:1658704516745.2285
+
+INFO:root:frame received:1658704516837.0928
+
+INFO:root:frame received:1658704516929.5356
+
+INFO:root:frame received:1658704517019.8208
+
+INFO:root:frame received:1658704517113.9587
+
+INFO:root:frame received:1658704517208.7104
+
+INFO:root:frame received:1658704517303.9666
+
+INFO:root:frame received:1658704517394.379
+
+INFO:root:frame received:1658704517486.3623
+
+INFO:root:frame received:1658704517581.1719
+
+INFO:root:frame received:1658704517674.6455
+
+INFO:root:frame received:1658704517768.5342
+
+INFO:root:frame received:1658704517864.4663
+
+INFO:root:frame received:1658704517957.89
+
+INFO:root:frame received:1658704518049.3206
+
+INFO:root:frame received:1658704518147.5967
+
+INFO:root:frame received:1658704518239.1658
+
+INFO:root:frame received:1658704518333.5806
+
+INFO:root:frame received:1658704518426.5923
+
+INFO:root:frame received:1658704518540.1301
+
+INFO:root:frame received:1658704518629.2185
+
+INFO:root:frame received:1658704518717.7559
+
+INFO:root:frame received:1658704518813.0938
+
+INFO:root:frame received:1658704518909.1206
+
+INFO:root:frame received:1658704519005.0784
+
+INFO:root:frame received:1658704519102.6892
+
+INFO:root:frame received:1658704519199.5212
+
+INFO:root:frame received:1658704519293.8086
+
+INFO:root:frame received:1658704519386.8096
+
+INFO:root:frame received:1658704519479.9602
+
+INFO:root:frame received:1658704519573.7776
+
+INFO:root:frame received:1658704519671.5203
+
+INFO:root:frame received:1658704519762.4053
+
+INFO:root:frame received:1658704519857.0024
+
+INFO:root:frame received:1658704519946.6953
+
+INFO:root:frame received:1658704520044.1365
+
+INFO:root:frame received:1658704520141.5823
+
+INFO:root:frame received:1658704520232.949
+
+INFO:root:frame received:1658704520321.6733
+
+INFO:root:frame received:1658704520416.4365
+
+INFO:root:frame received:1658704520515.7827
+
+INFO:root:frame received:1658704520614.8193
+
+INFO:root:frame received:1658704520706.4033
+
+INFO:root:frame received:1658704520801.8948
+
+INFO:root:frame received:1658704520897.7588
+
+INFO:root:frame received:1658704520987.3557
+
+INFO:root:frame received:1658704521079.4612
+
+INFO:root:frame received:1658704521173.411
+
+INFO:root:frame received:1658704521266.349
+
+INFO:root:frame received:1658704521359.054
+
+INFO:root:frame received:1658704521452.1655
+
+INFO:root:frame received:1658704521550.3655
+
+INFO:root:frame received:1658704521645.6558
+
+INFO:root:frame received:1658704521739.1433
+
+INFO:root:frame received:1658704521831.456
+
+INFO:root:frame received:1658704521924.666
+
+INFO:root:frame received:1658704522018.826
+
+INFO:root:frame received:1658704522113.9548
+
+INFO:root:frame received:1658704522202.8516
+
+INFO:root:frame received:1658704522294.3538
+
+INFO:root:frame received:1658704522386.2683
+
+INFO:root:frame received:1658704522475.3516
+
+INFO:root:frame received:1658704522573.5195
+
+INFO:root:frame received:1658704522663.2126
+
+INFO:root:frame received:1658704522755.3738
+
+INFO:root:frame received:1658704522846.9456
+
+INFO:root:frame received:1658704522945.5042
+
+INFO:root:frame received:1658704523038.2551
+
+INFO:root:frame received:1658704523137.5847
+
+INFO:root:frame received:1658704523230.9712
+
+INFO:root:frame received:1658704523322.1318
+
+INFO:root:frame received:1658704523413.7498
+
+INFO:root:frame received:1658704523504.4282
+
+INFO:root:frame received:1658704523596.0837
+
+INFO:root:frame received:1658704523687.8257
+
+INFO:root:frame received:1658704523778.4326
+
+INFO:root:frame received:1658704523872.6313
+
+INFO:root:frame received:1658704523967.8276
+
+INFO:root:frame received:1658704524058.0286
+
+INFO:root:frame received:1658704524156.2246
+
+INFO:root:frame received:1658704524256.3894
+
+INFO:root:frame received:1658704524348.456
+
+INFO:root:frame received:1658704524441.1858
+
+INFO:root:frame received:1658704524537.7112
+
+INFO:root:frame received:1658704524628.8027
+
+INFO:root:frame received:1658704524717.144
+
+INFO:root:frame received:1658704524810.219
+
+INFO:root:frame received:1658704524908.6829
+
+INFO:root:frame received:1658704525002.3054
+
+INFO:root:frame received:1658704525097.7207
+
+INFO:root:frame received:1658704525190.3728
+
+INFO:root:frame received:1658704525285.8599
+
+INFO:root:frame received:1658704525382.8503
+
+INFO:root:frame received:1658704525472.6274
+
+INFO:root:frame received:1658704525563.9656
+
+INFO:root:frame received:1658704525656.3347
+
+INFO:root:frame received:1658704525748.3018
+
+INFO:root:frame received:1658704525841.043
+
+INFO:root:frame received:1658704525938.9482
+
+INFO:root:frame received:1658704526034.8733
+
+INFO:root:frame received:1658704526125.0989
+
+INFO:root:frame received:1658704526223.5554
+
+INFO:root:frame received:1658704526316.1138
+
+INFO:root:frame received:1658704526413.2505
+
+INFO:root:frame received:1658704526506.1511
+
+INFO:root:frame received:1658704526603.2114
+
+INFO:root:frame received:1658704526693.3357
+
+INFO:root:frame received:1658704526783.559
+
+INFO:root:frame received:1658704526874.3713
+
+INFO:root:frame received:1658704526966.5447
+
+INFO:root:frame received:1658704527071.7004
+
+INFO:root:frame received:1658704527164.1592
+
+INFO:root:frame received:1658704527259.586
+
+INFO:root:frame received:1658704527354.085
+
+INFO:root:frame received:1658704527447.0496
+
+INFO:root:frame received:1658704527538.7244
+
+INFO:root:frame received:1658704527631.8916
+
+INFO:root:frame received:1658704527727.2566
+
+INFO:root:frame received:1658704527829.7815
+
+INFO:root:frame received:1658704527923.2056
+
+INFO:root:frame received:1658704528017.725
+
+INFO:root:frame received:1658704528112.5962
+
+INFO:root:frame received:1658704528201.1409
+
+INFO:root:frame received:1658704528294.7368
+
+INFO:root:frame received:1658704528385.2644
+
+INFO:root:frame received:1658704528474.3154
+
+INFO:root:frame received:1658704528566.724
+
+INFO:root:frame received:1658704528666.666
+
+INFO:root:frame received:1658704528757.9626
+
+INFO:root:frame received:1658704528854.4487
+
+INFO:root:frame received:1658704528946.0283
+
+INFO:root:frame received:1658704529039.2783
+
+INFO:root:frame received:1658704529130.6033
+
+INFO:root:frame received:1658704529226.286
+
+INFO:root:frame received:1658704529315.1692
+
+INFO:root:frame received:1658704529411.0479
+
+INFO:root:frame received:1658704529504.5864
+
+INFO:root:frame received:1658704529603.1648
+
+INFO:root:frame received:1658704529696.6997
+
+INFO:root:frame received:1658704529790.6235
+
+INFO:root:frame received:1658704529882.3013
+
+INFO:root:frame received:1658704529970.832
+
+INFO:root:frame received:1658704530064.4546
+
+INFO:root:frame received:1658704530157.8618
+
+INFO:root:frame received:1658704530246.419
+
+INFO:root:frame received:1658704530340.6917
+
+INFO:root:frame received:1658704530442.9583
+
+INFO:root:frame received:1658704530534.1428
+
+INFO:root:frame received:1658704530627.9475
+
+INFO:root:frame received:1658704530722.2952
+
+INFO:root:frame received:1658704530814.7498
+
+INFO:root:frame received:1658704530913.93
+
+INFO:root:frame received:1658704531009.5723
+
+INFO:root:frame received:1658704531098.0232
+
+INFO:root:frame received:1658704531189.666
+
+INFO:root:frame received:1658704531281.7056
+
+INFO:root:frame received:1658704531375.948
+
+INFO:root:frame received:1658704531468.0872
+
+INFO:root:frame received:1658704531560.7893
+
+INFO:root:frame received:1658704531653.005
+
+INFO:root:frame received:1658704531744.7217
+
+INFO:root:frame received:1658704531840.853
+
+INFO:root:frame received:1658704531933.2258
+
+INFO:root:frame received:1658704532025.252
+
+INFO:root:frame received:1658704532117.6887
+
+INFO:root:frame received:1658704532207.9092
+
+INFO:root:frame received:1658704532300.36
+
+INFO:root:frame received:1658704532394.02
+
+INFO:root:frame received:1658704532482.6018
+
+INFO:root:frame received:1658704532574.973
+
+INFO:root:frame received:1658704532667.94
+
+INFO:root:frame received:1658704532760.2346
+
+INFO:root:frame received:1658704532852.0933
+
+INFO:root:frame received:1658704532940.3591
+
+INFO:root:frame received:1658704533027.582
+
+INFO:root:frame received:1658704533118.4773
+
+INFO:root:frame received:1658704533214.1775
+
+INFO:root:frame received:1658704533304.9866
+
+INFO:root:frame received:1658704533397.7566
+
+INFO:root:frame received:1658704533489.1333
+
+INFO:root:frame received:1658704533581.7092
+
+INFO:root:frame received:1658704533673.133
+
+INFO:root:frame received:1658704533764.1167
+
+INFO:root:frame received:1658704533855.0166
+
+INFO:root:frame received:1658704533947.301
+
+INFO:root:frame received:1658704534040.7131
+
+INFO:root:frame received:1658704534133.3418
+
+INFO:root:frame received:1658704534226.1973
+
+INFO:root:frame received:1658704534316.3203
+
+INFO:root:frame received:1658704534403.5818
+
+INFO:root:frame received:1658704534490.5125
+
+INFO:root:frame received:1658704534577.3828
+
+INFO:root:frame received:1658704534663.1797
+
+INFO:root:frame received:1658704534749.2998
+
+INFO:pc:PeerConnection(806e5fb0-d69b-483a-b34c-e2677b05080e) Track video ended
+INFO:pc:PeerConnection(806e5fb0-d69b-483a-b34c-e2677b05080e) Connection state is closed
