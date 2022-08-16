@@ -343,6 +343,7 @@ def process_image( frame ):
     # detect faces in the grayscale frame
     rects = detector(gray, 0)
 
+
     if (np.size(rects) != 0):
         number_of_frames = number_of_frames + 1  # we only consider frames that face is detected
         First_frame = False
